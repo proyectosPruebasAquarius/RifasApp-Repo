@@ -23,6 +23,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+
+app.get('/username', function(req, res) {
+  res.render('example');
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -39,9 +44,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.get('/example', function(req, res, next) {
-  res.render('example', { title: 'Express' });
-});
+
 
 app.listen(3000, () => {
   console.log('Server on Port 3000');
