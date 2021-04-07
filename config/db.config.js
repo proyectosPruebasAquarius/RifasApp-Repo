@@ -1,14 +1,25 @@
 'use strict';
 const mysql = require('mysql');
+const { promisify } = require('util');
 //local mysql db connection
-const conn = mysql.createConnection({
-  host     : 'b9kexcbzj9b0b4imcgzh-mysql.services.clever-cloud.com',
-  user     : 'ug4azy6jeyi3sh4j',
-  password : 'XgdYVm6dY3X8DI5GZ9lA',
-  database : 'b9kexcbzj9b0b4imcgzh'
-});
-dbConn.connect(function(err) {
-  if (err) throw err;
-  console.log("Database Connected!");
-});
-module.exports = conn;
+const { database } = require('../keys');
+const pool = mysql.createPool(database);
+pool.getConnection((err, connection) => {
+  if(err){
+    if(err.code === 'PROTOCOL_CONNECTION_LOST'){
+      console.error('Database connection was close');
+    }
+    if(err.code === 'ER_CON_COUNT_ERROR'){
+      console.error('Database has to many connections');
+    }
+    if(err.code === 'ECONNREFUSED'){
+      console.error('Database connection was refused');
+    }
+  }
+  if(connection) connection.release();
+  console.log('DB is connect!');
+  return;
+})
+promisify(pool.query);
+
+module.exports = pool;

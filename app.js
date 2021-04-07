@@ -1,17 +1,19 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const expressLayout = require('express-ejs-layouts');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+app.use(expressLayout);
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
@@ -20,9 +22,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Global variables
+app.use((req, res, next) => {
+  next();
+})
+//Routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
+app.use(require('./routes/authentication'));
+app.use('/links', require('./routes/links'));
 
 app.get('/username', function(req, res) {
   res.render('example');
