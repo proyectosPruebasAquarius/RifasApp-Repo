@@ -8,7 +8,6 @@ const logger = require('morgan');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
-
 const app = express();
 
 // view engine setup
@@ -30,7 +29,7 @@ app.use((req, res, next) => {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use(require('./routes/authentication'));
-app.use('/links', require('./routes/links'));
+app.use('/clientes', require('./routes/clientes'));
 
 app.get('/username', function(req, res) {
   res.render('example');
