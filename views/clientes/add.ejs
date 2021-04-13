@@ -1,6 +1,6 @@
 <h2><i class="material-icons">person_add</i> Registro de Clientes</h2>
 <hr>
-<form action="">
+<form action="/clientes/add" method="POST">
     
    <div class="mdc-layout-grid__inner">
     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
@@ -9,13 +9,127 @@
           <div class="mdc-notched-outline">
             <div class="mdc-notched-outline__leading"></div>
             <div class="mdc-notched-outline__notch">
-              <label for="text-field-hero-input" class="mdc-floating-label">Name</label>
+              <label for="text-field-hero-input" class="mdc-floating-label">Nombres</label>
             </div>
             <div class="mdc-notched-outline__trailing"></div>
           </div>
         </div>
       </div>
+
+      <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+        <div class="mdc-text-field mdc-text-field--outlined">
+          <input class="mdc-text-field__input" name="apellidos">
+          <div class="mdc-notched-outline">
+            <div class="mdc-notched-outline__leading"></div>
+            <div class="mdc-notched-outline__notch">
+              <label for="text-field-hero-input" class="mdc-floating-label">Apellidos</label>
+            </div>
+            <div class="mdc-notched-outline__trailing"></div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <br>
+      <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop">
+          <div class="mdc-text-field mdc-text-field--outlined">
+            <input class="mdc-text-field__input" type="date" name="fecha_nac">
+            <div class="mdc-notched-outline">
+              <div class="mdc-notched-outline__leading"></div>
+              <div class="mdc-notched-outline__notch">
+                <label for="text-field-hero-input" class="mdc-floating-label">Fecha de Nacimiento</label>
+              </div>
+              <div class="mdc-notched-outline__trailing"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop">
+            <div class="mdc-text-field mdc-text-field--outlined">
+              <input class="mdc-text-field__input" name="DUI">
+              <div class="mdc-notched-outline">
+                <div class="mdc-notched-outline__leading"></div>
+                <div class="mdc-notched-outline__notch">
+                  <label for="text-field-hero-input" class="mdc-floating-label">DUI</label>
+                </div>
+                <div class="mdc-notched-outline__trailing"></div>
+              </div>
+            </div>
+          </div>
+    
+          <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop">
+            <div class="mdc-text-field mdc-text-field--outlined">
+              <input class="mdc-text-field__input" name="telefono">
+              <div class="mdc-notched-outline">
+                <div class="mdc-notched-outline__leading"></div>
+                <div class="mdc-notched-outline__notch">
+                  <label for="text-field-hero-input" class="mdc-floating-label">Teléfono</label>
+                </div>
+                <div class="mdc-notched-outline__trailing"></div>
+              </div>
+            </div>
+          </div>
+          <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop">
+            <div class="mdc-text-field mdc-text-field--outlined">
+              <input class="mdc-text-field__input" name="celular">
+              <div class="mdc-notched-outline">
+                <div class="mdc-notched-outline__leading"></div>
+                <div class="mdc-notched-outline__notch">
+                  <label for="text-field-hero-input" class="mdc-floating-label">Celular</label>
+                </div>
+                <div class="mdc-notched-outline__trailing"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+       <br>
+        <div class="mdc-layout-grid__inner">
+          <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop">
+            <div class="mdc-select demo-width-class" data-mdc-auto-init="MDCSelect">
+                      
+              <input type="hidden" name="enhanced-select">
+              <i class="mdc-select__dropdown-icon"></i>
+              <div class="mdc-select__selected-text"></div>
+              <div class="mdc-select__menu mdc-menu-surface demo-width-class">
+                <ul class="mdc-list">
+                  <li class="mdc-list-item mdc-list-item--selected" data-value="" aria-selected="true">
+                  </li>
+                  <li class="mdc-list-item" data-value="1">
+                    Chalatenango
+                  </li>
+                  <li class="mdc-list-item" data-value="2">
+                    El Paraiso
+                  </li>
+                  <li class="mdc-list-item" data-value="3">
+                    Santa Rita
+                  </li>
+                </ul>
+              </div>
+              <span class="mdc-floating-label">Municipio</span>
+              <div class="mdc-line-ripple"></div>
+            </div>
+          </div>
+  
+          <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-9-desktop">
+              <div class="mdc-text-field mdc-text-field--outlined">
+                <input class="mdc-text-field__input" name="direccion">
+                <div class="mdc-notched-outline">
+                  <div class="mdc-notched-outline__leading"></div>
+                  <div class="mdc-notched-outline__notch">
+                    <label for="text-field-hero-input" class="mdc-floating-label">Direccion</label>
+                  </div>
+                  <div class="mdc-notched-outline__trailing"></div>
+                </div>
+              </div>
+            </div>
+    
+          </div>
+
+          <br><br>
+          <button type="submit" class="mdc-button mdc-button--raised">
+            <i class="material-icons">save</i> Guardar
+          </button>
       
-      <button type="submit" class="btn"><i class="material-icons">save</i> Guardar</button>
+      
 
 </form>
