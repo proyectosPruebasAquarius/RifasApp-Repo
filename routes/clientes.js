@@ -35,13 +35,61 @@ router.post("/add", async (req, res) => {
     fecha_modificacion,
   };
   await pool.query("insert into clientes set ?", [newCliente]);
-  res.send("Received");
+  res.redirect("/clientes");
 });
 
 //ruta para listar los clientes
 router.get("/", async (req, res) => {
   const clientes = await pool.query("select * from clientes");
   res.render("clientes/list", { clientes: clientes, title: "Clientes - Bruji Rifas" });
+});
+
+//ruta para eliminar
+router.get("/delete/:id", async(req, res) => {
+    const id = req.params.id;
+    await pool.query('delete from clientes where id = ?', id);
+    res.redirect("/clientes");
+});
+
+//ruta que recibe el id para llenar el formulario o la vista
+router.get("/edit/:id", async(req, res) => {
+  const id = req.params.id;
+  const cliente = await pool.query('select * from clientes where id = ?', id);
+  res.render("clientes/edit", { cliente : cliente[0], title: "Editar Clientes - Bruji Rifas" });
+  
+});
+
+//ruta que recibe el id del para actualizar en la base de datos
+router.post("/edit/:id", async(req, res) => {
+  const id = req.params.id;
+  
+  const {
+    nombres,
+    apellidos,
+    fecha_nac,
+    DUI,
+    telefono,
+    celular,
+    direccion,
+  } = req.body;
+  var fecha_registro = dateFormat(new Date(), "yyyy-mm-dd h:MM:ss");
+  var id_municipio = 1;
+  var fecha_modificacion = dateFormat(new Date(), "yyyy-mm-dd h:MM:ss");
+  const newCliente = {
+    nombres,
+    apellidos,
+    DUI,
+    telefono,
+    celular,
+    direccion,
+    id_municipio,
+    fecha_nac,
+    fecha_registro,
+    fecha_modificacion,
+  };
+  await pool.query("update clientes set ? where id = ?", [newCliente, id]);
+  res.redirect("/clientes");
+  
 });
 
 module.exports = router;

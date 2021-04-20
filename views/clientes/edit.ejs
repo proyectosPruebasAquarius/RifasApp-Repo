@@ -1,17 +1,22 @@
+
 <div class="mdc-layout-grid">
   <div class="mdc-layout-grid__inner">
     <div class="mdc-layout-grid__cell--span-12">
-      
       <div class="mdc-card">
-        <h2><i class="material-icons">person_add</i> Registro de Clientes</h2>
+        <h2><i class="material-icons">person_add</i> Edición de Clientes</h2>
         <hr />
-        <form action="/clientes/add" method="POST">
+        <form action="/clientes/edit/<%= cliente.id %>" method="POST">
           <div class="mdc-layout-grid__inner">
             <div
               class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop"
             >
+            
               <div class="mdc-text-field mdc-text-field--outlined">
-                <input class="mdc-text-field__input masked" name="nombres" />
+                <input
+                  class="mdc-text-field__input masked"
+                  name="nombres"
+                  value="<%= cliente.nombres %>"
+                />
                 <div class="mdc-notched-outline">
                   <div class="mdc-notched-outline__leading"></div>
                   <div class="mdc-notched-outline__notch">
@@ -30,7 +35,11 @@
               class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop"
             >
               <div class="mdc-text-field mdc-text-field--outlined">
-                <input class="mdc-text-field__input" name="apellidos" />
+                <input
+                  class="mdc-text-field__input"
+                  name="apellidos"
+                  value="<%= cliente.apellidos %>"
+                />
                 <div class="mdc-notched-outline">
                   <div class="mdc-notched-outline__leading"></div>
                   <div class="mdc-notched-outline__notch">
@@ -55,6 +64,7 @@
                   class="mdc-text-field__input"
                   type="date"
                   name="fecha_nac"
+                  value="<%= cliente.fecha_nac.slice(0,10) %>"
                 />
                 <div class="mdc-notched-outline">
                   <div class="mdc-notched-outline__leading"></div>
@@ -74,7 +84,7 @@
               class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop"
             >
               <div class="mdc-text-field mdc-text-field--outlined">
-                <input class="mdc-text-field__input" name="DUI" />
+                <input class="mdc-text-field__input" value="<%= cliente.DUI %>" name="DUI" />
                 <div class="mdc-notched-outline">
                   <div class="mdc-notched-outline__leading"></div>
                   <div class="mdc-notched-outline__notch">
@@ -93,7 +103,7 @@
               class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop"
             >
               <div class="mdc-text-field mdc-text-field--outlined">
-                <input class="mdc-text-field__input" name="telefono" />
+                <input class="mdc-text-field__input" value="<%= cliente.telefono %>" name="telefono" />
                 <div class="mdc-notched-outline">
                   <div class="mdc-notched-outline__leading"></div>
                   <div class="mdc-notched-outline__notch">
@@ -111,7 +121,7 @@
               class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop"
             >
               <div class="mdc-text-field mdc-text-field--outlined">
-                <input class="mdc-text-field__input" name="celular" />
+                <input class="mdc-text-field__input" value="<%= cliente.celular %>" name="celular" />
                 <div class="mdc-notched-outline">
                   <div class="mdc-notched-outline__leading"></div>
                   <div class="mdc-notched-outline__notch">
@@ -159,7 +169,7 @@
               class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-9-desktop"
             >
               <div class="mdc-text-field mdc-text-field--outlined">
-                <input class="mdc-text-field__input" name="direccion" />
+                <input class="mdc-text-field__input" name="direccion" value="<%= cliente.direccion %>" />
                 <div class="mdc-notched-outline">
                   <div class="mdc-notched-outline__leading"></div>
                   <div class="mdc-notched-outline__notch">
@@ -177,7 +187,11 @@
 
           <br /><br />
           <button type="submit" class="mdc-button mdc-button--raised">
-            <i class="material-icons">save</i> Guardar
+            <i class="material-icons">save</i> Guardar Cambios
+          </button>
+
+          <button type="reset" class="mdc-button mdc-button--raised filled-button--info">
+            <i class="material-icons">save</i> Cancelar
           </button>
         </form>
       </div>
