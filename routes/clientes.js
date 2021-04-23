@@ -61,8 +61,7 @@ router.get("/edit/:id", async(req, res) => {
 
 //ruta que recibe el id del para actualizar en la base de datos
 router.post("/edit/:id", async(req, res) => {
-  const id = req.params.id;
-  
+  const id = req.params.id;  
   const {
     nombres,
     apellidos,
@@ -89,7 +88,6 @@ router.post("/edit/:id", async(req, res) => {
   };
   await pool.query("update clientes set ? where id = ?", [newCliente, id]);
   res.redirect("/clientes");
-  
 });
 
 module.exports = router;
