@@ -11,6 +11,7 @@
   <link rel="shortcut icon" href="/assets/images/favicon.png" />
 </head>
 <body>
+  
 <script src="/assets/js/preloader.js"></script>
   <div class="body-wrapper">
     <!-- partial:partials/_sidebar.html -->    
@@ -204,8 +205,9 @@
       <!-- partial -->
       <div class="page-wrapper mdc-toolbar-fixed-adjust">
         <main class="content-wrapper">
-
-
+          <% if(success){ %>    
+            <div class="alert alert-sucess"><%- success %></div>
+          <% } %>
           <!--<div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">
               <div class="mdc-layout-grid__cell--span-12">

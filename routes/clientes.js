@@ -87,6 +87,7 @@ router.post("/edit/:id", async(req, res) => {
     fecha_modificacion,
   };
   await pool.query("update clientes set ? where id = ?", [newCliente, id]);
+  const success = req.flash('success','Guardado correctamente!');
   res.redirect("/clientes");
 });
 
