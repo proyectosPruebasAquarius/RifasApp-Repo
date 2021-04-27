@@ -35,6 +35,7 @@ router.post("/add", async (req, res) => {
     fecha_modificacion,
   };
   await pool.query("insert into clientes set ?", [newCliente]);
+  const success = req.flash('success','Guardado correctamente!');
   res.redirect("/clientes");
 });
 
@@ -48,6 +49,7 @@ router.get("/", async (req, res) => {
 router.get("/delete/:id", async(req, res) => {
     const id = req.params.id;
     await pool.query('delete from clientes where id = ?', id);
+    const success = req.flash('success','Eliminado correctamente!');
     res.redirect("/clientes");
 });
 

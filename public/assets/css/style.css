@@ -21360,7 +21360,7 @@ address p {
   font-size: 14px;
 }
 
-.documentation .alert {
+.alert {
   position: relative;
   padding: 0.75rem 1.25rem;
   margin-bottom: 1rem;
@@ -21368,13 +21368,13 @@ address p {
   border-radius: 0.25rem;
 }
 
-.documentation .alert.alert-success {
+.alert.alert-success {
   color: #006a47;
   background-color: rgba(0, 182, 122, 0.1);
   border-color: rgba(0, 182, 122, 0.1);
 }
 
-.documentation .alert.alert-warning {
+.alert.alert-warning {
   color: #ba8b00;
   background-color: rgba(255, 193, 7, 0.1);
   border-color: rgba(255, 193, 7, 0.1);

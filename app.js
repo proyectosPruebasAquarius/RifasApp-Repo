@@ -21,6 +21,7 @@ app.use(expressLayout);
 app.set('view engine', 'ejs');
 
 app.use(session({
+  cookie: { maxAge: 60000},
   secret : 'rifasapp',
   resave : false,
   saveUninitialized : false,
@@ -36,9 +37,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Global variables
-app.use((req, res, next) => {
-  next();
+app.use((req, res, next) => {  
   app.locals.success = req.flash('success');
+  next();
 })
 //Routes
 app.use('/', indexRouter);
