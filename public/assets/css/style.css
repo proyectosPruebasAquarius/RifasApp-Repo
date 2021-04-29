@@ -2358,7 +2358,7 @@ svg.mdc-button__icon {
 }
 
 .mdc-drawer .mdc-list-item--activated {
-  color: rgba(122, 0, 255, 0.87);
+  color: #1a4567;
 }
 
 [dir="rtl"] .mdc-drawer,
@@ -5474,6 +5474,7 @@ a.mdc-list-item {
   /* @noflip */
   text-align: left;
   pointer-events: none;
+  /*background-color: #f1f1f1;*/
 }
 
 [dir="rtl"] .mdc-notched-outline,
@@ -6261,7 +6262,7 @@ a.mdc-list-item {
 }
 
 .mdc-select:not(.mdc-select--disabled).mdc-select--focused .mdc-floating-label {
-  color: rgba(122, 0, 255, 0.87);
+  color: #1a4567;
 }
 
 .mdc-select:not(.mdc-select--disabled) .mdc-select__native-control:hover {
@@ -8414,6 +8415,7 @@ a.mdc-list-item {
 .mdc-text-field:not(.mdc-text-field--disabled):not(.mdc-text-field--outlined):not(.mdc-text-field--textarea)
   .mdc-text-field__input {
   border-bottom-color: rgba(0, 0, 0, 0.42);
+  
 }
 
 .mdc-text-field:not(.mdc-text-field--disabled):not(.mdc-text-field--outlined):not(.mdc-text-field--textarea)
@@ -9589,7 +9591,7 @@ a.mdc-list-item {
 }
 
 .mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
-  color: rgba(122, 0, 255, 0.87);
+  color: #1a4567;
 }
 
 .mdc-text-field--focused
@@ -9599,7 +9601,7 @@ a.mdc-list-item {
   .mdc-text-field__input:required
   ~ .mdc-notched-outline
   .mdc-floating-label::after {
-  color: rgba(122, 0, 255, 0.87);
+  color: #1a4567;
 }
 
 .mdc-text-field--focused
@@ -25160,6 +25162,58 @@ footer .vertical-divider {
     margin-left: 243px;
     width: calc(100% - 243px);
   }
+}
+.auth-page {
+  width: 100%;
+}
+
+.auth-page.login-bg {
+  background: url("https://www.bootstrapdash.com/demo/material-admin/light/template/assets/images/auth/login_bg.jpg");
+  background-size: cover;
+}
+
+.auth-page.register-bg {
+  background: url("https://www.bootstrapdash.com/demo/material-admin/light/template/assets/images/auth/Login_bg2.jpg");
+  background-size: cover;
+}
+
+.auth-page.lock-full-bg {
+  background: url("../../images/auth/lockscreen-bg.jpg");
+  background-size: cover;
+}
+
+.auth-page.lock-full-bg .page-wrapper {
+  background: transparent !important;
+}
+
+.auth-page .lock-profile-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 100%;
+  margin: 0 auto;
+  display: inline-block;
+}
+
+.auth-page .full-height {
+  height: 100vh;
+}
+
+.auth-page .mdc-text-field, .auth-page .mdc-text-field::before {
+  background-color: transparent;
+}
+
+.auth-page .mdc-text-field .mdc-text-field__input {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.auth-page .mdc-text-field .mdc-floating-label {
+  left: 0;
+}
+
+.auth-page.lock-full-bg .mdc-text-field__input {
+  color: #ffffff;
+  padding: 0 0.75rem;
 }
 
 /*# sourceMappingURL=../maps/demo/style.css.map */
