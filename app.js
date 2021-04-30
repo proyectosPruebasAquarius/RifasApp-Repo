@@ -7,6 +7,7 @@ const logger = require('morgan');
 const flash = require('connect-flash');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session');
+const passport = require('passport');
 
 const { database } = require('./keys');
 
@@ -15,11 +16,14 @@ const usersRouter = require('./routes/users');
 
 const app = express();
 
+require('./config/passport');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.use(expressLayout);
 app.set('view engine', 'ejs');
 
+//Middlewares
 app.use(session({
   cookie: { maxAge: 60000},
   secret : 'rifasapp',
@@ -30,6 +34,8 @@ app.use(session({
 app.use(flash());
 app.use(logger('dev'));
 app.use(express.json());
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(express.urlencoded({ extended: false }));
 
