@@ -12,16 +12,14 @@ router.get("/signup", (req, res) => {
 
 router.post('/signup', (req, res) =>{
     passport.authenticate('local.signup', {
-      successRedirect : '/index',
+      successRedirect : '/',
       failureRedirect : '/signup',
       failureFlash : true
     });
-
 });
 
 router.get("/login", (req, res) => {
   res.render("auth/login", { title: "Login - Bruji Rifas", layout: 'layout_auth' });
 });
-
 
 module.exports = router;

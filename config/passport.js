@@ -9,21 +9,26 @@ passport.use('local.signup', new localStrategy({
     passReqToCallback: true
 }, async (req, username, password, done) => {
     //await
-    const { id_empleado } = req.body;
+    const  id_empleado  = 1;
+    const estado = 1;
     const newUser = {
         username,
         password,
-        id_empleado
+        id_empleado,
+        estado
     };
-    newUser.password = await helpers.encryptPassword(password);
-    
+    //newUser.password = await helpers.encryptPassword(password);
+    console.log(newUser);
     const result = await pool.query('insert into usuarios_admin set ?', [newUser]);
-
-    console.log(result);
-
-
+    newUser.id = result.insertId
+    return done(null, newUser);
 }));
 
-//passport.serializeUser((usr, done) => {
+passport.serializeUser((user, done) => {
+   done(null, user.id);
+});
 
-//})
+passport.deserializeUser(async(id, done) => {
+    const rows = await pool.query('select * from usuarios_admin where id = ?', id);
+    done(null, rows[0]);
+})
