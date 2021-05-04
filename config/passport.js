@@ -17,10 +17,9 @@ passport.use('local.signup', new localStrategy({
         id_empleado,
         estado
     };
-    //newUser.password = await helpers.encryptPassword(password);
-    console.log(newUser);
+    newUser.password = await helpers.encryptPassword(password);
     const result = await pool.query('insert into usuarios_admin set ?', [newUser]);
-    newUser.id = result.insertId
+    newUser.id = result.insertId;
     return done(null, newUser);
 }));
 
