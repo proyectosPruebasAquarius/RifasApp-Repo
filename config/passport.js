@@ -4,37 +4,36 @@ const pool = require("./db.config");
 const helpers = require("./helpers");
 
 passport.use('local.login', new LocalStrategy({
-    usernameField: 'username',
-    passwordField: 'password',
-    passReqToCallback: true
-  }, async (req, username, password, done) => {
-    const rows = await pool.query('SELECT * FROM usuarios_admin WHERE username = ?', [username]);
-    if (rows.length > 0) {
-      const user = rows[0];
-      const validPassword = await helpers.matchPassword(password, user.password)
-      if (validPassword) {
-        done(null, user, req.flash('success', 'Welcome ' + user.username));
-      } else {
-        done(null, false, req.flash('message', 'Incorrect Password'));
-      }
+  usernameField: 'username',
+  passwordField: 'password',
+  passReqToCallback: true
+}, async (req, username, password, done) => {
+  const rows = await pool.query('SELECT * FROM usuarios_admin WHERE username = ?', [username]);
+  if (rows.length > 0) {
+    const user = rows[0];
+    const validPassword = await helpers.matchPassword(password, user.password)
+    if (validPassword) {
+      done(null, user, req.flash('success', 'Welcome ' + user.username));
     } else {
-      return done(null, false, req.flash('message', 'The Username does not exists.'));
+      done(null, false, req.flash('errors', 'Incorrect Password'));
     }
-  }));
-  
+  } else {
+    return done(null, false, req.flash('errors', 'The Username does not exists.'));
+  }
+}));
+
   passport.use('local.signup', new LocalStrategy({
     usernameField: 'username',
     passwordField: 'password',
     passReqToCallback: true
   }, async (req, username, password, done) => {
   
-    const id_empleado = 1;
+    const cod_empleado = "SA01";
     const estado = 1;
-    let newUser = {
-      
+    let newUser = {      
       username,
       password,
-      id_empleado,
+      cod_empleado,
       estado
     };
     newUser.password = await helpers.encryptPassword(password);

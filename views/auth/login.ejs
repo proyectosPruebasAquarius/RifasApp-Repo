@@ -4,7 +4,7 @@
           <div class="mdc-card">
             <div class="d-flex align-items-center justify-content-center h-100">
                 <div class="mdc-layout-grid">
-                  <form action="/login" method="POST"></form>
+                  <form action="/login" method="POST">
                   <div class="mdc-layout-grid__inner">
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                       <div>
@@ -58,6 +58,18 @@
                         <i class="material-icons">person</i> Login
                       </button>
                     </div>
+
+                    <% if(errors.length > 0){ %>
+                      <div class="mdc-layout-grid">
+                        <div class="mdc-layout-grid__inner"> 
+                          <div class="mdc-layout-grid__cell--span-12">           
+                           <div class="alert alert-dismissible fade" role="alert">
+                            <%= errors %>
+                           </div>    
+                         </div>
+                      </div>
+                    </div>        
+                    <% } %>
                     
                   </div>
                 </form>

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const dateFormat = require("dateformat");
 const pool = require("../config/db.config");
+const { isLoggedIn } = require('../config/auth');
 
 
 router.get("/add", (req, res) => {
@@ -9,7 +10,7 @@ router.get("/add", (req, res) => {
 });
 
 //ruta para guardar los clientes
-router.post("/add", async (req, res) => {
+router.post("/add", isLoggedIn, async (req, res) => {
   const {
     nombres,
     apellidos,
@@ -40,13 +41,13 @@ router.post("/add", async (req, res) => {
 });
 
 //ruta para listar los clientes
-router.get("/", async (req, res) => {
+router.get("/", isLoggedIn, async (req, res) => {
   const clientes = await pool.query("select * from clientes");
   res.render("clientes/list", { clientes: clientes, title: "Clientes - Bruji Rifas" });
 });
 
 //ruta para eliminar
-router.get("/delete/:id", async(req, res) => {
+router.get("/delete/:id", isLoggedIn, async(req, res) => {
     const id = req.params.id;
     await pool.query('delete from clientes where id = ?', id);
     const success = req.flash('success','Eliminado correctamente!');
@@ -54,7 +55,7 @@ router.get("/delete/:id", async(req, res) => {
 });
 
 //ruta que recibe el id para llenar el formulario o la vista
-router.get("/edit/:id", async(req, res) => {
+router.get("/edit/:id", isLoggedIn, async(req, res) => {
   const id = req.params.id;
   const cliente = await pool.query('select * from clientes where id = ?', id);
   res.render("clientes/edit", { cliente : cliente[0], title: "Editar Clientes - Bruji Rifas" });
@@ -62,7 +63,7 @@ router.get("/edit/:id", async(req, res) => {
 });
 
 //ruta que recibe el id del para actualizar en la base de datos
-router.post("/edit/:id", async(req, res) => {
+router.post("/edit/:id", isLoggedIn, async(req, res) => {
   const id = req.params.id;  
   const {
     nombres,
