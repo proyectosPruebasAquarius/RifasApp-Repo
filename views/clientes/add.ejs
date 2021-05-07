@@ -136,28 +136,16 @@
             <div
               class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop"
             >
-              <div
-                class="mdc-select demo-width-class"
-                data-mdc-auto-init="MDCSelect"
-              >
-                <input type="hidden" name="enhanced-select" />
-                <i class="mdc-select__dropdown-icon"></i>
-                <div class="mdc-select__selected-text"></div>
-                <div class="mdc-select__menu mdc-menu-surface demo-width-class">
-                  <ul class="mdc-list">
-                    <li
-                      class="mdc-list-item mdc-list-item--selected"
-                      data-value=""
-                      aria-selected="true"
-                    ></li>
-                    <li class="mdc-list-item" data-value="1">Chalatenango</li>
-                    <li class="mdc-list-item" data-value="2">El Paraiso</li>
-                    <li class="mdc-list-item" data-value="3">Santa Rita</li>
-                  </ul>
-                </div>
-                <span class="mdc-floating-label">Municipio</span>
-                <div class="mdc-line-ripple"></div>
-              </div>
+            <div class="mdc-text-field mdc-text-field--outlined">
+            
+            <select class="js-example-basic-single" name="states[]">
+              <option value="AL">Alabama</option>
+              <option value="EP">El Paraíso</option>
+              <option value="CH">Chalatenango</option>
+              <option value="WY">Wyoming</option>
+            </select>
+            </div>
+
             </div>
 
             <div
@@ -193,3 +181,13 @@
     </div>
   </div>
 </div>
+<!--SCRIPT-->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script>
+  $(document).ready(function() {
+      $('.js-example-basic-single').select2({
+        theme: 'classic',
+        width: '100%'
+      });
+  });
+  </script>  
