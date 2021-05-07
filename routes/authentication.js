@@ -25,14 +25,17 @@ router.get('/login', isNotLoggedIn, (req, res) => {
   res.render("auth/login", { title: "Login - Bruji Rifas", layout: 'layout_auth' });
 });
 
-router.post('/login', check('username').notEmpty().withMessage('Username is Required'),  
-check('password').notEmpty().withMessage('Password is Required'), (req, res, next) => {
+router.post('/login', 
+  //muestra mensajes de express-validator
+  check('username').notEmpty().withMessage('Username is Required'),  
+  check('password').notEmpty().withMessage('Password is Required'), 
+  (req, res, next) => {
   const errors = validationResult(req);
-    if (!errors.isEmpty()) {      
-      //return res.status(422).json({ errors: errors.array() });
-      console.log('errors', errors);
-      res.redirect('/login');
-    }
+  if (!errors.isEmpty()) {      
+    //return res.status(422).json({ errors: errors.array() });
+    console.log('errors', errors);
+    res.redirect('/login');
+  }
   passport.authenticate('local.login', {
     successRedirect: '/',
     failureRedirect: '/login',
@@ -41,6 +44,7 @@ check('password').notEmpty().withMessage('Password is Required'), (req, res, nex
 });
   
   router.get('/logout', (req, res) => {
+    //cierra la sesión
     req.logOut();
     res.redirect('/login');
   });

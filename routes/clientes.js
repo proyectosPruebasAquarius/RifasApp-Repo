@@ -5,7 +5,7 @@ const pool = require("../config/db.config");
 const { isLoggedIn } = require('../config/auth');
 
 
-router.get("/add", (req, res) => {
+router.get("/add", isLoggedIn, (req, res) => {
   res.render("clientes/add", { title: "Agregar Cliente - Bruji Rifas" });
 });
 

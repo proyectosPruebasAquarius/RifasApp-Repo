@@ -13,7 +13,8 @@ passport.use('local.login', new LocalStrategy({
     const user = rows[0];
     const validPassword = await helpers.matchPassword(password, user.password)
     if (validPassword) {
-      done(null, user, req.flash('success', 'Welcome ' + user.username));
+      //done(null, user, req.flash('success', 'Welcome ' + user.username));
+      done(null, user);
     } else {
       done(null, false, req.flash('errors', 'Incorrect Password'));
     }
@@ -22,6 +23,7 @@ passport.use('local.login', new LocalStrategy({
   }
 }));
 
+//función para registrar
   passport.use('local.signup', new LocalStrategy({
     usernameField: 'username',
     passwordField: 'password',
@@ -36,6 +38,7 @@ passport.use('local.login', new LocalStrategy({
       cod_empleado,
       estado
     };
+    //encripta la contraseña
     newUser.password = await helpers.encryptPassword(password);
     // Saving in the Database
     const result = await pool.query('INSERT INTO usuarios_admin SET ? ', newUser);
