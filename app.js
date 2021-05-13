@@ -54,6 +54,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use(require('./routes/authentication'));
 app.use('/clientes', require('./routes/clientes'));
+app.use('/municipios', require('./routes/municipios'));
 
 app.get('/username', function(req, res) {
   res.render('example');

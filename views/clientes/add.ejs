@@ -138,11 +138,8 @@
             >
             <div class="mdc-text-field mdc-text-field--outlined">
             
-            <select class="js-example-basic-single" name="states[]">
-              <option value="AL">Alabama</option>
-              <option value="EP">El Paraíso</option>
-              <option value="CH">Chalatenango</option>
-              <option value="WY">Wyoming</option>
+            <select class="js-example-basic-single" name="id_municipio[]">
+              
             </select>
             </div>
 
@@ -187,7 +184,24 @@
   $(document).ready(function() {
       $('.js-example-basic-single').select2({
         theme: 'classic',
-        width: '100%'
+        width: '100%',
+        ajax: {
+          url: '/municipios/list',
+          dataType: 'json',          
+          data: function (params) {
+            return {
+              q: params.term, // search term
+              page: params.page
+            };
+          },
+          processResults: function (data, params) {
+            return {
+              results: data,
+            };
+          },
+          cache: true
+         
+        }
       });
   });
   </script>  
