@@ -38,7 +38,7 @@ router.post("/add", isLoggedIn, async (req, res) => {
   };
   await pool.query("insert into clientes set ?", [newCliente]);
   const success = req.flash('success','Guardado correctamente!');
-  pool.release();
+ 
   res.redirect("/clientes");
 });
 
@@ -46,7 +46,7 @@ router.post("/add", isLoggedIn, async (req, res) => {
 router.get("/", isLoggedIn, async (req, res) => {
   const clientes = await pool.query("select * from clientes");
   res.render("clientes/list", { clientes: clientes, title: "Clientes - Bruji Rifas" });
-  pool.release();
+
 });
 
 //ruta para eliminar
@@ -55,16 +55,14 @@ router.get("/delete/:id", isLoggedIn, async(req, res) => {
     await pool.query('delete from clientes where id = ?', id);
     const success = req.flash('success','Eliminado correctamente!');
     res.redirect("/clientes");
-    pool.release();
+  
 });
 
 //ruta que recibe el id para llenar el formulario o la vista
 router.get("/edit/:id", isLoggedIn, async(req, res) => {
   const id = req.params.id;
   const cliente = await pool.query('select * from clientes where id = ?', id);
-  res.render("clientes/edit", { cliente : cliente[0], title: "Editar Clientes - Bruji Rifas" });
-  pool.release();
-  
+  res.render("clientes/edit", { cliente : cliente[0], title: "Editar Clientes - Bruji Rifas" });  
 });
 
 //ruta que recibe el id del para actualizar en la base de datos
@@ -96,7 +94,6 @@ router.post("/edit/:id", isLoggedIn, async(req, res) => {
   };
   await pool.query("update clientes set ? where id = ?", [newCliente, id]);
   const success = req.flash('success','Guardado correctamente!');
-  pool.release();
   res.redirect("/clientes");
 });
 

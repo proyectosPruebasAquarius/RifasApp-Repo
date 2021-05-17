@@ -22,7 +22,7 @@ router.get("/signup", isNotLoggedIn, (req, res) => {
  
   // SINGIN
 router.get('/login', isNotLoggedIn, (req, res) => {
-  res.render("auth/login", { title: "Login - Bruji Rifas", layout: 'layout_auth' });
+  res.render("auth/login", { title: "Login - Bruji Rifas" });
 });
 
 router.post('/login', 

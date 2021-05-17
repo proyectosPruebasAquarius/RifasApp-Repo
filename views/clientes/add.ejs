@@ -1,3 +1,4 @@
+<% layout('../layout') -%>
 <div class="mdc-layout-grid">
   <div class="mdc-layout-grid__inner">
     <div class="mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-12-desktop stretch-card">
@@ -179,29 +180,28 @@
   </div>
 </div>
 <!--SCRIPT-->
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-  <script>
-  $(document).ready(function() {
-      $('.js-example-basic-single').select2({
-        theme: 'classic',
-        width: '100%',
-        ajax: {
-          url: '/municipios/list',
-          dataType: 'json',          
-          data: function (params) {
-            return {
-              q: params.term, // search term
-              page: params.page
-            };
-          },
-          processResults: function (data, params) {
-            return {
-              results: data,
-            };
-          },
-          cache: true
-         
-        }
-      });
-  });
-  </script>  
+<% block('footerjs', `<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+$(document).ready(function() {    
+  $('.js-example-basic-single').select2({      
+    theme: 'classic',      
+    width: '100%',      
+    ajax: {        
+      url: '/municipios/list',        
+      dataType: 'json',                  
+      data: function (params) {          
+        return {            
+          q: params.term,             
+          page: params.page          
+          };        
+          },        
+          processResults: function (data, params) {          
+            return {            
+              results: data,          
+              };        
+              },        
+              cache: true             
+              }    
+              });
+        });</script>`) 
+-%>
