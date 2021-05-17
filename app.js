@@ -1,6 +1,8 @@
 const createError = require('http-errors');
 const express = require('express');
 const expressLayout = require('express-ejs-layouts');
+//cambiando para agregar blocks
+const engine = require('ejs-blocks');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -20,7 +22,9 @@ require('./config/passport');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.use(expressLayout);
+//app.use(expressLayout);
+// cambiando para agregar blocks
+app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 
 //Middlewares
