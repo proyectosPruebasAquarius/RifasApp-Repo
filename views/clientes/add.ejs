@@ -139,7 +139,7 @@
             >
             <div class="mdc-text-field mdc-text-field--outlined">
             
-            <select class="js-example-basic-single" name="id_municipio[]">
+            <select class="municipios" name="id_municipio">
               
             </select>
             </div>
@@ -183,7 +183,7 @@
 <% block('footerjs', `<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
 $(document).ready(function() {    
-  $('.js-example-basic-single').select2({      
+  $('.municipios').select2({      
     theme: 'classic',      
     width: '100%',      
     ajax: {        

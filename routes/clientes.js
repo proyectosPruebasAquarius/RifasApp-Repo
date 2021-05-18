@@ -20,9 +20,9 @@ router.post("/add", isLoggedIn, async (req, res) => {
     telefono,
     celular,
     direccion,
+    id_municipio
   } = req.body;
   var fecha_registro = dateFormat(new Date(), "yyyy-mm-dd h:MM:ss");
-  var id_municipio = 1;
   var fecha_modificacion = dateFormat(new Date(), "yyyy-mm-dd h:MM:ss");
   const newCliente = {
     nombres,
@@ -44,7 +44,7 @@ router.post("/add", isLoggedIn, async (req, res) => {
 
 //ruta para listar los clientes
 router.get("/", isLoggedIn, async (req, res) => {
-  const clientes = await pool.query("select * from clientes");
+  const clientes = await pool.query("select a.*, b.nombre as municipio from clientes as a inner join municipios as b on a.id_municipio = b.id");
   res.render("clientes/list", { clientes: clientes, title: "Clientes - Bruji Rifas" });
 
 });
@@ -78,7 +78,6 @@ router.post("/edit/:id", isLoggedIn, async(req, res) => {
     direccion,
   } = req.body;
   var fecha_registro = dateFormat(new Date(), "yyyy-mm-dd h:MM:ss");
-  var id_municipio = 1;
   var fecha_modificacion = dateFormat(new Date(), "yyyy-mm-dd h:MM:ss");
   const newCliente = {
     nombres,
