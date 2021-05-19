@@ -6,7 +6,8 @@ const { isLoggedIn } = require('../config/auth');
 
 //ruta para listar los municipios
 router.get("/list", async (req, res) => {
-    const municipios = await pool.query("select id, nombre as text from municipios");
+    const nombre = req.query.q;
+    const municipios = await pool.query("select id, nombre as text from municipios where nombre like '%" + nombre + "%'");
     res.send(municipios);
   });
 
