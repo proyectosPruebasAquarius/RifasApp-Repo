@@ -1,0 +1,463 @@
+<% layout('../layout') -%>
+<div class="mdc-layout-grid">
+    <form action="/empleados/search" method="get">
+        <input placeholder="Búsqueda" type="text" name="search">
+        <br>
+        <button type="submit">Buscar</button>
+    </form>
+    <div class="mdc-layout-grid__inner">
+        <div
+            class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+            <div class="mdc-card p-0  to-do-list">
+                <div class="align-items-center bg-primary text-white to-do-list-header">
+                    <h4 class="card-title text-center"><i class="material-icons">person_add</i>&nbsp;&nbsp;Empleado</h4>
+                    
+                    <!--<a class="mdc-button mdc-button--unelevated"><i class="material-icons">person_add</i></a>-->
+                </div>
+                <!--foto-->
+                <div class="mdc-card bg-gray text-center">
+                    <form action="">
+                        <span class="figure">
+                            <img src="/assets/images/faces/" alt="user" class="user">
+                        </span>
+                        
+                        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop">
+                            <div class="template-demo">
+                                <input type="file"
+                                    class="mdc-button  icon-button mdc-button--outlined outlined-button mdc-button--primaryTrans">
+                                    <i class="material-icons">photo_library</i>
+                                   
+                                
+                                <button type=""
+                                    class="mdc-button icon-button mdc-button--outlined outlined-button mdc-button--primaryTrans">
+                                    <i class="material-icons">add_a_photo</i>
+                                </button>
+                                <button type=""
+                                    class="mdc-button  icon-button mdc-button--outlined outlined-button mdc-button--primaryTrans">
+                                    <i class="material-icons">delete</i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!--fin foto-->
+               
+            </div>
+        </div>
+        <!--Aquí empieza el tab-->
+        <div
+            class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-9 mdc-layout-grid__cell--span-4-tablet">
+            <div class="mdc-card p-0  to-do-list">
+                <div class="align-items-center bg-primary text-white to-do-list-header">
+                    <h4 class="card-title text-center"><i class="material-icons">person_add</i>&nbsp;&nbsp;Empleado</h4>
+                </div>
+                <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet">
+                    <div class="mdc-card">
+                        <div class="mdc-tab-wrapper mdc-tab--primary">
+                            <div class="mdc-tab-bar" role=" tablist">
+                                <div class="mdc-tab-scroller">
+                                    <div class="mdc-tab-scroller__scroll-area">
+                                        <div class="mdc-tab-scroller__scroll-content">
+                                            <button class="mdc-tab mdc-tab--active" role="tab" aria-selected="true"
+                                                tabindex="0">
+                                                <span class="mdc-tab__content">
+                                                    <span class="mdc-tab__text-label">Ficha Personal</span>
+                                                </span>
+                                                <span class="mdc-tab-indicator mdc-tab-indicator--active">
+                                                    <span
+                                                        class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                                                </span>
+                                                <span class="mdc-tab__ripple"></span>
+                                            </button>
+                                            <button class="mdc-tab mdc-tab" role="tab" aria-selected="true"
+                                                tabindex="0">
+                                                <span class="mdc-tab__content">
+                                                    <span class="mdc-tab__text-label">Ficha Laboral</span>
+                                                </span>
+                                                <span class="mdc-tab-indicator mdc-tab-indicator">
+                                                    <span
+                                                        class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                                                </span>
+                                                <span class="mdc-tab__ripple"></span>
+                                            </button>
+                                            <button class="mdc-tab mdc-tab" role="tab" aria-selected="true"
+                                                tabindex="0">
+                                                <span class="mdc-tab__content">
+                                                    <span class="mdc-tab__text-label">Horarios</span>
+                                                </span>
+                                                <span class="mdc-tab-indicator mdc-tab-indicator">
+                                                    <span
+                                                        class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                                                </span>
+                                                <span class="mdc-tab__ripple"></span>
+                                            </button>
+                                            <button class="mdc-tab mdc-tab" role="tab" aria-selected="true"
+                                                tabindex="0">
+                                                <span class="mdc-tab__content">
+                                                    <span class="mdc-tab__text-label">Evaluaciones</span>
+                                                </span>
+                                                <span class="mdc-tab-indicator mdc-tab-indicator">
+                                                    <span
+                                                        class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                                                </span>
+                                                <span class="mdc-tab__ripple"></span>
+                                            </button>
+                                            <button class="mdc-tab mdc-tab" role="tab" aria-selected="true"
+                                                tabindex="0">
+                                                <span class="mdc-tab__content">
+                                                    <span class="mdc-tab__text-label">Ficha Familiar</span>
+                                                </span>
+                                                <span class="mdc-tab-indicator mdc-tab-indicator">
+                                                    <span
+                                                        class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                                                </span>
+                                                <span class="mdc-tab__ripple"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content content--active">
+                                <div class="to-do-list-content">
+                                    <form action="/empleados/add" method="POST">
+                                        <div class="template-demo">
+                                            <div class="mdc-layout-grid__inner">
+                                                <div
+                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
+                                                    <div class="mdc-text-field w-100">
+                                                        <input class="mdc-text-field__input" id="text-field-hero-input"
+                                                            name="DUI">
+                                                        <div class="mdc-line-ripple"></div>
+                                                        <label for="text-field-hero-input"
+                                                            class="mdc-floating-label">DUI</label>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
+                                                    <div class="mdc-text-field w-100">
+                                                        <input class="mdc-text-field__input" id="text-field-hero-input"
+                                                            name="nombres">
+                                                        <div class="mdc-line-ripple"></div>
+                                                        <label for="text-field-hero-input"
+                                                            class="mdc-floating-label">Nombres</label>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
+                                                    <div class="mdc-text-field w-100">
+                                                        <input class="mdc-text-field__input" id="text-field-hero-input"
+                                                            name="apellidos">
+                                                        <div class="mdc-line-ripple"></div>
+                                                        <label for="text-field-hero-input"
+                                                            class="mdc-floating-label">Apellidos</label>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
+                                                    <div class="mdc-text-field w-100">
+                                                        <input readonly class="mdc-text-field__input" id="text-field-hero-input"
+                                                            name="cod_empleado">
+                                                        <div class="mdc-line-ripple"></div>
+                                                        <label for="text-field-hero-input"
+                                                            class="mdc-floating-label">Número
+                                                            de Empleado</label>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
+                                                    <div class="nativeDatePicker w-100">
+                                                        <div class="mdc-text-field">
+                                                            <input class="mdc-text-field__input"
+                                                                id="text-field-hero-input" type="date"
+                                                                name="fecha_nac" />
+                                                            <div class="mdc-line-ripple"></div>
+                                                            <label for="text-field-hero-input"
+                                                                class="mdc-floating-label">Fecha de
+                                                                nacimiento:</label>
+                                                            <span class="validity"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4">
+                                                    <div class="mdc-text-field w-100">
+                                                        <input class="mdc-text-field__input" id="text-field-hero-input"
+                                                            name="telefono">
+                                                        <div class="mdc-line-ripple"></div>
+                                                        <label for="text-field-hero-input"
+                                                            class="mdc-floating-label">Teléfono
+                                                            Fijo</label>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4">
+                                                    <div class="mdc-text-field w-100">
+                                                        <input class="mdc-text-field__input" id="text-field-hero-input"
+                                                            name="celular">
+                                                        <div class="mdc-line-ripple"></div>
+                                                        <label for="text-field-hero-input"
+                                                            class="mdc-floating-label">Celular</label>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-8">
+                                                    <div class="mdc-text-field w-100">
+                                                        <input class="mdc-text-field__input" id="text-field-hero-input"
+                                                            name="correo">
+                                                        <div class="mdc-line-ripple"></div>
+                                                        <label for="text-field-hero-input"
+                                                            class="mdc-floating-label">e-mail
+                                                            Personal</label>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                                                    <div class="mdc-text-field w-100">
+                                                        <input class="mdc-text-field__input" id="text-field-hero-input"
+                                                            name="direccion">
+                                                        <div class="mdc-line-ripple"></div>
+                                                        <label for="text-field-hero-input"
+                                                            class="mdc-floating-label">Dirección</label>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                                                    <div class="mdc-text-field w-100">
+                                                        <input class="mdc-text-field__input" id="text-field-hero-input"
+                                                            name="id_municipio">
+                                                        <div class="mdc-line-ripple"></div>
+                                                        <label for="text-field-hero-input"
+                                                            class="mdc-floating-label">Municipio</label>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                                                    <div class="mdc-text-field w-100">
+                                                        <input class="mdc-text-field__input" id="text-field-hero-input">
+                                                        <div class="mdc-line-ripple"></div>
+                                                        <label for="text-field-hero-input"
+                                                            class="mdc-floating-label">Departamento</label>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2">
+                                                </div>
+                                                <div
+                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2">
+                                                </div>
+                                                <div
+                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4">
+                                                    <div class="mdc-select demo-width-class w-100" data-mdc-auto-init="MDCSelect">
+                                                        <input type="hidden" name="genero" />
+                                                        <i class="mdc-select__dropdown-icon"></i>
+                                                        <div class="mdc-select__selected-text"></div>
+                                                        <div class="mdc-select__menu mdc-menu-surface demo-width-class">
+                                                            <ul class="mdc-list">
+                                                                <li class="mdc-list-item mdc-list-item--selected" data-value=""  aria-selected="true"></li>
+                                                                <li class="mdc-list-item" data-value="Hombre">Hombre</li>
+                                                                <li class="mdc-list-item" data-value="Mujer">Mujer</li>
+                                                                <li class="mdc-list-item" data-value="Otro">Otro</li>
+                                                            </ul>
+                                                        </div>
+                                                        <span class="mdc-floating-label">Género</span>
+                                                        <div class="mdc-line-ripple"></div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div
+                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4">
+                                                    <div class="mdc-select demo-width-class w-100" data-mdc-auto-init="MDCSelect">
+                                                        <input type="hidden" name="estado_civil" />
+                                                        <i class="mdc-select__dropdown-icon"></i>
+                                                        <div class="mdc-select__selected-text"></div>
+                                                        <div class="mdc-select__menu mdc-menu-surface demo-width-class">
+                                                            <ul class="mdc-list">
+                                                                <li class="mdc-list-item mdc-list-item--selected" data-value=""  aria-selected="true"></li>
+                                                                <li class="mdc-list-item" data-value="Soltero">Soltero</li>
+                                                                <li class="mdc-list-item" data-value="Casado">Casado</li>
+                                                                <li class="mdc-list-item" data-value="Acompañado">Acompañado</li>
+                                                                <li class="mdc-list-item" data-value="Divorciado">Divorciado</li>
+                                                                <li class="mdc-list-item" data-value="Viudo">Viudo</li>
+                                                            </ul>
+                                                        </div>
+                                                        <span class="mdc-floating-label">EstadoCivil</span>
+                                                        <div class="mdc-line-ripple"></div>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-12-tablet">
+                                                    <div class="template-demo">
+                                                        <button type="submit" class="mdc-button mdc-button--unelevated">
+                                                            <i class="material-icons">save</i>&nbsp;&nbsp;Guardar
+                                                        </button>
+                                                        <button type="reset" class="mdc-button mdc-button--warning">
+                                                            <i class="material-icons">cancel</i>&nbsp;Cancelar
+                                                        </button>
+                                                        <a class="mdc-button mdc-button--unelevated filled-button--success"
+                                                            href="/empleados/add">
+                                                            <i class="material-icons">arrow_back</i>&nbsp;Volver
+                                                        </a>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <div class="to-do-list-content">
+                                    <form action="/empleados/add_laborales" method="POST">
+                                        <div class="template-demo">
+                                            <div class="mdc-layout-grid__inner">
+                                                <div
+                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
+                                                    <div class="mdc-text-field w-100">
+                                                        <input class="mdc-text-field__input" id="text-field-hero-input"
+                                                            name="cod_empleado">
+                                                        <div class="mdc-line-ripple"></div>
+                                                        <label for="text-field-hero-input"
+                                                            class="mdc-floating-label">Código de Empleado</label>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
+                                                    <div class="nativeDatePicker w-100">
+                                                        <div class="mdc-text-field">
+                                                            <input class="mdc-text-field__input" type="date"
+                                                                name="fecha_registro" id="text-field-hero-input" />
+                                                            <div class="mdc-line-ripple"></div>
+                                                            <label for="text-field-hero-input"
+                                                                class="mdc-floating-label">Fecha de Alta:</label>
+                                                            <span class="validity"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4">
+                                                    <div class="mdc-text-field w-100">
+                                                        <input class="mdc-text-field__input" id="text-field-hero-input"
+                                                            name="NIT">
+                                                        <div class="mdc-line-ripple"></div>
+                                                        <label for="text-field-hero-input"
+                                                            class="mdc-floating-label">NIT</label>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4">
+                                                    <div class="mdc-text-field w-100">
+                                                        <input class="mdc-text-field__input" id="text-field-hero-input"
+                                                            name="seguro_social">
+                                                        <div class="mdc-line-ripple"></div>
+                                                        <label for="text-field-hero-input"
+                                                            class="mdc-floating-label">No.Seguridad
+                                                            Social</label>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
+                                                    <div class="mdc-text-field w-100">
+                                                        <input class="mdc-text-field__input" id="text-field-hero-input"
+                                                            name="AFP">
+                                                        <div class="mdc-line-ripple"></div>
+                                                        <label for="text-field-hero-input"
+                                                            class="mdc-floating-label">AFP</label>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
+                                                    <div class="mdc-text-field w-100">
+                                                        <input class="mdc-text-field__input" id="text-field-hero-input"
+                                                            name="cuenta_bancaria">
+                                                        <div class="mdc-line-ripple"></div>
+                                                        <label for="text-field-hero-input"
+                                                            class="mdc-floating-label">Cuenta Bancaria</label>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
+                                                    <div class="mdc-text-field w-100">
+                                                        <input class="mdc-text-field__input" id="text-field-hero-input"
+                                                            name="id_contrato">
+                                                        <div class="mdc-line-ripple"></div>
+                                                        <label for="text-field-hero-input"
+                                                            class="mdc-floating-label">Contrato</label>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
+                                                    <div class="mdc-text-field w-100">
+                                                        <input class="mdc-text-field__input" id="text-field-hero-input"
+                                                            name="id_cargo">
+                                                        <div class="mdc-line-ripple"></div>
+                                                        <label for="text-field-hero-input" class="mdc-floating-label">Cargo</label>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
+                                                    <div class="mdc-text-field w-100">
+                                                        <input class="mdc-text-field__input" id="text-field-hero-input"
+                                                            name="cod_sucursal">
+                                                        <div class="mdc-line-ripple"></div>
+                                                        <label for="text-field-hero-input"
+                                                            class="mdc-floating-label">Sucursal</label>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
+                                                    <div class="mdc-text-field w-100">
+                                                        <input class="mdc-text-field__input" id="text-field-hero-input" name="jefe_inmediato">
+                                                        <div class="mdc-line-ripple"></div>
+                                                        <label for="text-field-hero-input" class="mdc-floating-label">Jefe Inmediato</label>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
+                                                    <div class="mdc-text-field w-100">
+                                                        <input class="mdc-text-field__input" id="text-field-hero-input" name="estado" value="Activo">
+                                                        <div class="mdc-line-ripple"></div>
+                                                        <label for="text-field-hero-input" class="mdc-floating-label">Estado Laboral</label>
+                                                    </div>
+                                                </div>
+                                                <!--<div
+                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
+                                                    <div class="nativeDatePicker w-100">
+                                                        <div class="mdc-text-field">
+                                                            <input class="mdc-text-field__input"
+                                                                id="text-field-hero-input" type="date" name="fecha_baja"
+                                                                disabled />
+                                                            <div class="mdc-line-ripple"></div>
+                                                            <label for="text-field-hero-input"
+                                                                class="mdc-floating-label">Fecha de Baja:</label>
+                                                            <span class="validity"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>-->
+                                                <div
+                                                class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-12-tablet">
+                                                    <div class="template-demo">
+                                                        <button type="submit" class="mdc-button mdc-button--unelevated">
+                                                            <i class="material-icons">save</i>&nbsp;&nbsp;Guardar
+                                                        </button>
+                                                        <button type="reset"
+                                                            class="mdc-button mdc-button--unelevated filled-button--warning">
+                                                            <i class="material-icons">cancel</i>&nbsp;Cancelar
+                                                        </button>
+                                                        <a class="mdc-button mdc-button--unelevated filled-button--success"
+                                                            href='/empleados'><i
+                                                                class="material-icons">arrow_back</i>&nbsp;Volver
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

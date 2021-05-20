@@ -3,11 +3,35 @@ const router = express.Router();
 const dateFormat = require("dateformat");
 const pool = require("../config/db.config");
 const { isLoggedIn } = require('../config/auth');
+const multer = require('multer');
+const path = require('path');
 
+var storage = multer.diskStorage(
+  {
+      destination: path.join('public/assets/images/faces'),
+      filename: function ( req, file, cb ) {
+          //req.body is empty...
+          //How could I get the new_file_name property sent from client here?
+          cb( null, file.originalname);
+          //cb( null, "codigo.jpg");
+      }
+  }
+);
+var upload = multer( { storage: storage } );
+
+//app.use(express.static(path.join(__dirname, 'public')));
 
 router.get("/add", isLoggedIn, (req, res) => {
   res.render("clientes/add", { title: "Agregar Cliente - Bruji Rifas" });
-  
+  console.log(upload);
+});
+
+//ruta para subir una imagen
+router.post('/upload', upload.single('photo'), (req, res) => {
+  if(req.file) {
+      res.json(req.file);
+  }
+  else throw 'error';
 });
 
 //ruta para guardar los clientes
@@ -38,7 +62,6 @@ router.post("/add", isLoggedIn, async (req, res) => {
   };
   await pool.query("insert into clientes set ?", [newCliente]);
   const success = req.flash('success','Guardado correctamente!');
- 
   res.redirect("/clientes");
 });
 
@@ -48,6 +71,14 @@ router.get("/", isLoggedIn, async (req, res) => {
   res.render("clientes/list", { clientes: clientes, title: "Clientes - Bruji Rifas" });
 
 });
+
+//ruta para buscar 
+/*router.get("/search", async(req, res) => {
+  const palabra = req.query.search;
+  const empleados = await pool.query("select * from empleados_personales where concat(cod_empleado,nombres,apellidos) like '%" + palabra + "%'");
+  res.render("empleados/edit", { empleados: empleados });
+});*/
+
 
 //ruta para eliminar
 router.get("/delete/:id", isLoggedIn, async(req, res) => {
