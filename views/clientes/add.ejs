@@ -12,6 +12,13 @@
             <input type="submit" value="upload">
         </form>        
         <hr />
+        
+        <% if(locals.foto){ %>
+          <span class="figure">
+            <%= user.username %>
+            <img src="assets/images/faces/face1.jpg" alt="user" class="user">
+          </span>       
+        <% } %>
         <form action="/clientes/add" method="POST">
           <div class="template-demo">
             <div class="mdc-layout-grid__inner">
