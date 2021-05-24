@@ -14,8 +14,17 @@ var storage = multer.diskStorage(
           //How could I get the new_file_name property sent from client here?
           cb( null, file.originalname);
           //cb( null, "codigo.jpg");
-      }
-  }
+      },
+      limits: {
+        fileSize: 1000000,
+        },
+        fileFilter(req, file, cb) {
+        if (!file.originalname.match(/\.(png|jpg|jpeg)$/)){
+        cb(new Error('Please upload an image.'))
+        }
+        cb(undefined, true)
+        }
+    }
 );
 var upload = multer( { storage: storage } );
 
@@ -29,7 +38,8 @@ router.get("/add", isLoggedIn, (req, res) => {
 //ruta para subir una imagen
 router.post('/upload', upload.single('photo'), (req, res) => {
   if(req.file) {
-      res.json(req.file);
+      //res.json(req.file);
+      res.redirect('/clientes/add', {foto : req.file});
   }
   else throw 'error';
 });
@@ -73,11 +83,11 @@ router.get("/", isLoggedIn, async (req, res) => {
 });
 
 //ruta para buscar 
-/*router.get("/search", async(req, res) => {
+router.get("/search", async(req, res) => {
   const palabra = req.query.search;
   const empleados = await pool.query("select * from empleados_personales where concat(cod_empleado,nombres,apellidos) like '%" + palabra + "%'");
   res.render("empleados/edit", { empleados: empleados });
-});*/
+});
 
 
 //ruta para eliminar
