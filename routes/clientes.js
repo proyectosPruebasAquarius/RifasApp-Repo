@@ -38,14 +38,14 @@ router.get("/add", isLoggedIn, (req, res) => {
 //ruta para subir una imagen
 router.post('/upload', upload.single('photo'), (req, res) => {
   if(req.file) {
-      //res.json(req.file);
-      res.redirect('/clientes/add', {foto : req.file});
+      res.json(req.file);
+      //res.redirect('/clientes/add', {foto : req.file});
   }
   else throw 'error';
 });
 
 //ruta para guardar los clientes
-router.post("/add", isLoggedIn, async (req, res) => {
+router.post("/add", isLoggedIn,  upload.single('photo'), async (req, res) => {
   const {
     nombres,
     apellidos,
@@ -72,7 +72,12 @@ router.post("/add", isLoggedIn, async (req, res) => {
   };
   await pool.query("insert into clientes set ?", [newCliente]);
   const success = req.flash('success','Guardado correctamente!');
-  res.redirect("/clientes");
+  //res.redirect("/clientes");
+  if(req.file) {
+      //res.json(req.file);
+      //res.redirect('/clientes/add', {foto : req.file});
+      res.redirect("/clientes");
+  }
 });
 
 //ruta para listar los clientes

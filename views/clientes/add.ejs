@@ -7,10 +7,7 @@
           <h2><i class="material-icons">person_add</i> Registro de Clientes</h2>
         </div>
         <div class="mdc-card">
-        <form action="/clientes/upload" method="post" enctype="multipart/form-data">
-            <input type="file" accept="image/*" name="photo" >
-            <input type="submit" value="upload">
-        </form>        
+             
         <hr />
         
         <% if(locals.foto){ %>
@@ -19,7 +16,9 @@
             <img src="assets/images/faces/face1.jpg" alt="user" class="user">
           </span>       
         <% } %>
-        <form action="/clientes/add" method="POST">
+        <form action="/clientes/add" enctype="multipart/form-data" method="POST">
+          <input type="file" accept="image/*" onchange="imagePreview(this.files)" name="photo" >
+          <img id="img_preview" width="10%" class="img">
           <div class="template-demo">
             <div class="mdc-layout-grid__inner">
           
@@ -213,5 +212,19 @@ $(document).ready(function() {
               cache: true             
               }    
               });
-        });</script>`) 
+        });
+        function imagePreview(file) {
+              var img = document.querySelectorAll('img');
+                         
+                  var reader = new FileReader();
+
+                  reader.onload = function(e) {
+                    var img = document.getElementById('img_preview');
+                    img.src = e.target.result;                   
+                  }
+                  
+                  reader.readAsDataURL(file[0]);     
+            
+        }
+        </script>`) 
 -%>

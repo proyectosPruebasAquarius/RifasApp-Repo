@@ -29,11 +29,12 @@ app.set('view engine', 'ejs');
 
 //Middlewares
 app.use(session({
-  cookie: { maxAge: 60000},
+  //cookie: { maxAge: 60000},
   secret : 'rifasapp',
   resave : false,
   saveUninitialized : false,
-  store : new MySQLStore(database)
+  store : new MySQLStore(database),
+  expires: new Date(Date.now() + (30 * 86400 * 1000))
 }));
 app.use(flash());
 app.use(logger('dev'));
