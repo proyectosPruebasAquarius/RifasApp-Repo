@@ -10,6 +10,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session');
 const passport = require('passport');
+const moment = require("moment");
 
 const { database } = require('./keys');
 
@@ -29,12 +30,12 @@ app.set('view engine', 'ejs');
 
 //Middlewares
 app.use(session({
-  //cookie: { maxAge: 60000},
   secret : 'rifasapp',
   resave : false,
   saveUninitialized : false,
   store : new MySQLStore(database),
-  expires: new Date(Date.now() + (30 * 86400 * 1000))
+  //permite mantener activa la sesion durante 1 dia
+  expires: new Date(Date.now() + (1 * 86400 * 1000))
 }));
 app.use(flash());
 app.use(logger('dev'));
@@ -52,6 +53,8 @@ app.use((req, res, next) => {
   app.locals.success = req.flash('success');
   app.locals.errors = req.flash('errors');
   app.locals.user = req.user;
+  //moment para poder manipular el formato de fecha dia/mes/anio
+  app.locals.moment = moment;
   next();
 })
 //Routes

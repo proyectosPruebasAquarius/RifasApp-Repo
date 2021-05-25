@@ -16,6 +16,8 @@
             <img src="assets/images/faces/face1.jpg" alt="user" class="user">
           </span>       
         <% } %>
+        <!-- este formulario tiene el atributo enctype="multipart/form-data" porque ademas de 
+        de guardar la informacion a la base de datos sube un archivo de foto -->
         <form action="/clientes/add" enctype="multipart/form-data" method="POST">
           <input type="file" accept="image/*" onchange="imagePreview(this.files)" name="photo" >
           <img id="img_preview" width="10%" class="img">
@@ -192,6 +194,7 @@
 <% block('footerjs', `<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
 $(document).ready(function() {    
+  //funcion para llamar los municipios
   $('.municipios').select2({      
     theme: 'classic',      
     width: '100%',      
@@ -202,29 +205,25 @@ $(document).ready(function() {
         return {            
           q: params.term,             
           page: params.page          
-          };        
-          },        
-          processResults: function (data, params) {          
-            return {            
-              results: data,          
-              };        
-              },        
-              cache: true             
-              }    
-              });
-        });
+        };        
+      },        
+      processResults: function (data, params) {          
+      return {            
+          results: data,          
+      };        
+      },        
+      cache: true             
+      }    
+    });
+    });
         function imagePreview(file) {
-              var img = document.querySelectorAll('img');
-                         
-                  var reader = new FileReader();
-
-                  reader.onload = function(e) {
-                    var img = document.getElementById('img_preview');
-                    img.src = e.target.result;                   
-                  }
-                  
-                  reader.readAsDataURL(file[0]);     
-            
+            var img = document.querySelectorAll('img');                         
+            var reader = new FileReader();
+            reader.onload = function(e) {
+               var img = document.getElementById('img_preview');
+               img.src = e.target.result;                   
+            }
+            reader.readAsDataURL(file[0]);     
         }
         </script>`) 
 -%>
