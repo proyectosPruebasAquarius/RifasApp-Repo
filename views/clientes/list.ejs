@@ -1,76 +1,183 @@
 <% layout('../layout') -%>
-<div class="mdc-layout-grid">
-  <div class="mdc-layout-grid__inner">
-    <div class="mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-12-desktop stretch-card">
-      <div class="mdc-card p-0 to-do-list">
-        <div class="d-flex bg-success text-white to-do-list-header">
-          <h4 class="card-title">Clientes</h4>
+
+
+    <div style="display: block;
+margin-left: auto;
+margin-right: auto;" class="mdc-layout-grid__cell stretch-card col-md-10 col-xxl-8 mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+        <div class="mdc-card p-0  to-do-list">
+            <div class="align-items-center back__head text-white to-do-list-header">
+                <div class="col-xs-6">
+                    <h2 style="text-align: center;"><i class="material-icons">people</i> Lista de <b>Clientes</b></h2>
+                </div>
+                <div class="row">
+                    <div class="input-group mb-3">
+                        <a href="/clientes/add" class="btn btn__add btn-light btn__center__add  btn__add-white btn__add-animate"><span class="material-icons" style="color: black; vertical-align: -6px;">
+        library_add
+        </span> Agregar Cliente</a>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <div class="mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-3-desktop stretch-card">
+
+                <div class="table-responsive">
+                    <table id="table_id" class="table table-hoverable" style="width:100%">
+
+
+                        <thead>
+                            <% i = 1; %>
+                                <tr class="back__head">
+
+                                    <th class="text-white text-center">Nombres</th>
+                                    <th class="text-white text-center">Apellidos</th>
+                                    <th class="text-white text-center">Correo</th>
+                                    <th class="text-white text-center">DUI</th>
+                                    <th class="text-white text-center">Celular</th>
+                                    <th class="text-white text-center">Fecha de Nacimiento</th>
+                                    <th class="text-white text-center">Fecha de registro</th>
+                                    <th class="text-white text-center">Acciones</th>
+                                </tr>
+                        </thead>
+                        <tbody>
+                            <% clientes.forEach(function(cliente) {%>
+                                <tr>
+                                    <td class="text-center">
+                                        <%= cliente.nombres %>
+                                    </td>
+                                    <td class="text-center">
+                                        <%= cliente.apellidos %>
+                                    </td>
+                                    <% if (cliente.email === null) { %>
+                                        <td class="text-center">
+                                            Sin Correo
+                                        </td>
+                                        <% }else{ %>
+                                            <td class="text-center">
+                                                <%= cliente.email %>
+                                            </td>
+                                            <%  }%>
+
+                                                <td class="text-center">
+                                                    <%= cliente.DUI %>
+                                                </td>
+                                                <td class="text-center">
+                                                    <%= cliente.celular %>
+                                                </td>
+                                                <td class="text-center">
+                                                    <%= moment(cliente.fecha_nac).format('DD/MM/YYYY') %>
+                                                </td>
+                                                <% if (cliente.fecha_registro === null) { %>
+                                                    <td class="text-center">
+                                                        Sin Fecha de Registro
+                                                    </td>
+                                                    <% }else{ %>
+                                                        <td class="text-center">
+                                                            <%= moment(cliente.fecha_registro).format('DD/M/YYYY')  %>
+                                                        </td>
+                                                        <%  }%>
+
+
+                                                            <td class="text-center">
+                                                                <a href="/clientes/edit/<%= cliente.id %>" class="mdc-button btn__edit__icon mdc-button--warning" data-toggle="tooltip" data-placement="top" title="Editar">
+                                                                    <i class="material-icons">edit</i>
+                                                                </a>
+                                                                <a href="/clientes/delete/<%= cliente.id %>" class="mdc-button mdc-button--raised filled-button--danger" data-toggle="tooltip" data-placement="top" title="Eliminar">
+                                                                    <i class="material-icons">delete</i>
+                                                                </a>
+                                                            </td>
+
+                                </tr>
+
+
+                                <%});  %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
         </div>
-        <div class="table-responsive">
-          <table class="table hoverable">
-            <thead>
-              <tr class="bg-success">
-                <% i = 1; %>
-                <th class="text-white text-left">No</th>
-                <th class="text-white text-left">Nombres</th>
-                <th class="text-white text-left">Apellidos</th>
-                <th class="text-white text-left">DUI</th>
-                <th class="text-white text-left">Celular</th>
-                <th class="text-white text-left">Teléfono</th>
-                <th class="text-white text-left">Fecha de Nacimiento</th>                
-                <th class="text-white text-left">Municipio</th>
-                <th class="text-white text-left">Dirección</th>
-                <th class="text-white text-left">Fecha de registro</th>
-                <th class="text-white text-left">Editar</th>
-                <th class="text-white text-left">Borrar</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% clientes.forEach(function(cliente) { %>
-              <tr>
-                <td><%= i %></td>
-                <td class="text-left"><%= cliente.nombres %></td>
-                <td class="text-left"><%= cliente.apellidos %></td>
-                <td class="text-left"><%= cliente.DUI %></td>
-                <td class="text-left"><%= cliente.celular %></td>
-                <td class="text-left"><%= cliente.telefono %></td>
-                <!-- FORMATO de fecha con moment-->
-                <td class="text-left"><%= moment(cliente.fecha_nac).format('DD/MM/YYYY')  %></td>
-                <td class="text-left"><%= cliente.municipio %></td>
-                <td class="text-left"><%= cliente.direccion %></td>
-                
-                <td class="text-left"><%= moment(cliente.fecha_registro).format('DD/M/YYYY')  %></td>
-                <td>
-                  <a
-                    href="/clientes/edit/<%= cliente.id %>"
-                    class="mdc-button mdc-button--raised filled-button--info"
-                  >
-                    <i class="material-icons">edit</i>
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href="/clientes/delete/<%= cliente.id %>"
-                    class="mdc-button mdc-button--raised filled-button--secondary"
-                  >
-                    <i class="material-icons">delete</i>
-                  </a>
-                </td>
-              </tr>
-              <% i++}); %>
-            </tbody>
-          </table>
-          
-        </div>
-        <div>
-        <br><br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="mdc-button mdc-button--raised bg-primary" href="/clientes/add">
-            <i class="material-icons">person_add</i> Nuevo
-          </a>
-        </div>
-        <br>
-      </div>
-      
-    </div>
-  </div>
-</div>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!--SCRIPT-->
+        <% block('footerjs', `<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script> 
+    
+   <script>
+    
+    $(document).ready( function () {
+    $('#table_id').DataTable({
+        language: {
+        "decimal": "",
+        "emptyTable": "No hay información",
+        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        "infoEmpty": "Mostrando 0 to 0 de 0 Entradas",
+        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+        "infoPostFix": "",
+        "thousands": ",",
+        "lengthMenu": "Mostrar _MENU_ Entradas",
+        "loadingRecords": "Cargando...",
+        "processing": "Procesando...",
+        "search": "Buscar:",
+        "zeroRecords": "Sin resultados encontrados",
+        "paginate": {
+            "first": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
+        }
+    },
+    
+    });
+        } );
+        $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+     
+           </script>`) 
+   -%>
+
+            <script>
+                '<% if(message.length > 0 && message == "Guardado con éxito") { %>'
+                //console.log('<%= message %>')
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    width: '20rem',
+
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'success',
+                    title: '<%= message %>'
+                })
+
+                '<% } else if (message.length > 0 && message == "Ocurrió un error inesperado") {%>'
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'error',
+                    title: '<%= message %>'
+                })
+                '<% } %>'
+            </script>

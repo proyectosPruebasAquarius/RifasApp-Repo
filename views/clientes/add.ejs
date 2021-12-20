@@ -1,229 +1,131 @@
-<% layout('../layout') -%>
-<div class="mdc-layout-grid">
-  <div class="mdc-layout-grid__inner">
-    <div class="mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-12-desktop stretch-card">
-      <div class="mdc-card p-0 to-do-list">
-        <div class="d-flex bg-primary text-white to-do-list-header">
-          <h2><i class="material-icons">person_add</i> Registro de Clientes</h2>
-        </div>
-        <div class="mdc-card">
-             
-        <hr />
-        
-        <% if(locals.foto){ %>
-          <span class="figure">
-            <%= user.username %>
-            <img src="assets/images/faces/face1.jpg" alt="user" class="user">
-          </span>       
-        <% } %>
-        <!-- este formulario tiene el atributo enctype="multipart/form-data" porque ademas de 
-        de guardar la informacion a la base de datos sube un archivo de foto -->
-        <form action="/clientes/add" enctype="multipart/form-data" method="POST">
-          <input type="file" accept="image/*" onchange="imagePreview(this.files)" name="photo" >
-          <img id="img_preview" width="10%" class="img">
-          <div class="template-demo">
+<% layout('../layout') %>
+    <div style="display: block;
+margin-left: auto;
+margin-right: auto;" class="mdc-layout-grid__cell stretch-card col-md-10 col-xxl-10 mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-4-tablet">
+        <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">
-          
-            <div
-              class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop"
-            >
-              <div class="mdc-text-field mdc-text-field--outlined">
-                <input class="mdc-text-field__input masked" name="nombres" />
-                <div class="mdc-notched-outline">
-                  <div class="mdc-notched-outline__leading"></div>
-                  <div class="mdc-notched-outline__notch">
-                    <label
-                      for="text-field-hero-input"
-                      class="mdc-floating-label"
-                      >Nombres</label
-                    >
-                  </div>
-                  <div class="mdc-notched-outline__trailing"></div>
-                </div>
-              </div>
-            </div>
+                <div class="mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-12-desktop stretch-card">
 
-            <div
-              class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop"
-            >
-              <div class="mdc-text-field mdc-text-field--outlined">
-                <input class="mdc-text-field__input" name="apellidos" />
-                <div class="mdc-notched-outline">
-                  <div class="mdc-notched-outline__leading"></div>
-                  <div class="mdc-notched-outline__notch">
-                    <label
-                      for="text-field-hero-input"
-                      class="mdc-floating-label"
-                      >Apellidos</label
-                    >
-                  </div>
-                  <div class="mdc-notched-outline__trailing"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <br />
-          <div class="mdc-layout-grid__inner">
-            <div
-              class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop"
-            >
-              <div class="mdc-text-field mdc-text-field--outlined">
-                <input
-                  class="mdc-text-field__input"
-                  type="date"
-                  name="fecha_nac"
-                />
-                <div class="mdc-notched-outline">
-                  <div class="mdc-notched-outline__leading"></div>
-                  <div class="mdc-notched-outline__notch">
-                    <label
-                      for="text-field-hero-input"
-                      class="mdc-floating-label"
-                      >Fecha de Nacimiento</label
-                    >
-                  </div>
-                  <div class="mdc-notched-outline__trailing"></div>
-                </div>
-              </div>
-            </div>
+                    <div class="mdc-card p-0 to-do-list">
+                        <div class="d-flex back__head text-white to-do-list-header">
+                            <h4 class="card-title">Alta Cliente</h4>
+                        </div>
+                        <div class="mdc-card">
 
-            <div
-              class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop"
-            >
-              <div class="mdc-text-field mdc-text-field--outlined">
-                <input class="mdc-text-field__input" name="DUI" />
-                <div class="mdc-notched-outline">
-                  <div class="mdc-notched-outline__leading"></div>
-                  <div class="mdc-notched-outline__notch">
-                    <label
-                      for="text-field-hero-input"
-                      class="mdc-floating-label"
-                      >DUI</label
-                    >
-                  </div>
-                  <div class="mdc-notched-outline__trailing"></div>
-                </div>
-              </div>
-            </div>
+                            <form class="needs-validation" novalidate action="/clientes/add" method="POST">
+                                <div class="row ">
+                                    <div class="col col-md-4 mb-4">
+                                        <div>
+                                            <label for="nombre">Nombres del Cliente</label>
 
-            <div
-              class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop"
-            >
-              <div class="mdc-text-field mdc-text-field--outlined">
-                <input class="mdc-text-field__input" name="telefono" />
-                <div class="mdc-notched-outline">
-                  <div class="mdc-notched-outline__leading"></div>
-                  <div class="mdc-notched-outline__notch">
-                    <label
-                      for="text-field-hero-input"
-                      class="mdc-floating-label"
-                      >Teléfono</label
-                    >
-                  </div>
-                  <div class="mdc-notched-outline__trailing"></div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop"
-            >
-              <div class="mdc-text-field mdc-text-field--outlined">
-                <input class="mdc-text-field__input" name="celular" />
-                <div class="mdc-notched-outline">
-                  <div class="mdc-notched-outline__leading"></div>
-                  <div class="mdc-notched-outline__notch">
-                    <label
-                      for="text-field-hero-input"
-                      class="mdc-floating-label"
-                      >Celular</label
-                    >
-                  </div>
-                  <div class="mdc-notched-outline__trailing"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <br />
-          <div class="mdc-layout-grid__inner">
-            <div
-              class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop"
-            >
-            <div class="mdc-text-field mdc-text-field--outlined">
-            
-            <select class="municipios" name="id_municipio">
-              
-            </select>
-            </div>
 
-            </div>
+                                            <input type="text" class="form-control" maxlength="45" id="nombres" name="nombres" required onkeyup="errorHandler('clientes','counterN','nombres',null)">
+                                            <label for="nombre" id="counterN">0/45</label>
+                                            <div class="valid-feedback">
 
-            <div
-              class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-9-desktop"
-            >
-              <div class="mdc-text-field mdc-text-field--outlined">
-                <input class="mdc-text-field__input" name="direccion" />
-                <div class="mdc-notched-outline">
-                  <div class="mdc-notched-outline__leading"></div>
-                  <div class="mdc-notched-outline__notch">
-                    <label
-                      for="text-field-hero-input"
-                      class="mdc-floating-label"
-                      >Direccion</label
-                    >
-                  </div>
-                  <div class="mdc-notched-outline__trailing"></div>
+                                            </div>
+                                            <div class="invalid-feedback">
+                                                Este campo debe ser completado
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col col-md-4 mb-4">
+                                        <div>
+                                            <label for="nombre">Apellidos del Cliente</label>
+
+
+                                            <input type="text" class="form-control" maxlength="45" id="apellidos" name="apellidos" required onkeyup="errorHandler('clientes','counterA','apellidos',null)">
+                                            <label for="nombre" id="counterA">0/45</label>
+                                            <div class="valid-feedback">
+
+                                            </div>
+                                            <div class="invalid-feedback">
+                                                Este campo debe ser completado
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col col-md-4 mb-4">
+                                        <div>
+                                            <label for="nombre">Correo</label>
+
+
+                                            <input type="email" class="form-control" maxlength="50" id="correo" name="email" required onkeyup="errorHandler('clientes','counterE','correo','invalid')">
+                                            <label for="nombre" id="counterE">0/50</label>
+                                            <div class="invalid-feedback" id="invalid">
+                                                Este campo debe ser completado
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col col-md-4 mb-4">
+                                        <div>
+                                            <label for="descripcion">DUI</label>
+                                            <input type="text" class="form-control" maxlength="10" id="dui" name="DUI" required onkeyup="errorHandler('clientes','counterD','dui',null)">
+                                            <label for="nombre" id="counterD">0/10</label>
+                                            <div class="valid-feedback">
+
+                                            </div>
+                                            <div class="invalid-feedback">
+                                                Este campo debe ser completado
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col col-md-4 mb-4">
+                                        <div>
+                                            <label for="url">Celular</label>
+                                            <input type="text" class="form-control" maxlength="8" id="celular" name="celular" required onkeyup="errorHandler('clientes','counterU','celular',null)">
+                                            <label for="nombre" id="counterU">0/8</label>
+                                            <div class="valid-feedback ">
+
+                                            </div>
+                                            <div class="invalid-feedback">
+                                                Este campo debe ser completado
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col col-md-4 mb-4">
+                                        <div>
+                                            <label for="url">Fecha de Nacimiento</label>
+                                            <input type="date" class="form-control" id="fecha_nac" name="fecha_nac" required onkeyup="errorHandler('clientes',null,'fecha_nac',null)">
+
+                                            <div class="valid-feedback ">
+
+                                            </div>
+                                            <div class="invalid-feedback">
+                                                Este campo debe ser completado
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br>
+                                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop">
+                                    <div class="template-demo ">
+                                        <button type="submit " class="mdc-button mdc-button--unelevated">
+                                            <i class="material-icons ">save</i>&nbsp;&nbsp;Guardar
+                                        </button>
+                                        <button type="reset " class="mdc-button mdc-button--warning">
+                                            <i class="material-icons ">cancel</i>&nbsp;Cancelar
+                                        </button>
+                                        <a class="mdc-button mdc-button--unelevated filled-button--success" href='/clientes'><i class="material-icons">arrow_back</i>&nbsp;Volver</a>
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
+        </div>
 
-          <br /><br />
-          <button type="submit" class="mdc-button mdc-button--raised">
-            <i class="material-icons">save</i> Guardar
-          </button>
-          <a class="mdc-button mdc-button--raised bg-success" href="/clientes">
-            <i class="material-icons">search</i> Buscar
-          </a>
-          </div>
-        </form>
-      </div>
     </div>
-  </div>
-</div>
-<!--SCRIPT-->
-<% block('footerjs', `<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script>
-$(document).ready(function() {    
-  //funcion para llamar los municipios
-  $('.municipios').select2({      
-    theme: 'classic',      
-    width: '100%',      
-    ajax: {        
-      url: '/municipios/list',        
-      dataType: 'json',                  
-      data: function (params) {          
-        return {            
-          q: params.term,             
-          page: params.page          
-        };        
-      },        
-      processResults: function (data, params) {          
-      return {            
-          results: data,          
-      };        
-      },        
-      cache: true             
-      }    
-    });
-    });
-        function imagePreview(file) {
-            var img = document.querySelectorAll('img');                         
-            var reader = new FileReader();
-            reader.onload = function(e) {
-               var img = document.getElementById('img_preview');
-               img.src = e.target.result;                   
-            }
-            reader.readAsDataURL(file[0]);     
-        }
-        </script>`) 
--%>

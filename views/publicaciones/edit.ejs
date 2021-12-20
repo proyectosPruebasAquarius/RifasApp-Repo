@@ -1,0 +1,167 @@
+<% layout('../layout') %>
+    <div style="display: block;
+        margin-left: auto;
+        margin-right: auto;" class="mdc-layout-grid__cell stretch-card col-md-12 col-xxl-10 mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+        <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">
+                <div class="mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-12-desktop stretch-card">
+                    <div class="mdc-card p-0 to-do-list">
+                        <div class="d-flex back__head text-white to-do-list-header">
+                            <h4 class="card-title">Alta Publicación</h4>
+                        </div>
+                        <div class="mdc-card">
+                            <form action="/publicaciones/add" enctype="multipart/form-data" method="POST">
+                                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2 mdc-layout-grid__cell--span-2-tablet">
+                                    <div class="mdc-card info-card info-card--info">
+                                        <div class="card-inner mx-auto">
+                                            <div class="d-flex align-items-center mx-auto">
+                                                <div class="card text-center mx-auto">
+                                                    <h5 class="card-title back__head text-white">Imagen de la Publicación</h5>
+                                                    <div class="card-body">
+                                                        <p class="card-text">
+                                                            <%if (publicacion.imagen  === null) { %>
+                                                                <h4 class="mx-auto">No hay imagen del producto</h4>
+                                                                <% } %>
+                                                                    <img src="http://localhost:3000/images/publicaciones/<%= publicacion.imagen %>" width="20%" class="img" />
+                                                        </p>
+                                                    </div>
+
+                                                    <div class=" back__head text-white">
+                                                        Bruji Rifas
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mdc-layout-grid__inner">
+
+                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                                        <div class="mdc-text-field w-100">
+                                            <input class="mdc-text-field__input" id="tituloValor" required name="titulo" value="<%= publicacion.titulo %>" />
+                                            <div class="mdc-line-ripple"></div>
+                                            <label id="titulo" for="text-field-hero-input" class="mdc-floating-label">Título</label>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                                        <div class="mdc-text-field w-100">
+                                            <input class="mdc-text-field__input" id="descripcion" name="descripcion" value="<%= publicacion.descripcion %>" maxlength="200" onkeyup="validator()" />
+                                            <div class="mdc-line-ripple"></div>
+                                            <label for="text-field-hero-input" class="mdc-floating-label">Descripción</label>
+                                            <label id="counterD">0/200</label>
+                                        </div>
+                                    </div>
+                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                                        <div class="mdc-text-field w-100">
+                                            <input class="mdc-text-field__input" id="contenido" required name="contenido" value="<%= publicacion.contenido %>" maxlength="300" onkeyup="validator()" />
+                                            <div class="mdc-line-ripple"></div>
+                                            <label for="text-field-hero-input" class="mdc-floating-label">Contenido de la publicación</label>
+                                            <label id="counter">0/300</label>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+
+                                        <div class="mdc-text-field mdc-text-field--outlined">
+                                            <select class="rifas mdc-text-field__input" name="id_rifa">
+                                                <option value="<%= publicacion.id_rifa %>"><%= publicacion.codigo_rifa %></option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop">
+                                        <div class="template-demo">
+                                            <button type="submit" class="mdc-button mdc-button--unelevated">
+                                                <i class="material-icons">save</i>&nbsp;&nbsp;Guardar
+                                            </button>
+                                            <button type="reset" class="mdc-button mdc-button--warning">
+                                                <i class="material-icons">cancel</i>&nbsp;Cancelar
+                                            </button>
+                                            <a class="mdc-button mdc-button--unelevated filled-button--success" href='/publicaciones'><i class="material-icons">arrow_back</i>&nbsp;Volver</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--SCRIPT-->
+    <!--SCRIPT-->
+    <% block('footerjs', `<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+      <script>
+        $(document).ready( () => {    
+          //funcion para llamar los proveedores
+          $('.rifas').select2({      
+            language: {
+      
+            noResults: function() {
+      
+            return "No hay resultado";        
+            },
+            searching: function() {
+      
+            return "Buscando..";
+            }
+            },
+            placeholder: "Selecione la Rifa",
+            width: '100%',      
+            ajax: {        
+                url: '/rifas/list',        
+                dataType: 'json',                  
+                data: (params) => {          
+                  return {            
+                    q: params.term,             
+                    page: params.page          
+                  };        
+                },        
+                processResults: (data, params) => {          
+                return {            
+                    results: data,          
+                };        
+                },        
+                cache: true             
+              }    
+            });
+           
+        });
+              </script>`) 
+      -%>
+
+        <script>
+            function imagePreview(file) {
+                var img = document.querySelectorAll('img');
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var img = document.getElementById('img_preview');
+                    img.src = e.target.result;
+                }
+                reader.readAsDataURL(file[0]);
+
+            }
+
+            function validator() {
+                var contenido = document.getElementById("contenido");
+
+                var valueContenido = contenido.value.toString();
+                var counterContenido = document.getElementById('counter');
+                counterContenido.innerHTML = valueContenido.length + "/300";
+
+                var descripcion = document.getElementById("descripcion");
+
+                var valueDescripcion = descripcion.value.toString();
+                var counterDescripcion = document.getElementById('counterD');
+                counterDescripcion.innerHTML = valueDescripcion.length + "/200";
+
+
+            }
+        </script>

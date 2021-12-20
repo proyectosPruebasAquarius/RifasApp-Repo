@@ -1,0 +1,176 @@
+<% layout('../layout') -%>
+<div class="mdc-layout-grid">
+  <div class="mdc-layout-grid__inner">
+    <div class="mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-12-desktop stretch-card">
+      <div class="mdc-card p-0 to-do-list">
+        <div class="d-flex bg-primary text-white to-do-list-header">
+          <h2><i class="material-icons">note_add</i> Registro de Sorteos</h2>
+        </div>
+        <div class="mdc-card">
+             
+        <hr />
+        
+        <!--Inicio Formulario-->
+        <form action="/sorteos/add"  method="POST">
+         
+          <div class="template-demo">
+            <div class="mdc-layout-grid__inner">
+          
+            <div
+              class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop"
+            >
+              <div class="mdc-text-field mdc-text-field--outlined">
+                <input class="mdc-text-field__input masked" name="codigo_rifa" />
+                <div class="mdc-notched-outline">
+                  <div class="mdc-notched-outline__leading"></div>
+                  <div class="mdc-notched-outline__notch">
+                    <label
+                      for="text-field-hero-input"
+                      class="mdc-floating-label"
+                      >Código de Rifa</label
+                    >
+                  </div>
+                  <div class="mdc-notched-outline__trailing"></div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop"
+            >
+              <div class="mdc-text-field mdc-text-field--outlined">
+                <input class="mdc-text-field__input" name="boleto_ganador" />
+                <div class="mdc-notched-outline">
+                  <div class="mdc-notched-outline__leading"></div>
+                  <div class="mdc-notched-outline__notch">
+                    <label
+                      for="text-field-hero-input"
+                      class="mdc-floating-label"
+                      >Boleto Ganador</label
+                    >
+                  </div>
+                  <div class="mdc-notched-outline__trailing"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br />
+          <div class="mdc-layout-grid__inner">
+            <div
+              class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop"
+            >
+              <div class="mdc-text-field mdc-text-field--outlined">
+                <input
+                  class="mdc-text-field__input"
+                  type="date"
+                  name="fecha_sorteo"
+                />
+                <div class="mdc-notched-outline">
+                  <div class="mdc-notched-outline__leading"></div>
+                  <div class="mdc-notched-outline__notch">
+                    <label
+                      for="text-field-hero-input"
+                      class="mdc-floating-label"
+                      >Fecha de Sorteo</label
+                    >
+                  </div>
+                  <div class="mdc-notched-outline__trailing"></div>
+                </div>
+              </div>
+            </div>         
+
+            <div
+              class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop"
+            >
+              <div class="mdc-text-field mdc-text-field--outlined">
+                <input
+                  class="mdc-text-field__input"
+                  type="date"
+                  name="fecha_entrega"
+                />
+                <div class="mdc-notched-outline">
+                  <div class="mdc-notched-outline__leading"></div>
+                  <div class="mdc-notched-outline__notch">
+                    <label
+                      for="text-field-hero-input"
+                      class="mdc-floating-label"
+                      >Fecha de Entrega</label
+                    >
+                  </div>
+                  <div class="mdc-notched-outline__trailing"></div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop"
+            >
+              <div class="mdc-text-field mdc-text-field--outlined">
+                <input class="mdc-text-field__input" name="estado" />
+                <div class="mdc-notched-outline">
+                  <div class="mdc-notched-outline__leading"></div>
+                  <div class="mdc-notched-outline__notch">
+                    <label
+                      for="text-field-hero-input"
+                      class="mdc-floating-label"
+                      >Estado</label
+                    >
+                  </div>
+                  <div class="mdc-notched-outline__trailing"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+         
+
+          <br /><br />
+          <button type="submit" class="mdc-button mdc-button--raised">
+            <i class="material-icons">save</i> Guardar
+          </button>
+          <a class="mdc-button mdc-button--raised bg-success" href="/clientes">
+            <i class="material-icons">search</i> Buscar
+          </a>
+          </div>
+        </form>
+        <!--Fin Formulario-->
+      </div>
+    </div>
+  </div>
+</div>
+<!--SCRIPT-->
+<% block('footerjs', `<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+$(document).ready(function() {    
+  //funcion para llamar los municipios
+  $('.municipios').select2({      
+    theme: 'classic',      
+    width: '100%',      
+    ajax: {        
+      url: '/municipios/list',        
+      dataType: 'json',                  
+      data: function (params) {          
+        return {            
+          q: params.term,             
+          page: params.page          
+        };        
+      },        
+      processResults: function (data, params) {          
+      return {            
+          results: data,          
+      };        
+      },        
+      cache: true             
+      }    
+    });
+    });
+        function imagePreview(file) {
+            var img = document.querySelectorAll('img');                         
+            var reader = new FileReader();
+            reader.onload = function(e) {
+               var img = document.getElementById('img_preview');
+               img.src = e.target.result;                   
+            }
+            reader.readAsDataURL(file[0]);     
+        }
+        </script>`) 
+-%>

@@ -1,0 +1,138 @@
+<% layout('../layout') %>
+
+    <div style="display: block;
+margin-left: auto;
+margin-right: auto;" class="mdc-layout-grid__cell stretch-card col-md-12 col-xxl-10 mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+        <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">
+                <div class="mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-12-desktop stretch-card">
+                    <div class="mdc-card p-0 to-do-list">
+                        <div class="d-flex back__head text-white to-do-list-header">
+                            <h4 class="card-title">Edición de rifa</h4>
+                        </div>
+                        <div class="mdc-card">
+                            <h6 class="card-title"></h6>
+                            <form action="/rifas/edit/<%= rifa.codigo_rifa %>" method="POST">
+                                <div class="template-demo">
+                                    <div class="mdc-layout-grid__inner">
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
+                                            <div class="mdc-text-field w-100">
+                                                <input class="mdc-text-field__input" id="text-field-hero-input" disabled name="codigo_rifa" value="<%= rifa.codigo_rifa %>" />
+                                                <div class="mdc-line-ripple"></div>
+                                                <label for="text-field-hero-input" class="mdc-floating-label">Código rifa </label>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
+                                            <div class="nativeDatePicker w-100">
+                                                <div class="mdc-text-field">
+                                                    <input class="mdc-text-field__input" id="text-field-hero-input" type="date" name="fecha_inicio" value="<%= rifa.fecha_inicio.slice(0,10) %>" />
+                                                    <div class="mdc-line-ripple"></div>
+                                                    <label for="text-field-hero-input" class="mdc-floating-label">Fecha de Inicio:</label>
+                                                    <span class="validity"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
+                                            <div class="nativeDatePicker w-100">
+                                                <div class="mdc-text-field">
+                                                    <input class="mdc-text-field__input" id="text-field-hero-input" type="date" name="fecha_fin" value="<%= rifa.fecha_fin.slice(0,10) %>" />
+                                                    <div class="mdc-line-ripple"></div>
+                                                    <label for="text-field-hero-input" class="mdc-floating-label">Fecha de Fin:</label>
+                                                    <span class="validity"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12-desktop">
+                                            <div class="mdc-text-field w-100">
+                                                <input class="mdc-text-field__input" id="text-field-hero-input" name="nombre" value="<%= rifa.nombre %>" />
+                                                <div class="mdc-line-ripple"></div>
+                                                <label for="text-field-hero-input" class="mdc-floating-label">Nombre de la rifa</label>
+                                            </div>
+                                        </div>
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12-desktop">
+                                            <div class="mdc-text-field w-100">
+                                                <input class="mdc-text-field__input" id="text-field-hero-input" name="descripcion" value="<%= rifa.descripcion %>" />
+                                                <div class="mdc-line-ripple"></div>
+                                                <label for="text-field-hero-input" class="mdc-floating-label">Descripción de la rifa</label>
+                                            </div>
+                                        </div>
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                                            <div class="mdc-text-field w-100">
+                                                <input class="mdc-text-field__input" id="text-field-hero-input" name="dias_limite_retiro" value="<%= rifa.dias_limite_retiro %>" />
+                                                <div class="mdc-line-ripple"></div>
+                                                <label for="text-field-hero-input" class="mdc-floating-label">Número de Días para retirar el premio</label>
+                                            </div>
+                                        </div>
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                                            <div class="mdc-text-field mdc-text-field--outlined">
+                                                <select id="productos" class="productos mdc-text-field__input" name="id_producto">
+                                                <option value="<%= rifa.id_producto %>" selected="selected"> <%= rifa.nombre_producto %></option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-10-desktop">
+                                            <div class="template-demo">
+                                                <button type="submit" class="mdc-button mdc-button--unelevated">
+                                            <i class="material-icons">refresh</i>&nbsp;Guardar 
+                                            </button>
+                                                <button type="reset" class="mdc-button mdc-button--warning">
+                                                <i class="material-icons">cancel</i>&nbsp;Cancelar
+                                            </button>
+
+                                                <a class="mdc-button mdc-button--unelevated filled-button--success" href='..'><i
+                                                class="material-icons">arrow_back</i>&nbsp;Volver
+                                        </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--SCRIPT-->
+    <% block('footerjs', `<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+    $(document).ready(function() {    
+      //funcion para llamar los municipios
+      $('#productos').select2({  
+        language: {
+
+            noResults: function() {
+
+            return "No hay resultado";        
+            },
+            searching: function() {
+
+            return "Buscando..";
+            }
+            },
+                         
+        width: '100%',      
+        ajax: {        
+          url: '/productos/list',        
+          dataType: 'json',                  
+          data: function (params) {          
+            return {            
+              q: params.term,             
+              page: params.page          
+            };        
+          },        
+          processResults: function (data, params) {          
+          return {            
+              results: data,          
+          };        
+          },        
+          cache: true             
+          }    
+        });
+        });
+         </script>`) 
+    -%>

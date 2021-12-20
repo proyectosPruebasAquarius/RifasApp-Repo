@@ -1,0 +1,213 @@
+<% layout('../layout') %>
+    <div style="display: block;
+        margin-left: auto;
+        margin-right: auto;" class="mdc-layout-grid__cell stretch-card col-md-12 col-xxl-10 mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+        <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">
+                <div class="mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-12-desktop stretch-card">
+                    <div class="mdc-card p-0 to-do-list">
+                        <div class="d-flex back__head text-white to-do-list-header">
+                            <h4 class="card-title">Alta Proveedor</h4>
+                        </div>
+                        <div class="mdc-card">
+
+                            <form action="/proveedores/add" method="POST" novalidate class="needs-validation">
+                                <div class="row">
+                                    <div class="col-md-12 mb-12">
+                                        <label for="validationCustom01">Nombre de la
+                                            Empresa</label>
+                                        <input type="text" class="form-control" id="nombre" name="nombre" required onkeyup="errorHandler('proveedores',null,'nombre',null)">
+                                        <div class="invalid-feedback">
+                                            Este campo debe ser Completado
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6 mb-6">
+                                        <label for="telefono">Teléfono de la
+                                            Empresa</label>
+                                        <input type="text" class="form-control" id="telefono" name="telefono" required onkeyup="errorHandler('proveedores',null,'telefono',null)">
+                                        <div class="invalid-feedback">
+                                            Este campo debe ser Completado
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-6">
+                                        <label for="celular">Celular de la
+                                            Empresa</label>
+                                        <input type="text" class="form-control" id="celular" name="celular" required onkeyup="errorHandler('proveedores',null,'celular',null)">
+                                        <div class="invalid-feedback">
+                                            Este campo debe ser Completado
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6 mb-6">
+                                        <label for="web">Sitio Web de la Empresa</label>
+                                        <input type="text" class="form-control" id="web" name="sitio_web" required onkeyup="errorHandler('proveedores',null,'web',null)">
+                                        <div class="invalid-feedback">
+                                            Este campo debe ser Completado
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-6">
+                                        <label for="correo">Correo de la Empresa</label>
+                                        <input type="text" class="form-control" id="correo" name="correo" required onkeyup="errorHandler('proveedores',null,'correo',null)">
+                                        <div class="invalid-feedback">
+                                            Este campo debe ser Completado
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <br>
+
+                                <div class="row">
+
+
+                                    <div class="col-md-6 mb-6">
+                                        <label for="direccion">Dirrección de la Empresa</label>
+                                        <input type="text" class="form-control" id="direccion" name="direccion" required onkeyup="errorHandler('proveedores',null,'direccion',null)">
+                                        <div class="invalid-feedback">
+                                            Este campo debe ser Completado
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="col col-md-6 mb-6">
+                                        <label for="munucipio">Departamento y Municipio</label>
+                                        <div class="rounded" id="bordeM">
+                                            <select class="municipios" name="id_municipio" id="municipio" required onchange="errorHandler('proveedores','bordeM','municipio',null)"></select>
+
+                                            <label class="valid-feedback" for="municipio"> </label>
+
+
+                                            <label class="invalid-feedback" for="municipio">
+                                                    Este campo debe ser completado</label >
+                                        </div>
+
+                                        <div class="invalid-feedback">
+                                            Este campo debe ser completado
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <br>
+                                <h4>Datos del Encargado</h4>
+                                <div class="row">
+
+                                    <div class="col-md-4 mb-4">
+                                        <label for="correo">Nombre del Encargado</label>
+                                            <input type="text" class="form-control" id="encargadoN" name="encargado" required onkeyup="errorHandler('proveedores',null,'encargadoN',null)">
+                                            <div class="invalid-feedback">
+                                                Este campo debe ser Completado
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-4">
+                                            <label for="correo">Teléfono del Encargado</label>
+                                            <input type="text" class="form-control" id="encargadoT" name="celular_encargado" required onkeyup="errorHandler('proveedores',null,'encargadoT',null)">
+                                            <div class="invalid-feedback">
+                                                Este campo debe ser Completado
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-4">
+                                            <label for="correo">Correo del Encargado</label>
+                                            <input type="text" class="form-control" id="encargadoC" name="correo_encargado" required onkeyup="errorHandler('proveedores',null,'encargadoC',null)">
+                                            <div class="invalid-feedback">
+                                                Este campo debe ser Completado
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-10-desktop">
+                                        <div class="template-demo">
+                                            <button type="submit" class="mdc-button mdc-button--unelevated">
+                                                    <i class="material-icons">save</i>&nbsp;&nbsp;Guardar
+                                                </button>
+                                            <button type="reset" class="mdc-button mdc-button--warning">
+                                                    <i class="material-icons">cancel</i>&nbsp;Cancelar
+                                                </button>
+                                            <a class="mdc-button mdc-button--unelevated filled-button--success" href='/proveedores'><i class="material-icons">arrow_back</i>&nbsp;Volver
+                                                </a>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!--SCRIPT-->
+    <% block('footerjs', `<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+      <script>
+        $(document).ready( () => {    
+          //funcion para llamar los muinicipios
+          $('.municipios').select2({      
+            language: {
+      
+            noResults: function() {
+      
+            return "No hay resultado";        
+            },
+            searching: function() {
+      
+            return "Buscando..";
+            }
+            },
+            placeholder: "Selecione el Departamento y Municipio",
+            width: '100%',      
+            ajax: {        
+                url: '/municipios/list',        
+                dataType: 'json',                  
+                data: (params) => {          
+                  return {            
+                    q: params.term,             
+                    page: params.page          
+                  };        
+                },        
+                processResults: (data, params) => {          
+                return {            
+                    results: data,          
+                };        
+                },        
+                cache: true             
+              }    
+            });
+           
+        });
+      
+        
+        
+              </script>`) 
+      -%>
+        <script>
+            (function() {
+                'use strict';
+                window.addEventListener('load', function() {
+                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                    var forms = document.getElementsByClassName('needs-validation');
+                    var municipio = document.getElementById('municipio');
+                    var bordeM = document.getElementById('bordeM');
+
+                    // Loop over them and prevent submission
+                    var validation = Array.prototype.filter.call(forms, function(form) {
+                        form.addEventListener('submit', function(event) {
+                            if (form.checkValidity() === false) {
+                                event.preventDefault();
+                                event.stopPropagation();
+                                if (municipio.value === '') {
+                                    bordeM.classList.add('border__select__error')
+                                }
+                            }
+                            form.classList.add('was-validated');
+                        }, false);
+                    });
+                }, false);
+            })();
+        </script>

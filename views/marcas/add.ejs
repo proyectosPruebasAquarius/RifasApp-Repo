@@ -1,0 +1,72 @@
+<% layout('../layout') %>
+    <div style="display: block;
+            margin-left: auto;
+            margin-right: auto;" class="mdc-layout-grid__cell stretch-card col-md-10 col-xxl-8 mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+        <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">
+                <div class="mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-12-desktop stretch-card">
+                    <div class="mdc-card p-0 to-do-list">
+                        <div class="d-flex back__head text-white to-do-list-header">
+                            <h4 class="card-title">Alta Marca</h4>
+                        </div>
+                        <div class="mdc-card">
+
+
+                            <form class="needs-validation" novalidate action="/marcas/add" method="POST">
+                                <div class="form-row">
+                                    <div class="col-md-12 mb-12">
+                                        <label for="nombre">Nombre de la Marca</label>
+                                        <input type="text" class="form-control" id="nombre" required name="nombre" onkeyup="errorHandler('marcas','counter','nombre')">
+                                        <div class="valid-feedback">
+
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            Este campo debe ser completado
+                                        </div>
+                                        <br>
+                                        <label for="nombre" id="counter">0/150</label>
+                                    </div>
+                                </div>
+
+
+                                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop">
+                                    <div class="template-demo">
+                                        <button type="submit" class="mdc-button mdc-button--unelevated">
+                                                    <i class="material-icons">save</i>&nbsp;&nbsp;Guardar
+                                                </button>
+                                        <button type="reset" class="mdc-button mdc-button--warning">
+                                                    <i class="material-icons">cancel</i>&nbsp;Cancelar
+                                                </button>
+
+                                        <a class="mdc-button mdc-button--unelevated filled-button--success" href='/marcas'>
+                                            <i class="material-icons">arrow_back</i>&nbsp;Volver</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        document.getElementById("nombre").focus();
+
+
+
+        function validator() {
+
+            var nombre = document.getElementById("nombre");
+
+            var valueNombre = nombre.value.toString();
+            var counterNombre = document.getElementById('counter');
+            counterNombre.innerHTML = valueNombre.length + "/150";
+            if (valueNombre.length === 0) {
+                nombre.classList.add('is-invalid');
+
+            } else {
+                nombre.classList.add('is-valid');
+            }
+        }
+    </script>

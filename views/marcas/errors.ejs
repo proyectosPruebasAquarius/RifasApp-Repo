@@ -1,0 +1,23 @@
+<% layout('../layout') %>
+    <div class="mdc-layout-grid">
+        <div class="mdc-layout-grid__inner">
+            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                <div class="mdc-card p-0">
+                    <section class="error-header">
+                        <h1 class="mdc-typography--display2 mb-0">Error</h1>
+                    </section>
+                    <section class="error-info">
+                        <h3>Upps!</h3>
+                        <h4 class="mb-2">A ocurrido un error inesperado, intente nuevamente. Si el problema persiste intentelo más tarde</h4>
+                        <% if (tipos === 'marcas') { %>
+                            <a class=" btn btn-primary" href="/marcas">Regresar a Marcas</a>
+                            <% }else{ %>
+                                <a href="/">Go back to Home</a>
+
+                                <% } %>
+
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>

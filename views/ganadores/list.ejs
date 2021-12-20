@@ -1,0 +1,57 @@
+<% i=1; %>
+  <div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
+      <div class="mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-11-desktop stretch-card">
+        <div class="mdc-card p-0 to-do-list">
+          <div class="d-flex bg-primary text-white to-do-list-header">
+            <h4 class="card-title">Ganadores</h4>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-hoverable">
+              <thead>
+                <tr class="bg-primary">
+                  <th class="text-center text-white">Id</th>
+                  <th class="text-center text-white">Id_Cliente</th>
+                  <th class="text-center text-white">Código Rifa</th>
+                  <th class="text-center text-white">Fecha Entrega</th>
+                  <th class="text-center text-white">Estado del Premio</th>
+                  <th class="text-center text-white">Editar</th>
+                  <th class="text-center text-white">Borrar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% ganadores.forEach(function(ganador) { %>
+                  <tr>
+                    <td class="text-left">
+                      <%= gandor.id %>
+                    </td>
+                    <td class="text-left">
+                      <%= ganador.id_cliente %>
+                    </td>
+                    <td class="text-left">
+                      <%= ganador.codigo_rifa %>
+                    </td>
+                    <td>
+                      <%= ganador.fecha_entrega %>
+                    </td>
+                    <td class="text-left">
+                      <%= ganador.estado %>
+                    </td>
+                    <td>
+                    <a href="/ganadores/edit/<%= ganador.id %>"
+                      class="mdc-button mdc-button--raised filled-button--info">
+                      <i class="material-icons">edit</i>
+                    </a></td>
+                    <td><a href="ganadores/delete/<%= ganador.id %>"
+                        class="mdc-button mdc-button--raised filled-button--secondary">
+                        <i class="material-icons">delete</i>
+                      </a></td>
+                  </tr>
+                  <% i++}); %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

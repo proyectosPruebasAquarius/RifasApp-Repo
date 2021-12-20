@@ -1,74 +1,108 @@
-<% layout('../layout') -%>
-<div class="mdc-layout-grid">
-  <div class="mdc-layout-grid__inner">
-    <div class="mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-8-desktop stretch-card">
-      <div class="mdc-card p-0 to-do-list">
-        <div class="d-flex bg-primary text-white to-do-list-header">
-          <h2><i class="material-icons">person_add</i> Registro de Usuarios</h2>
+<% layout('../layout_auth') -%>
+<section class="vh-100" style="background-image: url('https://www.bootstrapdash.com/demo/material-admin/light/template/assets/images/auth/Login_bg2.jpg');">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+       
+        <div class="col-lg-12 col-xl-11">
+            <h1 class="text-center fw-bold"> Bienvenido a BrujiRifas</h1>
+          <div class="card text-black" style="border-radius: 25px;">
+            <div class="card-body p-md-8">
+              <div class="row justify-content-center">
+               
+                <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+  
+                  <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Registro de Usuario</p>
+  
+                  <form class="mx-3 mx-md-12" method="POST" action="users/transaccion">
+  
+                    <div class="d-flex flex-row align-items-center mb-4">
+                     
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="text" id="names" class="form-control" name="nombres"/>
+                        <label class="form-label" for="names">Nombre</label>
+                      </div> 
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="text" id="lastname" class="form-control" name="apellidos" />
+                        <label class="form-label" for="lastname">Apellidos</label>
+                      </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center mb-4">
+                     
+                        <div class="form-outline flex-fill mb-0">
+                          <input type="text" id="dui" class="form-control" name="DUI" />
+                          <label class="form-label" for="dui">DUI</label>
+                        </div>
+                        
+                        <div class="form-outline flex-fill mb-0">
+                          <input type="text" id="phone" class="form-control" name="celular" />
+                          <label class="form-label" for="phone">Celular</label>
+                        </div>
+                      </div>
+                      <div class="d-flex flex-row align-items-center mb-4">
+                     
+                        <div class="form-outline flex-fill mb-0">
+                          <input type="email" id="correo" class="form-control" name="email" />
+                          <label class="form-label" for="correo">Correo</label>
+                        </div>
+                        
+                        <div class="form-outline flex-fill mb-0">
+                          
+
+                          <input type="date" id="fecha" class="form-control" name="fecha_nac" />
+                          <label class="form-label" for="fecha">Fecha de Nacimiento</label>
+                        </div>
+                      </div>
+
+                      <div class="d-flex flex-row align-items-center mb-4">
+                     
+                        <div class="form-outline flex-fill mb-0">
+                          <input type="text" id="username" class="form-control" name="nombre" />
+                          <label class="form-label" for="username">Nombre de Usuario</label>
+                        </div>
+                        
+                        <div class="form-outline flex-fill mb-0">
+                          <input type="password" id="password" class="form-control" name="password" />
+                          <label class="form-label" for="password">Contraseña</label>
+                        </div>
+                      </div>
+
+  
+                   <!-- <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="password" id="password" class="form-control" />
+                        <label class="form-label" for="password">Password</label>
+                      </div>
+                    </div>
+  
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="password" id="repeatpass" class="form-control" />
+                        <label class="form-label" for="repeatpass">Confirma tu contraseña</label>
+                      </div>
+                    </div>-->
+  
+                    
+  
+                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                      <button type="submit" class="btn btn-primary btn-lg">Registrarme</button>
+                    </div>
+  
+                  </form>
+  
+                </div>
+                
+                <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2" style="background-color: #FECB65;border-radius: 25px;">
+                   
+  
+                  <img src="/images/2.png" class="img-fluid" alt="Sample image">
+  
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="mdc-card">
-        
-        <hr />
-        <form action="/signup" method="POST">
-          <div class="template-demo">
-            <div class="mdc-layout-grid__inner">
-          
-            <div
-              class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12-desktop"
-            >
-              <div class="mdc-text-field mdc-text-field--outlined">
-                <input class="mdc-text-field__input masked" name="username" />
-                <div class="mdc-notched-outline">
-                  <div class="mdc-notched-outline__leading"></div>
-                  <div class="mdc-notched-outline__notch">
-                    <label
-                      for="text-field-hero-input"
-                      class="mdc-floating-label"
-                      >Nombre de usuario</label
-                    >
-                  </div>
-                  <div class="mdc-notched-outline__trailing"></div>
-                </div>
-              </div>
-            </div>
-
-            </div>
-            <br>
-            <div class="mdc-layout-grid__inner">
-
-            <div
-              class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12-desktop"
-            >
-              <div class="mdc-text-field mdc-text-field--outlined">
-                <input class="mdc-text-field__input" type="password" name="password" />
-                <div class="mdc-notched-outline">
-                  <div class="mdc-notched-outline__leading"></div>
-                  <div class="mdc-notched-outline__notch">
-                    <label
-                      for="text-field-hero-input"
-                      class="mdc-floating-label"
-                      >Contraseña</label
-                    >
-                  </div>
-                  <div class="mdc-notched-outline__trailing"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <br />
-          
-          <br />
-          
-          <br /><br />
-          <button type="submit" class="mdc-button mdc-button--raised">
-            <i class="material-icons">save</i> Guardar
-          </button>
-          <a class="mdc-button mdc-button--raised bg-success" href="/clientes">
-            <i class="material-icons">search</i> Buscar
-          </a>
-          </div>
-        </form>
       </div>
     </div>
-  </div>
-</div>
+  </section>

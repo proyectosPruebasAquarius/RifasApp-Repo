@@ -1,0 +1,183 @@
+<% layout('../layout') %>
+    <div style="display: block;
+      margin-left: auto;
+      margin-right: auto;" class="mdc-layout-grid__cell stretch-card col-md-12 col-xxl-10 mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+        <div class="mdc-card p-0  to-do-list">
+            <div class="align-items-center back__head text-white to-do-list-header">
+                <div class="col-xs-6">
+                    <h2 style="text-align: center;"><i class="material-icons">picture_in_picture</i> Lista de <b>Publicaciones</b></h2>
+                </div>
+                <div class="row">
+                    <div>
+                        <div class="input-group mb-3">
+                            <a href="/publicaciones/add" class="btn btn__add btn-light btn__center__add  btn__add-white btn__add-animate"><span class="material-icons" style="color: black; vertical-align: -6px;">
+                                library_add
+                                </span> Agregar Publicacion</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-3-desktop stretch-card">
+
+                <div class="table-responsive">
+                    <table id="table_id" class="table table-hoverable" style="width:100%">
+
+
+                        <thead>
+                            <% i = 1; %>
+                                <tr class="back__head">
+
+                                    <th class="text-center text-white">Título</th>
+                                    <th class="text-center text-white">Producto</th>
+                                    <th class="text-center text-white">Descripción</th>
+                                    <th class="text-center text-white">Contenido</th>
+                                    <th class="text-center text-white">Estado</th>
+                                    <th class="text-center text-white">Fecha</th>
+                                    <th class="text-center text-white">Empleado</th>
+                                    <th class="text-center text-white">Acciones</th>
+
+                                </tr>
+
+                        </thead>
+                        <tbody>
+                            <% publicaciones.forEach(function(publicacion) { %>
+                                <tr>
+
+
+                                    <td class="text-center">
+                                        <%= publicacion.titulo %>
+                                    </td>
+                                    <td class="text-center">
+                                        <%= publicacion.producto %>
+                                    </td>
+                                    <% if (publicacion.descripcion !=null) { %>
+                                        <td class="text-center ">
+
+                                            <button type="button" class="mdc-button mdc-button--raised filled-button--info" data-toggle="tooltip" data-placement="left" title="<%= publicacion.descripcion %>">
+                                                Ver Descripción
+                                              </button>
+
+                                        </td>
+                                        <% } %>
+                                            <% if (publicacion.contenido !=null) { %>
+                                                <td class="text-center ">
+
+                                                    <button type="button" class="mdc-button mdc-button--raised filled-button--info" data-toggle="tooltip" data-placement="right" title="<%= publicacion.contenido %>">
+                                                        Ver Contenido
+                                                    </button >
+
+                                                </td>
+                                                <% } %>
+
+                                                    <% if(publicacion.estado === 1){ %>
+                                                        <td class="text-center">
+                                                            Activa
+                                                        </td>
+                                                        <% } else{ %>
+                                                            <td class="text-center">
+                                                                Desactivada
+                                                            </td>
+                                                            <% } %>
+                                                                <td class="text-center">
+                                                                    <%= moment( publicacion.fecha).format('DD/MM/YYYY')  %>
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    <%= publicacion.cod_empleado %>
+                                                                </td>
+                                                                
+                                                                <td class="text-center">
+                                                                    <a href="/publicaciones/edit/<%= publicacion.id %>" class="mdc-button btn__edit__icon btn__edit__color" data-toggle="tooltip" data-placement="top" title="Editar">
+                                                                        <i class="material-icons">edit</i>
+                                                                    </a>
+                                                                    <a href='publicaciones/delete/<%= publicacion.id %>' class="mdc-button mdc-button--raised filled-button--secondary" data-toggle="tooltip" data-placement="top" title="Eliminar">
+                                                                        <i class="material-icons">delete</i>
+                                                                    </a>
+                                                                </td>
+                                </tr>
+                                <% i++}); %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--fin de lista-->
+        </div>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <!--SCRIPT-->
+        <% block('footerjs', `<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    
+    
+   <script>
+    $(document).ready( function () {
+        
+    $('#table_id').DataTable({
+        language: {
+        "decimal": "",
+        "emptyTable": "No hay información",
+        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        "infoEmpty": "Mostrando 0 to 0 de 0 Entradas",
+        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+        "infoPostFix": "",
+        "thousands": ",",
+        "lengthMenu": "Mostrar _MENU_ Entradas",
+        "loadingRecords": "Cargando...",
+        "processing": "Procesando...",
+        "search": "Buscar:",
+        "zeroRecords": "Sin resultados encontrados",
+        "paginate": {
+            "first": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
+        }
+    },
+
+    });
+        } );
+        $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+           </script>`)
+   -%>
+    <script>
+        '<% if(message.length > 0 && message == "Guardado con éxito") { %>'
+        //console.log('<%= message %>')
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            width: '20rem',
+
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'success',
+            title: '<%= message %>'
+        })
+
+        '<% } else if (message.length > 0 && message == "Ocurrió un error inesperado") {%>'
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'error',
+            title: '<%= message %>'
+        })
+        '<% } %>'
+    </script>

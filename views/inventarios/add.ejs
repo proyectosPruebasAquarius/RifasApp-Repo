@@ -1,0 +1,240 @@
+<% layout('../layout') %>
+
+    <div style="display: block;
+margin-left: auto;
+margin-right: auto;" class="mdc-layout-grid__cell stretch-card col-md-10 col-xxl-8 mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+        <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">
+                <div class="mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-12-desktop stretch-card">
+                    <div class="mdc-card p-0 to-do-list">
+                        <div class="d-flex back__head text-white to-do-list-header">
+                            <h4 class="card-title">Alta Inventario</h4>
+                        </div>
+                        <div class="mdc-card">
+                            <form action="/inventarios/add" method="POST" novalidate class="needs-validation">
+                                <div class="row">
+                                    <div class="col col-md-4 mb-4">
+                                        <label for="compra">Precio de Compra</label>
+                                        <input type="number" step="0.01" class="form-control" id="compra" required name="precio_compra" onkeyup="errorHandler('inventarios',null,'compra')">
+                                        <div class="valid-feedback">
+
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            Este campo debe ser completado
+                                        </div>
+
+                                    </div>
+                                    <div class="col col-md-4 mb-4">
+                                        <label for="venta">Precio de venta</label>
+                                        <input type="number" step="0.01" class="form-control" id="venta" required name="precio_venta" onkeyup="errorHandler('inventarios',null,'venta')">
+                                        <div class="valid-feedback">
+
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            Este campo debe ser completado
+                                        </div>
+
+                                    </div>
+                                    <div class="col col-md-4 mb-4">
+                                        <label for="stock">Stock</label>
+                                        <input type="number" class="form-control" id="stock" required name="stock" onkeyup="errorHandler('inventarios',null,'stock')">
+                                        <div class="valid-feedback">
+
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            Este campo debe ser completado
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col col-md-6 mb-6">
+                                        <label for="producto">Producto</label>
+                                        <div class="rounded" id="bordeP">
+                                            <select class="productos" name="id_producto" id="producto" required onchange="errorHandler('inventarios','bordeP','producto',null)"></select>
+
+                                            <label class="valid-feedback" for="producto"> </label>
+
+
+                                            <label class="invalid-feedback" for="producto">
+                                                    Este campo debe ser completado</label >
+                                        </div>
+
+                                        
+                                    </div>
+                                    <div class="col col-md-6 mb-6">
+                                        <label for="proveedor">Proveedor</label>
+                                            <div class="rounded" id="bordePRO">
+                                                <select class="proveedores" name="id_proveedor" id="proveedor" required onchange="errorHandler('inventarios','bordePRO','proveedor',null)"></select>
+
+                                                <label class="valid-feedback" for="proveedor"> </label>
+
+
+                                                <label class="invalid-feedback" for="proveedor">
+                                                    Este campo debe ser completado</label >
+                                        </div>
+
+                                     
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col col-md-12 mb-12">
+                                        <label for="observacion">Observaciones</label>
+
+                                                <div class="input-group mb-3">
+                                                    <input type="text" class="form-control" id="observacion" required name="observaciones" maxlength="45" onkeyup="errorHandler('inventarios','counter','observacion',null)">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" id="counter">0/45</span>
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        Este campo debe ser completado
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+
+
+                                        <br>
+                                        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop">
+                                            <div class="template-demo">
+                                                <button type="submit" class="mdc-button mdc-button--unelevated">
+                                            <i class="material-icons">save</i>&nbsp;&nbsp;Guardar
+                                        </button>
+                                                <button type="reset" class="mdc-button mdc-button--warning">
+                                            <i class="material-icons">cancel</i>&nbsp;Cancelar
+                                        </button>
+                                                <a class="mdc-button mdc-button--unelevated filled-button--success" href='/inventarios'><i class="material-icons">arrow_back</i>&nbsp;Volver
+                                        </a>
+                                            </div>
+
+
+
+
+
+
+
+                            </form>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--SCRIPT-->
+                <% block('footerjs', `<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+      <script>
+        $(document).ready( () => {    
+          //funcion para llamar los proveedores
+          $('.proveedores').select2({      
+            language: {
+      
+            noResults: function() {
+      
+            return "No hay resultado";        
+            },
+            searching: function() {
+      
+            return "Buscando..";
+            }
+            },
+            placeholder: "Selecione el Proveedor",
+            width: '100%',      
+            ajax: {        
+                url: '/proveedores/list',        
+                dataType: 'json',                  
+                data: (params) => {          
+                  return {            
+                    q: params.term,             
+                    page: params.page          
+                  };        
+                },        
+                processResults: (data, params) => {          
+                return {            
+                    results: data,          
+                };        
+                },        
+                cache: true             
+              }    
+            });
+           
+        });
+        $(document).ready( () => {    
+          //funcion para llamar los productos
+          $('.productos').select2({      
+            language: {
+      
+            noResults: function() {
+      
+            return "No hay resultado";        
+            },
+            searching: function() {
+      
+            return "Buscando..";
+            }
+            },
+            placeholder: "Selecione el producto",
+            width: '100%',      
+            ajax: {        
+                url: '/productos/list',        
+                dataType: 'json',                  
+                data: (params) => {          
+                  return {            
+                    q: params.term,             
+                    page: params.page          
+                  };        
+                },        
+                processResults: (data, params) => {          
+                return {            
+                    results: data,          
+                };        
+                },        
+                cache: true             
+              }    
+            });
+           
+        });
+      
+              </script>`) 
+      -%>
+
+                    <script>
+                        (function() {
+                            'use strict';
+                            window.addEventListener('load', function() {
+                                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                                var forms = document.getElementsByClassName('needs-validation');
+                                var producto = document.getElementById('producto');
+                                var proveedor = document.getElementById('proveedor');
+                                var bordeP = document.getElementById('bordeP');
+                                var bordePRO = document.getElementById('bordePRO');
+                                // Loop over them and prevent submission
+                                var validation = Array.prototype.filter.call(forms, function(form) {
+                                    form.addEventListener('submit', function(event) {
+                                        if (form.checkValidity() === false) {
+                                            event.preventDefault();
+                                            event.stopPropagation();
+                                            if (producto.value === '' && proveedor.value === '') {
+                                                bordeP.classList.add('border__select__error');
+                                                bordePRO.classList.add('border__select__error');
+                                            }
+                                            if (producto.value === '') {
+                                                bordeP.classList.add('border__select__error');
+                                            }
+                                            if (proveedor.value === '') {
+                                                bordePRO.classList.add('border__select__error');
+                                            }
+
+                                        }
+                                        form.classList.add('was-validated');
+                                    }, false);
+                                });
+                            }, false);
+                        })();
+                    </script>

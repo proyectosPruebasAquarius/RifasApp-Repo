@@ -1,0 +1,146 @@
+<% layout('../layout') %>
+
+
+    <div style="display: block;
+margin-left: auto;
+margin-right: auto;" class="mdc-layout-grid__cell stretch-card col-md-10 col-xxl-8 mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+        <div class="mdc-card p-0  to-do-list">
+            <div class="align-items-center back__head text-white to-do-list-header">
+                <div class="col-xs-6">
+                    <h2 style="text-align: center;"><i class="material-icons">library_books</i> Lista de <b>Categorias</b></h2>
+                </div>
+                <div class="row">
+                    <div class="input-group mb-3">
+                        <a href="/categorias/add" class="btn btn__add btn-light btn__center__add  btn__add-white btn__add-animate"><span class="material-icons" style="color: black; vertical-align: -6px;">
+        library_add
+        </span> Agregar Categoria</a>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <div class="mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-6-desktop stretch-card">
+
+                <div class="table-responsive">
+                    <table id="table_id" class="table table-hoverable" style="width:100%">
+
+
+                        <thead>
+                            <tr class="back__head">
+                                <% i = 1; %>
+                                    <th class="text-white text-left">Nombre</th>
+                                    <th class="text-white text-left">Descripción</th>
+
+                                    <th class="text-white text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% categorias.forEach(function(categoria) { %>
+                                <tr>
+
+                                    <td class="text-left">
+                                        <%= categoria.nombre %>
+                                    </td>
+                                    <td class="text-left">
+                                        <%= categoria.descripcion %>
+                                    </td>
+
+                                    <td class="text-center">
+                                        <a href="/categorias/edit/<%= categoria.id %>" class="mdc-button btn__edit__icon btn__edit__color" data-toggle="tooltip" data-placement="top" title="Editar">
+                                            <i class="material-icons">edit</i>
+                                        </a>
+                                        <a href="/categorias/delete/<%= categoria.id %>" class="mdc-button mdc-button--raised filled-button--secondary" data-toggle="tooltip" data-placement="top" title="Eliminar">
+                                            <i class="material-icons">delete</i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <% i++}); %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--fin de lista-->
+        </div>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <!--SCRIPT-->
+        <% block('footerjs', `<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+        
+   <script>
+    $(document).ready( function () {
+        $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+    $('#table_id').DataTable({
+        language: {
+        "decimal": "",
+        "emptyTable": "No hay información",
+        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        "infoEmpty": "Mostrando 0 to 0 de 0 Entradas",
+        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+        "infoPostFix": "",
+        "thousands": ",",
+        "lengthMenu": "Mostrar _MENU_ Entradas",
+        "loadingRecords": "Cargando...",
+        "processing": "Procesando...",
+        "search": "Buscar:",
+        "zeroRecords": "Sin resultados encontrados",
+        "paginate": {
+            "first": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
+        }
+    },
+
+    });
+        } );
+
+           </script>`)
+   -%>
+            <script>
+                '<% if(message.length > 0 && message == "Guardado con éxito") { %>'
+                //console.log('<%= message %>')
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    width: '20rem',
+
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'success',
+                    title: '<%= message %>'
+                })
+
+                '<% } else if (message.length > 0 && message == "Ocurrió un error inesperado") {%>'
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'error',
+                    title: '<%= message %>'
+                })
+                '<% } %>'
+            </script>

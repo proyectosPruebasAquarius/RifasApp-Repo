@@ -1,0 +1,456 @@
+<% layout('../../layout_public') -%>
+    <div class="pt-2 pb-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-9">
+
+                    <!-- User profile -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Perfil</h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="profile__avatar">
+                                <div class="avatar-initials" width="80" height="80" data-name="<%= cliente.fullName %>">
+                                </div>
+                            </div>
+                            <div class="profile__header">
+                                <h4>
+                                    <%= cliente.fullName %>
+                                </h4>
+                                <p><strong>Nombre de Usuario: </strong>
+                                    <%= user.nombre %>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- User info -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Información</h4>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table profile__table">
+                                <tbody>
+                                    <!--<tr>
+                                    <th><strong>Dirección</strong></th>
+                                    <td>
+                                        <div class="form-group row">
+                                            <div class="col-sm-10">
+                                                <input type="text" readonly class="form-control-plaintext"
+                                                    id="staticEmail" value="<%= cliente.direccion %> ">
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>-->
+                                    <tr>
+                                        <th><strong>D.U.I</strong></th>
+                                        <td>
+                                            <div class="form-group row">
+                                                <div class="col-sm-10">
+                                                    <input type="text" readonly class="form-control-plaintext" id="staticDUI" value="<%= cliente.DUI %> ">
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!--<tr>
+                                    <th><strong>Departamento</strong></th>
+                                    <td><input type="text" readonly class="form-control-plaintext" id="staticMunicipio"
+                                            value="<%= cliente.departamento %> "></td>
+                                </tr>
+                                <tr>
+                                    <th><strong>Municipio</strong></th>
+                                    <td><input type="text" readonly class="form-control-plaintext" id="staticMunicipio"
+                                            value="<%= cliente.municipio %> "></td>
+                                </tr>-->
+                                    <tr>
+                                        <th><strong>Email</strong></th>
+                                        <td><input type="text" readonly class="form-control-plaintext" id="staticMunicipio" value="<%= cliente.email %> "></td>
+                                    </tr>
+                                    <tr>
+                                        <th><strong>Celular</strong></th>
+                                        <td><input type="text" readonly class="form-control-plaintext" id="staticMunicipio" value="<%= cliente.celular %> "></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Latest posts -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+
+                        </div>
+                        <div class="panel-body">
+                            <div class="main-card mb-3 card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Historial de Compras</h5>
+                                    <div class="scroll-area">
+                                        <div class="vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
+                                            <% if (compras.length > 0) { %>
+                                                <% compras.forEach((compra) => { %>
+
+
+
+                                                    <div class="vertical-timeline-item vertical-timeline-element">
+                                                        <div> <span class="vertical-timeline-element-icon bounce-in"> <i
+                                                                class="badge badge-dot badge-dot-xl badge-warning"> </i> </span>
+                                                            <div class="vertical-timeline-element-content bounce-in">
+                                                                <p>Forma de Pago:
+                                                                    <%= compra.forma_pago %> <br> <b class="text-danger">Fecha: <%= moment(compra.fecha_pago).format('DD/MM/YYYY') %></b></p>
+                                                                <p>
+
+                                                                    <span>Rifa: <%= compra.nombre_rifa %> </span>
+                                                                    <br>
+                                                                    <span>Numeros elegidos: <%= compra.numero %>  </span>
+                                                                    <br> Total: $
+                                                                    <%= compra.total %>
+                                                                        <br>
+                                                                        <span class="text-success">Hora de la Transacción: <%= moment(compra.fecha_pago).format('hh:mm') %></span></p>
+                                                                <span class="vertical-timeline-element-date"><%= moment(compra.fecha_pago).format('hh:mm') %></span>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <% }) %>
+                                                        <% } else { %>
+                                                            <div class="card shadow-none" style="background-color: rgb(240,240,240); height: 350px;">
+                                                                <div class="card-body text-center" style=" position: relative;">
+                                                                    <div class="card-title"><img src="/assets/images/emptyState.png" alt="Boleto" width="80" height="80" style="display: block;
+                                                        margin-left: auto;
+                                                        margin-right: auto;
+                                                        margin-top: 50px;"></div>
+                                                                    <h4 class="card-text" style="margin-top: 30px;">No has realizado una compra</h4>
+                                                                    <a href="" type="button" style="margin-top: 30px;">Haz Tú Primera Compra</a>
+                                                                </div>
+                                                            </div>
+                                                            <% } %>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-xs-12 col-sm-3">
+
+                    <!-- Contact user -->
+                    <p>
+
+                        <a href="#" class="btn btn-primary btn-round btn-shadow" style="margin-left: auto;
+                margin-right: auto;
+                display: block;" id="editar">
+                        Editar Perfil<i class="icon-edit"></i>
+                    </a>
+                        <small class="text-red">EL PERFIL CONTIENE DATOS QUE PUEDEN SER EDITADO UN MAXIMO DE 2 VECES. 
+                        
+                    </small>
+                        <br>
+                        <small class="text-red">
+                        <% if (cliente.modificado == 1) { %>
+                            <span style="color: #ffc107">VECES MODIFICADO DUI: 1 </span>
+                        <% } else if (cliente.modificado == 2) { %>
+                            <span style="color: red">VECES MODIFICADO DUI: 2 </span>
+                        <% } %> 
+                            <br>
+                        <% if (cliente.modificado_fecha == 1) { %>
+                            <span style="color: #ffc107">VECES MODIFICADO FECHA NACIMIENTO: 1 </span>
+                        <% } else if (cliente.modificado_fecha == 2) { %>
+                            <span style="color: red">VECES MODIFICADO FECHA NACIMIENTO: 2 </span>
+                        <% } %> 
+                    </small>
+                    </p>
+
+                    <hr class="profile__contact-hr">
+
+                    <!-- Contact info -->
+                    <div class="profile__contact-info">
+                        <!-- <div class="profile__contact-info-item">
+                        <div class="profile__contact-info-icon">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <div class="profile__contact-info-body">
+                            <h5 class="profile__contact-info-heading">Teléfono</h5>
+                            <%= cliente.telefono %>
+                        </div>
+                    </div>
+                    <div class="profile__contact-info-item">
+                        <div class="profile__contact-info-icon">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <div class="profile__contact-info-body">
+                            <h5 class="profile__contact-info-heading">Celular</h5>
+                            <%= cliente.celular %>
+                        </div>
+                    </div>-->
+                        <div class="profile__contact-info-item">
+                            <div class="profile__contact-info-icon">
+                                <i class="fa fa-envelope-square"></i>
+                            </div>
+                            <div class="profile__contact-info-body">
+                                <h5 class="profile__contact-info-heading">Fecha de Nacimiento</h5>
+                                <%= moment(cliente.fecha_nac).format('DD/MM/YYYY') %>
+                            </div>
+                        </div>
+                        <div class="profile__contact-info-item">
+                            <div class="profile__contact-info-icon">
+                                <i class="fa fa-map-marker"></i>
+                            </div>
+                            <div class="profile__contact-info-body">
+                                <h5 class="profile__contact-info-heading">Fecha de Registro</h5>
+                                <%= moment(cliente.fecha_registro).format('DD/MM/YYYY') %>
+                            </div>
+                        </div>
+
+                        <% if (cliente.fecha_modificacion != null) { %>
+                            <div class="profile__contact-info-item">
+                                <div class="profile__contact-info-icon">
+                                    <i class="fa fa-map-marker"></i>
+                                </div>
+                                <div class="profile__contact-info-body">
+                                    <h5 class="profile__contact-info-heading">Última Modificación</h5>
+                                    <%= moment(cliente.fecha_modificacion).format('DD/MM/YYYY hh:mm:ss') %>
+                                </div>
+                            </div>
+                            <% } %>
+                    </div>
+
+                    <div class="profile__contact-info-item">
+                        <div class="profile__contact-info-body">
+                            <!--<a href="/perfil/email" class="btn btn-outline-dark btn-rounded d-flex justify-content-center" style='margin-bottom: 10px;'>Eliminar Cuenta</a>-->
+                            <a href="/perfil/desactivar" class="btn btn-outline-dark btn-rounded d-flex justify-content-center" style='margin-bottom: 10px;'>Eliminar Cuenta</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Editar Perfil</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <!-- Formulario -->
+                                <form id="formulario" action="/perfil/edit/<%= user.id_cliente %>" method="POST">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label for="nombres">Nombres</label>
+                                            <input type="text" class="form-control" value="<%= cliente.nombres %> " id="nombres" name="nombres">
+                                        </div>
+                                        <div class="col">
+                                            <label for="apellidos">Apellidos</label>
+                                            <input type="text" class="form-control" value="<%= cliente.apellidos %>" id="apellidos" name="apellidos">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <label for="nombre">Nombre de Usuario</label>
+                                            <input type="text" class="form-control" value="<%= user.nombre %> " id="nombre" name="nombre">
+                                        </div>
+                                        <% if (cliente.modificado != 2) { %>
+                                            <div class="col">
+                                                <label for="dui">D.U.I</label>
+                                                <input type="text" class="form-control" value="<%= cliente.DUI %>" id="dui" name="DUI">
+                                            </div>
+                                            <% } %>
+                                    </div>
+
+                                    <!--<div class="row">
+                                    <div class="col">
+                                        <label for="direccion">Dirección</label>
+                                        <input type="text" class="form-control" value="<%= cliente.direccion %>"
+                                            id="direccion" name="direccion">
+                                    </div>
+                                </div>-->
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <label for="email">Email</label>
+                                            <input type="text" class="form-control" value="<%= cliente.email %>" id="email" name="email">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <!--<div class="col">
+                                        <label for="tel">Teléfono</label>
+                                        <input type="text" class="form-control" value="<%= cliente.telefono %> "
+                                            id="tel" name="telefono">
+                                    </div>-->
+                                        <% if (cliente.modificado_fecha != 2) { %>
+                                            <div class="col">
+                                                <label for="fecha_nac">Fecha de Nacimiento</label>
+                                                <input class="form-control" id="fecha_nac" type="date" name="fecha_nac" value="<%= cliente.fecha_nac.slice(0,10) %>" />
+                                            </div>
+                                            <% } %>
+                                                <div class="col">
+                                                    <label for="celular">Celular</label>
+                                                    <input type="text" class="form-control" value="<%= cliente.celular %>" id="celular" name="celular">
+                                                </div>
+                                    </div>
+
+                                    <!-- <div class="row">
+                                    <div class="col">
+                                        <label for="fecha_nac">Fecha de Nacimiento</label>
+                                        <input class="form-control" id="fecha_nac" type="date" name="fecha_nac"
+                                            value="<%= cliente.fecha_nac.slice(0,10) %>" />
+                                    </div>
+                                    <div class="col">
+                                        <label for="municipio">Municipio</label>
+                                        <select class="form-control municipios" name="id_municipio" id="municipio">
+                                            <option value="<%= cliente.id_municipio %>"><%= cliente.municipio %>
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>-->
+
+                                    <% if (cliente.fecha_modificacion) { %>
+                                        <div class="row">
+                                            <div class="col text-center">
+                                                <label for="fecha_modificacion">Última Modificación:</label>
+                                                <small><%= moment(cliente.fecha_modificacion).format('DD/MM/YYYY hh:mm:ss') %></small>
+                                            </div>
+                                        </div>
+                                        <% } %>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+
+                            <input class='btn btn-primary btn-shadow text-white' type="submit" form="formulario" value="Actualizar" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js " integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin=" anonymous "></script>
+    <!--Bloque select-->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        (function() {
+            /*let button = document.getElementById('editar');
+            button.addEventListener('click', function () {
+                document.getElementById('staticEmail').removeAttribute('readonly');
+                document.getElementById('staticEmail').focus();
+            })*/
+            if (document.getElementById('editar')) {
+                document.getElementById('editar').addEventListener('click', function() {
+                    '<% if (cliente.modificado == 1 || cliente.modificado_fecha == 1) { %>'
+                    Swal.fire({
+                        title: '¿Estás Seguro que Deseas Editar?',
+                        text: "¡Haz modificado anteriormente tú perfil (Fecha de modificación: <%= moment(cliente.fecha_modificacion).format('DD/MM/YYYY hh:mm:ss') %>), no podrás editar FECHA DE NACIMIENTO y DUI nuevamente!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        cancelButtonText: 'Cancelar',
+                        confirmButtonText: '¡Editar!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $('#editModal').modal('toggle')
+                        }
+                    })
+                    '<% } else if(cliente.modificado == 2 || cliente.modificado_fecha == 2) { %>'
+                    Swal.fire({
+                        title: 'Algunos Campos No Podran Ser Editados',
+                        text: "¡Haz excedido el maximo número de editar en algunos campos, no podrán ser editados nuevamente!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        cancelButtonText: 'Cancelar',
+                        confirmButtonText: '¡Editar!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $('#editModal').modal('toggle')
+                        }
+                    })
+                    '<% } else { %>'
+                    $('#editModal').modal('toggle')
+                    '<% } %>'
+                })
+            }
+
+        })();
+        $(document).ready(function() {
+            var colors = ["#1abc9c", "#2ecc71", "#3498db", "#9b59b6", "#34495e", "#16a085", "#27ae60", "#2980b9",
+                "#8e44ad", "#2c3e50", "#f1c40f", "#e67e22", "#e74c3c", "#95a5a6", "#f39c12", "#d35400",
+                "#c0392b", "#bdc3c7", "#7f8c8d"
+            ];
+
+            var avatarElement = $('.avatar-initials'),
+                avatarWidth = avatarElement.attr('width'),
+                avatarHeight = avatarElement.attr('height'),
+
+                name = avatarElement.data('name'),
+                initials = name.split(' ')[0].charAt(0).toUpperCase() + name.split(" ")[1].charAt(0).toUpperCase(),
+
+                charIndex = initials.charCodeAt(0) - 65,
+                colorIndex = charIndex % 19;
+
+            avatarElement.css({
+                    'background-color': colors[colorIndex],
+                    'width': avatarWidth,
+                    'height': avatarHeight,
+                    'font': avatarWidth / 2 + "px Arial",
+                    'color': '#FFF',
+                    'textAlign': 'center',
+                    'lineHeight': avatarHeight + 'px',
+                    'borderRadius': '50%'
+                })
+                .html(initials);
+        })
+
+        // Toast
+        '<% if(message.length > 0 && message == "Guardado con éxito" || message.length > 0 && message == "Actualizado con éxito") { %>'
+        //console.log('<%= message %>')
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'success',
+            title: '<%= message %>'
+        })
+
+        '<% } else if (message.length > 0 && message == "Ocurriò un error inesperado") {%>'
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'error',
+            title: '<%= message %>'
+        })
+        '<% } %>'
+    </script>

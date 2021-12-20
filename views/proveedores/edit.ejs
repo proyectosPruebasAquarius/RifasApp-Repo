@@ -1,0 +1,297 @@
+<% layout('../layout') %>
+
+    <div style="display: block;
+            margin-left: auto;
+            margin-right: auto;" class="mdc-layout-grid__cell stretch-card col-md-12 col-xxl-10 mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+        <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">
+                <div class="mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-12-desktop stretch-card">
+                    <div class="mdc-card p-0 to-do-list">
+                        <div class="d-flex back__head text-white to-do-list-header">
+                            <h4 class="card-title">Editar Proveedor</h4>
+                        </div>
+                        <div class="mdc-card">
+                            <h6 class="card-title"></h6>
+                            <form action="/proveedores/edit/<%= proveedor.id %>" method="POST" id="form">
+                                <div class="template-demo">
+                                    <div class="mdc-layout-grid__inner">
+
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12-desktop">
+                                            <div class="mdc-text-field w-100">
+                                                <input class="mdc-text-field__input" id="nombre" name="nombre" value="<%= proveedor.nombre %>" />
+                                                <div class="mdc-line-ripple"></div>
+                                                <label for="text-field-hero-input" class="mdc-floating-label">Nombre de la
+                                                        Empresa</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                                            <div class="mdc-text-field w-100">
+                                                <input class="mdc-text-field__input" id="telefono" name="telefono" value="<%= proveedor.telefono %>" />
+                                                <div class="mdc-line-ripple"></div>
+                                                <label for="text-field-hero-input" class="mdc-floating-label">Teléfono
+                                                        Empresa</label>
+                                            </div>
+                                        </div>
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                                            <div class="mdc-text-field w-100">
+                                                <input class="mdc-text-field__input" id="celular" name="celular" value="<%= proveedor.celular %>" />
+                                                <div class="mdc-line-ripple"></div>
+                                                <label for="text-field-hero-input" class="mdc-floating-label">Celular
+                                                        Empresa</label>
+                                            </div>
+                                        </div>
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                                            <div class="mdc-text-field w-100">
+                                                <input class="mdc-text-field__input" id="web" name="sitio_web" value="<%= proveedor.sitio_web %>" />
+                                                <div class="mdc-line-ripple"></div>
+                                                <label for="text-field-hero-input" class="mdc-floating-label">Sitio Web</label>
+                                            </div>
+                                        </div>
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                                            <div class="mdc-text-field w-100">
+                                                <input class="mdc-text-field__input" id="correo" name="correo" value="<%= proveedor.correo %>" />
+                                                <div class="mdc-line-ripple"></div>
+                                                <label for="text-field-hero-input" class="mdc-floating-label">Correo
+                                                        Empresa</label>
+                                            </div>
+                                        </div>
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                                            <div class="mdc-text-field w-100">
+                                                <input class="mdc-text-field__input" id="direccion" name="direccion" value="<%= proveedor.direccion %>" />
+                                                <div class="mdc-line-ripple"></div>
+                                                <label for="text-field-hero-input" class="mdc-floating-label">Dirección de la
+                                                        Empresa</label>
+                                            </div>
+                                        </div>
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+
+                                            <div class="mdc-text-field mdc-text-field--outlined">
+                                                <select class="municipios mdc-text-field__input" name="id_municipio" id="municipio">
+                                                        <option value="<%= proveedor.id_municipio %>"><%= proveedor.municipio%></option>
+                                                    </select>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                                            <div class="template-demo">
+                                                <h6 class="card-title">Datos Encargado</h6>
+                                            </div>
+                                        </div>
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-8">
+                                            <div class="mdc-text-field w-100">
+                                                <input class="mdc-text-field__input" id="nombreEncargado" name="encargado" value="<%= proveedor.encargado %>" />
+                                                <div class="mdc-line-ripple"></div>
+                                                <label for="text-field-hero-input" class="mdc-floating-label">Nombre del
+                                                        Encargado</label>
+                                            </div>
+                                        </div>
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4">
+                                            <div class="mdc-text-field w-100">
+                                                <input class="mdc-text-field__input" id="celularEncargado" name="celular_encargado" value="<%= proveedor.celular_encargado %>" />
+                                                <div class="mdc-line-ripple"></div>
+                                                <label for="text-field-hero-input" class="mdc-floating-label">Celular del
+                                                        Encargado</label>
+                                            </div>
+                                        </div>
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                                            <div class="mdc-text-field w-100">
+                                                <input class="mdc-text-field__input" id="correoEncargado" name="correo_encargado" value="<%= proveedor.correo_encargado %>" />
+                                                <div class="mdc-line-ripple"></div>
+                                                <label for="text-field-hero-input" class="mdc-floating-label">Correo del
+                                                        Encargado</label>
+                                            </div>
+                                        </div>
+                                        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-10-desktop">
+                                            <div class="template-demo">
+                                                <button type="submit" class="mdc-button mdc-button--unelevated">
+                                                        <i class="material-icons">refresh</i>&nbsp;Guardar Cambios
+                                                      </button>
+                                                <button type="reset" class="mdc-button mdc-button--warning">
+                                                        <i class="material-icons">cancel</i>&nbsp;Cancelar
+                                                    </button>
+                                                <a class="mdc-button mdc-button--unelevated filled-button--success" href='..'><i class="material-icons">arrow_back</i>&nbsp;Volver
+                                                      </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--SCRIPT-->
+    <% block('footerjs', `<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+      <script>
+        $(document).ready( () => {    
+          //funcion para llamar los muinicipios
+          $('.municipios').select2({      
+            language: {
+      
+            noResults: function() {
+      
+            return "No hay resultado";        
+            },
+            searching: function() {
+      
+            return "Buscando..";
+            }
+            },
+            placeholder: "Selecione el Departamento y Municipio",
+            width: '100%',      
+            ajax: {        
+                url: '/municipios/list',        
+                dataType: 'json',                  
+                data: (params) => {          
+                  return {            
+                    q: params.term,             
+                    page: params.page          
+                  };        
+                },        
+                processResults: (data, params) => {          
+                return {            
+                    results: data,          
+                };        
+                },        
+                cache: true             
+              }    
+            });
+           
+        });
+      
+        
+        
+              </script>`) 
+      -%>
+        <script>
+            const form = document.getElementById('form');
+            const nombreEmpresa = document.getElementById('nombre');
+            const telefonoEmpresa = document.getElementById('telefono');
+            const celularEmpresa = document.getElementById('celular');
+            const webEmpresa = document.getElementById('web');
+            const correoEmpresa = document.getElementById('correo');
+            const direccionEmpresa = document.getElementById('direccion');
+            const municipioEmpresa = document.getElementById('municipio');
+
+            const nombreEncargado = document.getElementById('nombreEncargado');
+            const correoEncargado = document.getElementById('correoEncargado');
+            const celularEncargado = document.getElementById('celularEncargado');
+            document.getElementById("nombre").focus();
+            form.addEventListener('submit', function(evt) {
+                if (nombreEmpresa.value === '' || nombreEmpresa.value === '' ||
+                    celularEmpresa.value === '' || webEmpresa.value === '' ||
+                    correoEmpresa.value === '' || direccionEmpresa.value === '' ||
+                    municipioEmpresa.value === '' || nombreEncargado.value === '' ||
+                    correoEncargado.value === '' || celularEncargado.value === '') {
+                    evt.preventDefault();
+                    Validation();
+                } else {
+                    Swal.fire(
+                        'Completado',
+                        'Guardada Correctamente',
+                        'success',
+                        1000
+                    )
+                }
+
+            });
+
+            function Validation() {
+
+                const nombreEmpresaValue = nombreEmpresa.value;
+                const telefonoEmpresaValue = telefonoEmpresa.value;
+                const celularEmpresaValue = celularEmpresa.value;
+                const webEmpresaValue = webEmpresa.value;
+                const correoEmpresaValue = correoEmpresa.value;
+                const direccionEmpresaValue = direccionEmpresa.value;
+                const municipioEmpresaValue = municipioEmpresa.value;
+
+                const nombreEncargadoValue = nombreEncargado.value;
+                const correoEncargadoValue = correoEncargado.value;
+                const celularEncargadoValue = celularEncargado.value;
+                if (nombreEmpresaValue === '' && correoEmpresaValue === '' &&
+                    celularEmpresaValue === '' && telefonoEmpresaValue === '' &&
+                    direccionEmpresaValue === '' && municipioEmpresaValue === '' &&
+                    webEmpresaValue === '') {
+                    Swal.fire(
+                        'Error',
+                        'Complete los campos de la Empresa por favor',
+                        'error'
+                    )
+                } else if (nombreEmpresaValue === '') {
+                    Swal.fire(
+                        'Error',
+                        'Complete el campo Nombre de la Empresa por favor',
+                        'error'
+                    )
+                } else if (correoEmpresaValue === '') {
+                    Swal.fire(
+                        'Error',
+                        'Complete el campo Correo de la Empresa por favor',
+                        'error'
+                    )
+                } else if (celularEmpresaValue === '') {
+                    Swal.fire(
+                        'Error',
+                        'Complete el campo Celular de la Empresa por favor',
+                        'error'
+                    )
+                } else if (telefonoEmpresaValue === '') {
+                    Swal.fire(
+                        'Error',
+                        'Complete el campo Telefono de la Empresa por favor',
+                        'error'
+                    )
+                } else if (direccionEmpresaValue === '') {
+                    Swal.fire(
+                        'Error',
+                        'Complete el campo Dirección de la Empresa por favor',
+                        'error'
+                    )
+                } else if (municipioEmpresaValue === '') {
+                    Swal.fire(
+                        'Error',
+                        'Complete el campo Municipio y Departamento de la Empresa por favor',
+                        'error'
+                    )
+                } else if (webEmpresaValue === '') {
+                    Swal.fire(
+                        'Error',
+                        'Complete el campo web de la Empresa por favor',
+                        'error'
+                    )
+                }
+                if (nombreEncargadoValue === '' && correoEncargadoValue === '' && celularEncargadoValue === '') {
+                    Swal.fire(
+                        'Error',
+                        'Complete los campos del Encargado por favor',
+                        'error'
+                    )
+                } else if (nombreEncargadoValue === '') {
+                    Swal.fire(
+                        'Error',
+                        'Complete el campo Nombre de Encargado por favor',
+                        'error'
+                    )
+                } else if (correoEncargadoValue === '') {
+                    Swal.fire(
+                        'Error',
+                        'Complete el campo Correo de Encargado por favor',
+                        'error'
+                    )
+                } else if (celularEncargadoValue === '') {
+                    Swal.fire(
+                        'Error',
+                        'Complete el campo Celular  de Encargado por favor',
+                        'error'
+                    )
+                }
+
+
+            }
+        </script>

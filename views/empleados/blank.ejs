@@ -1,0 +1,53 @@
+<% layout('../layout') %>
+<div class="mdc-layout-grid">
+
+  <div class="row">
+    <div class="card mx-auto col-md-10 col-xxl-12 col-sm-8" style="height: auto;">
+      <div class="card-header bg-primary text-white">Lista de <b>Empleados</b></div>
+      <div class="card-body">
+        <table id="table" data-toggle="table" data-height="auto"  data-ajax="ajaxRequest" data-search="true"
+          data-pagination="true">
+          <thead>
+            <tr>
+              <th data-field="id">ID</th>
+              <th data-field="nombres">Nombres</th>
+              <th data-field="apellidos">Apellidos</th>
+              <th data-field="foto" data-formatter="imageFormatter" data-align="center">Foto</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .select,
+  #locale {
+    width: 100%;
+  }
+
+  .like {
+    margin-right: 10px;
+  }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table-locale-all.min.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/export/bootstrap-table-export.min.js"></script>
+
+<script>
+  function imageFormatter(value, row) {
+    return '<img class="avatarTable img" src="http://localhost:3000/images/empleados/' + value + '" />';
+  }
+  $('#table').bootstrapTable({
+    locale: 'es-ES'
+  })
+  // your custom ajax request here
+  function ajaxRequest(params) {
+    var url = 'http://localhost:3000/empleados/edit/all'
+    $.get(url).then(function (res) {
+      params.success(res)
+    })
+  }
+</script>

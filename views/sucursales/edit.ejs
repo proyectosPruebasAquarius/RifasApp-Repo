@@ -1,0 +1,204 @@
+<% layout('../layout') %>
+
+    <div style="display: block;
+margin-left: auto;
+margin-right: auto;" class="mdc-layout-grid__cell stretch-card col-md-12 col-xxl-10 mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+        <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">
+                <div class="mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-12-desktop stretch-card">
+                    <div class="mdc-card p-0 to-do-list">
+                        <div class="d-flex back__head text-white to-do-list-header">
+                            <h4 class="card-title">Edición de Sucursal</h4>
+                        </div>
+                        <div class="mdc-card">
+                            <form action="/sucursales/edit/<%= sucursal.id %>" method="POST" id="form">
+                                <div class="template-demo">
+                                    <div class="mdc-layout-grid__inner">
+
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
+                                            <div class="mdc-text-field w-100">
+                                                <input class="mdc-text-field__input" id="nombre" name="nombre" value="<%= sucursal.nombre %>" />
+                                                <div class="mdc-line-ripple"></div>
+                                                <label for="text-field-hero-input" class="mdc-floating-label">Nombre</label>
+                                            </div>
+                                        </div>
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
+                                            <div class="mdc-text-field w-100">
+                                                <input class="mdc-text-field__input" id="telefono" name="telefono" value="<%= sucursal.telefono %>" />
+                                                <div class="mdc-line-ripple"></div>
+                                                <label for="text-field-hero-input" class="mdc-floating-label">Teléfono</label>
+                                            </div>
+                                        </div>
+                                        <% if (sucursal.estado === 1) { %>
+                                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
+                                                <div class="mdc-text-field w-100">
+                                                    <input class="mdc-text-field__input" id="text-field-hero-input" disabled value="Activa" />
+                                                    <div class="mdc-line-ripple"></div>
+                                                    <label for="text-field-hero-input" class="mdc-floating-label">Estado</label>
+                                                </div>
+                                            </div>
+                                            <% }else{ %>
+                                                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
+                                                    <div class="mdc-text-field w-100">
+                                                        <input class="mdc-text-field__input" id="text-field-hero-input" disabled value="Desactivada" />
+                                                        <div class="mdc-line-ripple"></div>
+                                                        <label for="text-field-hero-input" class="mdc-floating-label">Estado</label>
+                                                    </div>
+                                                </div>
+                                                <% } %>
+                                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12-desktop">
+                                                        <div class="mdc-text-field w-100">
+                                                            <input class="mdc-text-field__input" id="direccion" name="direccion" value="<%= sucursal.direccion %>" />
+                                                            <div class="mdc-line-ripple"></div>
+                                                            <label for="text-field-hero-input" class="mdc-floating-label">Dirección</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mdc-layout-grid__inner mdc-layout-grid__cell--span-4-desktop">
+
+                                                        <!--select-->
+                                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12-desktop">
+                                                            <div class="mdc-text-field mdc-text-field--outlined">
+
+                                                                <select class="municipios mdc-text-field__input" name="id_municipio" id="municipio">
+                                                    <option value="<%= sucursal.id_municipio %>"><%= sucursal.municipio %></option>
+                                                </select>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <!--endSelect-->
+
+                                                    </div>
+
+                                                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop">
+                                                        <div class="template-demo">
+                                                            <button type="submit" class="mdc-button mdc-button--unelevated">
+                                                        <i class="material-icons">refresh</i>&nbsp;Guardar
+                                                        </button>
+                                                            <button type="reset" class="mdc-button mdc-button--warning">
+                                                        <i class="material-icons">cancel</i>&nbsp;Cancelar
+                                                    </button>
+                                                            <a class="mdc-button mdc-button--unelevated filled-button--success" href='..'><i class="material-icons">arrow_back</i>&nbsp;Volver
+                </a>
+                                                        </div>
+                                                    </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+
+    <!--SCRIPT-->
+    <% block('footerjs', `<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+      <script>
+        $(document).ready( () => {    
+          //funcion para llamar los categorias
+          $('.municipios').select2({      
+            language: {
+      
+            noResults: function() {
+      
+            return "No hay resultado";        
+            },
+            searching: function() {
+      
+            return "Buscando..";
+            }
+            },
+            placeholder: "Selecione el Municipio",
+            width: '100%',      
+            ajax: {        
+                url: '/municipios/list',        
+                dataType: 'json',                  
+                data: (params) => {          
+                  return {            
+                    q: params.term,             
+                    page: params.page          
+                  };        
+                },        
+                processResults: (data, params) => {          
+                return {            
+                    results: data,          
+                };        
+                },        
+                cache: true             
+              }    
+            });
+            
+        });
+      
+        
+              </script>`) 
+      -%>
+        <script>
+            const form = document.getElementById('form');
+            const nombre = document.getElementById('nombre');
+            const telefono = document.getElementById('telefono');
+            const municipio = document.getElementById('municipio');
+            const direccion = document.getElementById('direccion');
+            document.getElementById("nombre").focus();
+            form.addEventListener('submit', function(evt) {
+                if (nombre.value === '' || telefono.value === '' ||
+                    direccion.value === '' || municipio.value === '') {
+                    evt.preventDefault();
+                    Validation();
+                } else {
+                    Swal.fire(
+                        'Completado',
+                        'Guardada Correctamente',
+                        'success',
+                        1000,
+
+                    )
+                }
+
+            });
+
+            function Validation() {
+
+                const nombreValue = nombre.value;
+                const telefonoValue = telefono.value;
+                const municipioValue = municipio.value;
+                const direccionValue = direccion.value;
+                if (nombreValue === '' && telefonoValue === '' &&
+                    municipioValue === '' && direccionValue === '') {
+                    Swal.fire(
+                        'Error',
+                        'Los Campos no pueden ir vacios',
+                        'error'
+                    )
+                } else if (nombreValue === '') {
+                    Swal.fire(
+                        'Error',
+                        'Complete el campo Nombre por favor',
+                        'error'
+                    )
+                } else if (telefonoValue === '') {
+                    Swal.fire(
+                        'Error',
+                        'Complete el campo Telefono por favor',
+                        'error'
+                    )
+                } else if (municipioValue === '') {
+                    Swal.fire(
+                        'Error',
+                        'Selecione el Municipio por favor',
+                        'error'
+                    )
+                } else if (direccionValue === '') {
+                    Swal.fire(
+                        'Error',
+                        'Complete el campo Dirección por favor',
+                        'error'
+                    )
+                }
+
+            }
+        </script>

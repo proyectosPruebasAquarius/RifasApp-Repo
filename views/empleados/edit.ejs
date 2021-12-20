@@ -1,643 +1,858 @@
 <% layout('../layout') -%>
-<div class="mdc-layout-grid">
-    <div class="mdc-layout-grid__inner">
-        <div
-            class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
-            <div class="mdc-card p-0  to-do-list">
-                <div class="align-items-center bg-primary text-white to-do-list-header">
-                    <h4 class="card-title">Empleados</h4>
-                </div>
-                <!--foto-->
-                <div class="mdc-card bg-gray  text-center">
-                    <form action="/empleados/edit" method="POST">
+<div class="template-demo">
 
-                        <span class="figure">
-                            <% if(locals.empleado){ %>
-                                <img src="/assets/images/faces/<%= empleado.foto %>" alt="user" class="user">
-                                <% } %>
-                        </span>
-                        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop">
-                            <div class="template-demo">
-                                <button type=""
-                                    class="mdc-button  icon-button mdc-button--outlined outlined-button mdc-button--primaryTrans">
-                                    <i class="material-icons">photo_library</i>
-                                </button>
-                                <button type=""
-                                    class="mdc-button icon-button mdc-button--outlined outlined-button mdc-button--primaryTrans">
-                                    <i class="material-icons">add_a_photo</i>
-                                </button>
-                                <button type=""
-                                    class="mdc-button  icon-button mdc-button--outlined outlined-button mdc-button--primaryTrans">
-                                    <i class="material-icons">delete</i>
-                                </button>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-4">
+                <div
+                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+                    <div class="mdc-card p-0 ">
+                        <div class="align-items-center bg-primary text-white to-do-list-header">
+                            <h4 class="card-title text-center"><i
+                                    class="material-icons">person_add</i>&nbsp;&nbsp;Empleado</h4>
+
+                            <!--<a class="mdc-button mdc-button--unelevated"><i class="material-icons">person_add</i></a>-->
+                        </div>
+                        <!--foto-->
+                        <div class="mdc-card bg-gray text-center">
+                            <form action="">
+
+
+                                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop">
+                                    <div class="template-demo">
+                                        <div class="d-flex align-items-center">
+                                            <span class="container">
+                                                <h4 class="form-title">Foto del Empleado</h4>
+                                                <div class="row justify-content-center">
+                                                    <div class="col">
+                                                        <img class="avatarCard img mx-auto d-block" id="img_preview"
+                                                            width="100%"
+                                                            src="http://localhost:3000/images/empleados/<%= empleados.foto %> "></img>
+                                                    </div>
+                                                </div>
+                                                <br>
+
+
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!--fin foto-->
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div
+                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-9 mdc-layout-grid__cell--span-4-tablet">
+
+                    <div class="mdc-card p-0  ">
+                        <div class="card">
+                            <div class="card-header bg-primary">
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 mx-0">
+                                    <form id="msform"
+                                        action="/empleados/transaccion/update/<%= empleados.cod_empleado %>"
+                                        method="POST" class="needs-validation" novalidate>
+                                        <!-- progressbar -->
+                                        <ul id="progressbar">
+                                            <li class="active" id="account"><strong>Ficha Personal</strong></li>
+                                            <li id="personal"><strong>Ficha Laboral</strong></li>
+                                            <li id="payment"><strong>Payment</strong></li>
+                                            <li id="confirm"><strong>Finish</strong></li>
+                                        </ul> <!-- fieldsets -->
+                                        <fieldset>
+                                            <div class="form-card">
+                                                <h2 class="fs-title">Datos Personales</h2>
+                                                <div class="card-container">
+                                                    <!--<div class="row">
+                                                        <div class="col">
+                                                            <span class="figure">Foto del Empleado
+                                                                <input type="file" accept="image/*"
+                                                                    onchange="imagePreview(this.files)" name="foto">
+                                                                <img id="img_preview" width="10%" class="img">
+                                                            </span>
+                                                        </div>
+                                                    </div>-->
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <small style="color: #dc3545;">Los campos con * son
+                                                                obligatorios</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm">
+                                                            <label for="dui" class="col col-form-label">D.U.I
+                                                                <b>*</b></label>
+                                                            <input type="text" pattern="^[0-9 \-]+$" name="DUI" id="dui"
+                                                                class="form-control"
+                                                                onkeyup="errorHandler('dui', 'helpId', this.id)"
+                                                                maxlength="10" value="<%= empleados.DUI %>" required />
+                                                            <small id="helpId"></small>
+
+                                                        </div>
+                                                        <div class="col-sm">
+                                                            <label for="Nombres" class="col col-form-label">Nombres
+                                                                <b>*</b></label>
+
+                                                            <input type="text" name="nombres" id="Nombres"
+                                                                value="<%= empleados.nombres %>"
+                                                                onkeyup="errorHandler('texto', 'helpN', this.id)"
+                                                                class="form-control" maxlength="50" minlength="3"
+                                                                required />
+                                                            <small id="helpN"></small>
+                                                        </div>
+                                                        <div class="col-sm">
+                                                            <label for="Apellidos" class="col col-form-label">Apellidos
+                                                                <b>*</b></label>
+                                                            <input type="text" name="apellidos" id="Apellidos"
+                                                                value="<%= empleados.apellidos %>" id="apellido"
+                                                                onkeyup="errorHandler('texto', 'helpA', this.id)"
+                                                                class="form-control" maxlength="50" minlength="3"
+                                                                required />
+                                                            <small id="helpA"></small>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="row">
+                                                        <!--<div class="col-sm">
+                                                            <label for="numero"
+                                                            class="col col-form-label">Número de Empleado</label>
+                                                            <input type="text" name="cod_empleado"
+                                                                id="numero" value="<%= empleados.cod_empleado %>" />
+                                                        </div>-->
+                                                        <div class="col-sm">
+                                                            <label for="fechaN" class="col col-form-label">Fecha de
+                                                                Nacimiento <b>*</b></label>
+                                                            <input class="textbox-n form-control" type="date"
+                                                                id="fechaN"
+                                                                value="<%= empleados.fecha_nac.slice(0,10) %>"
+                                                                placeholder="Fecha de Nacimiento" name="fecha_nac"
+                                                                oninput="errorHandler('texto', 'helpFN', this.id)"
+                                                                required />
+                                                            <span class="validity"></span>
+                                                            <small id="helpFN"></small>
+                                                        </div>
+                                                        <div class="col-sm">
+                                                            <label for="telefono"
+                                                                class="col col-form-label">Teléfono</label>
+                                                            <input type="text" pattern="\d*" name="telefono"
+                                                                id="telefono" value="<%= empleados.telefono %>"
+                                                                onkeyup="errorHandler('number', 'helpT', this.id)"
+                                                                class="form-control" maxlength="12" minlength="6" />
+                                                            <small id="helpT"></small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm">
+                                                            <label for="movil" class="col col-form-label">Teléfono
+                                                                Movil <b>*</b></label>
+                                                            <input type="text" pattern="\d*"
+                                                                value="<%= empleados.celular %>" id="movil"
+                                                                name="celular"
+                                                                onkeyup="errorHandler('number', 'helpC', this.id)"
+                                                                class="form-control" maxlength="12" minlength="6"
+                                                                required />
+                                                            <small id="helpC"></small>
+                                                        </div>
+                                                        <div class="col-sm">
+                                                            <label for="Email" class="col col-form-label">Email
+                                                                <b>*</b></label>
+                                                            <input type="email" value="<%= empleados.correo %>"
+                                                                name="correo" id="Email"
+                                                                onkeyup="errorHandler('email', 'helpE', this.id)"
+                                                                class="form-control" maxlength="60" minlength="6"
+                                                                required />
+                                                            <small id="helpE"></small>
+                                                        </div>
+                                                        <div class="col-sm">
+                                                            <label for="Dirección" class="col col-form-label">Dirección
+                                                                <b>*</b></label>
+                                                            <input type="text" name="direccion"
+                                                                value="<%= empleados.direccion %>" id="Dirección"
+                                                                onkeyup="errorHandler('texto', 'helpD', this.id)"
+                                                                class="form-control" maxlength="100" minlength="6"
+                                                                required />
+                                                            <small id="helpD"></small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col justify-content-center">
+                                                            <label for="muni" class="col col-form-label">Municipio
+                                                                <b>*</b></label>
+                                                            <div id="munD" class="rounded">
+                                                                <select class="municipios custom-select" id="muni"
+                                                                    name="id_municipio"
+                                                                    onchange="errorHandler('select2', 'munD', this.id)"
+                                                                    required>
+                                                                    <option value="<%= empleados.id_municipio %>">
+                                                                        <%= empleados.municipio %></option>
+                                                                </select>
+                                                            </div>
+
+                                                            <small id="helpMu"></small>
+
+                                                        </div>
+
+                                                    </div>
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col-md">
+                                                            <label for="genero" class="col col-form-label">Género
+                                                                <b>*</b></label>
+                                                            <select class="custom-select form-control form-select" name="genero"
+                                                                id="genero"
+                                                                onchange="errorHandler('select', 'helpG', this.id)"
+                                                                required>
+                                                                <% switch (empleados.genero) { case 'Hombre': %>
+
+                                                                <option selected>Hombre</option>
+                                                                <option>Mujer</option>
+                                                                <option>Otro</option>
+                                                                <% break; 
+                                                                case 'Mujer': %>
+                                                                <option selected>Mujer</option>
+                                                                <option>Hombre</option>
+                                                                <option>Otro</option>
+                                                                <% break; 
+                                                                case 'Otro': %>
+                                                                <option selected>Otro</option>
+                                                                <option>Hombre</option>
+                                                                <option>Mujer</option>
+                                                                <% break; } %>
+                                                            </select>
+                                                            <small id="helpG"></small>
+                                                        </div>
+                                                        <div class="col-md">
+                                                            <label for="civil" class="col col-form-label">Estado
+                                                                Civil <b>*</b></label>
+                                                            <select class="custom-select form-control form-select"
+                                                                name="estado_civil" id="civil"
+                                                                onchange="errorHandler('select', 'helpCivil', this.id)"
+                                                                required>
+                                                                <% switch (empleados.estado_civil) { case 'Soltero': %>
+                                                                <option selected>Soltero</option>
+                                                                <option>Acompañado</option>
+                                                                <option>Casado</option>
+                                                                <option>Divorciado</option>
+                                                                <option>Viudo</option>
+                                                                <% break; 
+                                                                case 'Acompañado': %>
+                                                                <option>Soltero</option>
+                                                                <option selected>Acompañado</option>
+                                                                <option>Casado</option>
+                                                                <option>Divorciado</option>
+                                                                <option>Viudo</option>
+                                                                <% break; 
+                                                                case 'Casado': %>
+                                                                <option>Soltero</option>
+                                                                <option>Acompañado</option>
+                                                                <option selected>Casado</option>
+                                                                <option>Divorciado</option>
+                                                                <option>Viudo</option>
+                                                                <% break;
+                                                                case 'Divorciado': %>
+                                                                <option>Soltero</option>
+                                                                <option>Acompañado</option>
+                                                                <option>Casado</option>
+                                                                <option selected>Divorciado</option>
+                                                                <option>Viudo</option>
+                                                                <% break; 
+                                                                case 'Viudo': %>
+                                                                <option>Soltero</option>
+                                                                <option>Acompañado</option>
+                                                                <option>Casado</option>
+                                                                <option>Divorciado</option>
+                                                                <option selected>Viudo</option>
+                                                                <% break; } %>
+                                                            </select>
+                                                            <small id="helpCivil"></small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div> <a type="button" name="next"
+                                                class="next action-button mdc-button">Siguiente</a>
+                                            <span>&nbsp;</span> <a type="button" href="/empleados"
+                                                class="mdc-button mdc-button--unelevated action-button-back">
+                                                <i class="material-icons">close</i>&nbsp;Cancelar
+                                            </a>
+                                        </fieldset>
+                                        <fieldset>
+                                            <div class="form-card">
+                                                <h2 class="fs-title">Ficha Laboral</h2>
+                                                <div class="row">
+                                                    <div class="col-sm">
+                                                        <label for="date" class="col col-form-label">Fecha de
+                                                            Alta <b>*</b></label>
+                                                        <input type="date" id="date" placeholder="Fecha de Alta"
+                                                            name="fecha_registro"
+                                                            value="<%= empleados.fecha_registro.slice(0,10) %>"
+                                                            oninput="errorHandler('texto', 'helpFechA', this.id)"
+                                                            class="form-control" required /> <span
+                                                            class="validity"></span>
+                                                        <small id="helpFechA"></small>
+                                                    </div>
+                                                    <div class="col-sm">
+                                                        <label for="NIT" class="col col-form-label">NIT <b>*</b></label>
+                                                        <input type="text" pattern="^[0-9 \-]+$"
+                                                            value="<%= empleados.NIT %>" name="NIT" id="NIT"
+                                                            onkeyup="errorHandler('nit', 'helpNi', this.id)"
+                                                            class="form-control" maxlength="17" minlength="17"
+                                                            required />
+                                                        <small id="helpNi"></small>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm">
+                                                        <label for="social" class="col col-form-label">No. Seguro
+                                                            Social <b>*</b></label>
+                                                        <input type="text" pattern="^[0-9]+$" name="seguro_social"
+                                                            value="<%= empleados.seguro_social %>" id="social"
+                                                            onkeyup="errorHandler('seguro', 'helpSeg', this.id)"
+                                                            class="form-control" maxlength="9" minlength="9" required />
+                                                        <small id="helpSeg"></small>
+                                                    </div>
+                                                    <div class="col-sm">
+                                                        <label for="AFP" class="col col-form-label">AFP <b>*</b></label>
+                                                        <input type="text" pattern="^[0-9]+$" name="AFP" id="AFP"
+                                                            value="<%= empleados.AFP %>"
+                                                            onkeyup="errorHandler('afp', 'helpAfp', this.id)"
+                                                            class="form-control" maxlength="12" minlength="12"
+                                                            required />
+                                                        <small id="helpAfp"></small>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm">
+                                                        <label for="cuenta" class="col col-form-label">Cuenta
+                                                            Bancaria <b>*</b></label>
+                                                        <input type="text" pattern="^[0-9 \-]+$" name="cuenta_bancaria"
+                                                            value="<%= empleados.cuenta_bancaria %>" id="cuenta"
+                                                            onkeyup="errorHandler('cuenta', 'helpCuenta', this.id)"
+                                                            class="form-control" maxlength="20" minlength="10"
+                                                            required />
+                                                        <small id="helpCuenta"></small>
+                                                    </div>
+                                                    <div class="col-sm">
+                                                        <label for="contrato" class="col col-form-label">Contrato
+                                                            <b>*</b></label>
+                                                        <div id="dvC" class="rounded">
+                                                            <select class="contratos custom-select" name="id_contrato"
+                                                                id="contrato"
+                                                                onchange="errorHandler('select2', 'dvC', this.id)"
+                                                                required>
+                                                                <option value="<%= empleados.id_contrato %>">
+                                                                    <%= empleados.contrato %></option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm">
+                                                        <label for="cargo" class="col col-form-label">Cargo
+                                                            <b>*</b></label>
+                                                        <div id="dvCs" class="rounded">
+                                                            <select class="cargos custom-select" name="id_cargo"
+                                                                id="cargo"
+                                                                onchange="errorHandler('select2', 'dvCs', this.id)"
+                                                                required>
+                                                                <option value="<%= empleados.id_cargo %>">
+                                                                    <%= empleados.cargo %></option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm">
+                                                        <!-- <input type="text" name="cod_sucursal" value="<%= empleados.cod_sucursal %>">-->
+                                                        <label for="sucursal" class="col col-form-label">Sucursal
+                                                            <b>*</b></label>
+                                                        <!--<input type="text" name="cod_sucursal" id="sucursal">-->
+                                                        <div id="dvSu" class="rounded">
+                                                            <select class="sucursales custom-select" name="id_sucursal"
+                                                                id="sucursal"
+                                                                onchange="errorHandler('select2', 'dvSu', this.id)"
+                                                                required>
+                                                                <option value="<%= empleados.id_sucursal %>">
+                                                                    <%= empleados.cod_sucursal %></option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <label for="jefe" class="col col-form-label">Jefe
+                                                            Inmediato</label>
+                                                        <input type="text" name="jefe_inmediato"
+                                                            value="<%= empleados.jefe_inmediato %>" id="jefe"
+                                                            onkeyup="errorHandler('texto', 'helpJefe', this.id)"
+                                                            class="form-control" maxlength="4" minlength="4" />
+                                                        <small id="helpJefe"></small>
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="estadoL" class="col col-form-label">Estado
+                                                            Laboral</label>
+                                                        <select class="custom-select form-control form-select" name="estado"
+                                                            id="estado"
+                                                            onchange="errorHandler('select', 'helpEl', this.id)">
+                                                            <% switch (empleados.estado) { case 'Activo': %>
+                                                            <option selected>Activo</option>
+                                                            <option>Permiso Personal</option>
+                                                            <% break;
+                                                            case 'Permiso Personal': %>
+                                                            <option>Activo</option>
+                                                            <option selected>Permiso Personal</option>
+                                                            <% break;
+                                                            default: %>
+                                                            
+                                                            <option selected disabled value="">Seleccione</option>
+                                                            <option>Activo</option>
+                                                            <option >Permiso Personal</option>
+                                                            <% break; } %>
+                                                        </select>
+                                                        <small id="helpEl"></small>
+                                                    </div>
+                                                </div>
+                                            </div> <a type="button" name="previous"
+                                                class="previous action-button-previous mdc-button">Atras</a> <a
+                                                type="button" name="next"
+                                                class="next action-button mdc-button">Siguiente</a>
+                                            <a type="button" href="/empleados"
+                                                class="mdc-button mdc-button--unelevated action-button-back">
+                                                <i class="material-icons">close</i>&nbsp;Cancelar
+                                            </a>
+                                        </fieldset>
+                                        <fieldset>
+                                            <div class="form-card">
+                                                <h2 class="fs-title">Payment Information</h2>
+                                                <div class="radio-group">
+                                                    <div class='radio' data-value="credit"><img
+                                                            src="https://i.imgur.com/XzOzVHZ.jpg" width="200px"
+                                                            height="100px"></div>
+                                                    <div class='radio' data-value="paypal"><img
+                                                            src="https://i.imgur.com/jXjwZlj.jpg" width="200px"
+                                                            height="100px"></div> <br>
+                                                </div> <label class="pay">Card Holder Name*</label> <input type="text"
+                                                    name="holdername" placeholder="" />
+                                                <div class="row">
+                                                    <div class="col-9"> <label class="pay">Card Number*</label> <input
+                                                            type="text" name="cardno" placeholder="" /> </div>
+                                                    <div class="col-3"> <label class="pay">CVC*</label> <input
+                                                            type="password" name="cvcpwd" placeholder="***" /> </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-3"> <label class="pay">Expiry Date*</label> </div>
+                                                    <div class="col-9"> <select class="list-dt" id="month"
+                                                            name="expmonth">
+                                                            <option selected>Month</option>
+                                                            <option>January</option>
+                                                            <option>February</option>
+                                                            <option>March</option>
+                                                            <option>April</option>
+                                                            <option>May</option>
+                                                            <option>June</option>
+                                                            <option>July</option>
+                                                            <option>August</option>
+                                                            <option>September</option>
+                                                            <option>October</option>
+                                                            <option>November</option>
+                                                            <option>December</option>
+                                                        </select> <select class="list-dt" id="year" name="expyear">
+                                                            <option selected>Year</option>
+                                                        </select> </div>
+                                                </div>
+                                            </div> <input type="button" name="previous"
+                                                class="previous action-button-previous" value="Previous" /> <input
+                                                type="submit" name="make_payment" class=" action-button"
+                                                value="Confirm" />
+                                        </fieldset>
+                                        <fieldset>
+                                            <div class="form-card">
+                                                <h2 class="fs-title text-center">Success !</h2> <br><br>
+                                                <div class="row justify-content-center">
+                                                    <div class="col-3"> <img
+                                                            src="https://img.icons8.com/color/96/000000/ok--v2.png"
+                                                            class="fit-image"> </div>
+                                                </div> <br><br>
+                                                <div class="row justify-content-center">
+                                                    <div class="col-7 text-center">
+                                                        <h5>You Have Successfully Signed Up</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </form>
-                </div>
-                <!--fin foto-->
-                <!--lista-->
-                <% i=1; %>
-                    <div class="mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-3-desktop stretch-card">
-                        <div class="table-responsive">
-                            <table class="table table-hoverable">
-                                <thead>
-                                    <tr class="bg-primary">
-                                        <th class="text-white text-left">Editar</th>
-                                        <th class="text-white text-left">Codigo</th>
-                                        <th class="text-white text-left">Nombre</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <% empleados.forEach(function(empleado) { %>
-                                        <tr>
-                                            <td>
-                                                <a href="/empleados/edit_personal/<%= empleado.cod_empleado %>"
-                                                    class="mdc-button mdc-button--outlined outlined-button--light">
-                                                    <!-- class="mdc-button mdc-button--raised icon-button filled-button--light">
-                                                    class="mdc-button mdc-button--unelevated filled-button--light">-->
-                                                    <i class="material-icons">edit</i>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <%= empleado.cod_empleado %>&nbsp;
-                                            </td>
-                                            <td class="text-left">
-                                                <%= empleado.nombres %>&nbsp;&nbsp;
-                                                    <%= empleado.apellidos %>
-                                            </td>
-                                        </tr>
-                                        <% i++}); %>
-                                </tbody>
-                            </table>
-                        </div>
                     </div>
-                    <!--fin de lista-->
+                </div>
             </div>
         </div>
         <!--Aquí empieza el tab-->
-        <div
-            class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-9 mdc-layout-grid__cell--span-4-tablet">
-            <div class="mdc-card p-0  to-do-list">
-                <div class="align-items-center bg-primary text-white to-do-list-header">
-                    <% if(locals.empleado){ %>
-                        <h2 class="card-title">NOMBRE:&nbsp;&nbsp;<%= empleado.nombres %>
-                                <%= empleado.apellidos %>&emsp;&emsp;&emsp;&emsp;DUI:&nbsp;&nbsp;<%= empleado.DUI %>
-                        </h2>
-                        <% } %>
+        <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 0; bottom: 0;">
+            <div id="liveToast" class="toast hide bg-danger" role="alert" aria-live="assertive" aria-atomic="true"
+                data-delay="6000">
+                <div class="toast-header">
+                    <span class="rounded mr-2"><i class="bi bi-exclamation-triangle"
+                            style="color:  #dc3545;"></i></span>
+                    <strong class="mr-auto" style="color: #dc3545;">Error</strong>
+                    <!--<small>11 mins ago</small>-->
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-tablet">
-                    <div class="mdc-card">
-                        <div class="mdc-tab-wrapper mdc-tab--primary">
-                            <div class="mdc-tab-bar" role=" tablist">
-                                <div class="mdc-tab-scroller">
-                                    <div class="mdc-tab-scroller__scroll-area">
-                                        <div class="mdc-tab-scroller__scroll-content">
-                                            <button class="mdc-tab mdc-tab--active" role="tab" aria-selected="true"
-                                                tabindex="0">
-                                                <span class="mdc-tab__content">
-                                                    <span class="mdc-tab__text-label">Ficha Personal</span>
-                                                </span>
-                                                <span class="mdc-tab-indicator mdc-tab-indicator--active">
-                                                    <span
-                                                        class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                                                </span>
-                                                <span class="mdc-tab__ripple"></span>
-                                            </button>
-
-                                            <button class="mdc-tab mdc-tab" role="tab" aria-selected="true"
-                                                tabindex="0">
-                                                <span class="mdc-tab__content">
-                                                    <span class="mdc-tab__text-label">Ficha Laboral</span>
-                                                </span>
-                                                <span class="mdc-tab-indicator mdc-tab-indicator">
-                                                    <span
-                                                        class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                                                </span>
-                                                <span class="mdc-tab__ripple"></span>
-                                            </button>
-
-                                            <button class="mdc-tab mdc-tab" role="tab" aria-selected="true"
-                                                tabindex="0">
-                                                <span class="mdc-tab__content">
-                                                    <span class="mdc-tab__text-label">Horarios</span>
-                                                </span>
-                                                <span class="mdc-tab-indicator mdc-tab-indicator">
-                                                    <span
-                                                        class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                                                </span>
-                                                <span class="mdc-tab__ripple"></span>
-                                            </button>
-                                            <button class="mdc-tab mdc-tab" role="tab" aria-selected="true"
-                                                tabindex="0">
-                                                <span class="mdc-tab__content">
-                                                    <span class="mdc-tab__text-label">Evaluaciones</span>
-                                                </span>
-                                                <span class="mdc-tab-indicator mdc-tab-indicator">
-                                                    <span
-                                                        class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                                                </span>
-                                                <span class="mdc-tab__ripple"></span>
-                                            </button>
-                                            <button class="mdc-tab mdc-tab" role="tab" aria-selected="true"
-                                                tabindex="0">
-                                                <span class="mdc-tab__content">
-                                                    <span class="mdc-tab__text-label">Ficha Familiar</span>
-                                                </span>
-                                                <span class="mdc-tab-indicator mdc-tab-indicator">
-                                                    <span
-                                                        class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                                                </span>
-                                                <span class="mdc-tab__ripple"></span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="content content--active">
-                                <div class="to-do-list-content">
-                                    <% if(locals.empleado){ %>
-                                        <form action="/empleados/edit_personal/<%= empleado.cod_empleado %>"
-                                            method="POST">
-                                            <div class="template-demo">
-                                                <div class="mdc-layout-grid__inner">
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
-                                                        <div class="mdc-text-field w-100">
-                                                            <input class="mdc-text-field__input"
-                                                                id="text-field-hero-input" value="<%= empleado.DUI %>"
-                                                                name="DUI">
-                                                            <div class="mdc-line-ripple"></div>
-                                                            <label for="text-field-hero-input"
-                                                                class="mdc-floating-label">DUI</label>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
-                                                        <div class="mdc-text-field w-100">
-                                                            <input class="mdc-text-field__input"
-                                                                id="text-field-hero-input"
-                                                                value="<%= empleado.nombres %>" name="nombres">
-                                                            <div class="mdc-line-ripple"></div>
-                                                            <label for="text-field-hero-input"
-                                                                class="mdc-floating-label">Nombres</label>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
-                                                        <div class="mdc-text-field w-100">
-                                                            <input class="mdc-text-field__input"
-                                                                id="text-field-hero-input"
-                                                                value="<%= empleado.apellidos %>" name="apellidos">
-                                                            <div class="mdc-line-ripple"></div>
-                                                            <label for="text-field-hero-input"
-                                                                class="mdc-floating-label">Apellidos</label>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
-                                                        <div class="mdc-text-field w-100">
-                                                            <input class="mdc-text-field__input"
-                                                                id="text-field-hero-input"
-                                                                value="<%= empleado.cod_empleado %>"
-                                                                name="cod_empleado">
-                                                            <div class="mdc-line-ripple"></div>
-                                                            <label for="text-field-hero-input"
-                                                                class="mdc-floating-label">Número
-                                                                de Empleado</label>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
-                                                        <div class="nativeDatePicker w-100">
-                                                            <div class="mdc-text-field">
-                                                                <input class="mdc-text-field__input"
-                                                                    id="text-field-hero-input" type="date"
-                                                                    value="<%= empleado.fecha_nac %>"
-                                                                    name="fecha_nac" />
-                                                                <div class="mdc-line-ripple"></div>
-                                                                <label for="text-field-hero-input"
-                                                                    class="mdc-floating-label">Fecha de
-                                                                    nacimiento:</label>
-                                                                <span class="validity"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4">
-                                                        <div class="mdc-text-field w-100">
-                                                            <input class="mdc-text-field__input"
-                                                                id="text-field-hero-input"
-                                                                value="<%= empleado.telefono %>" name="telefono">
-                                                            <div class="mdc-line-ripple"></div>
-                                                            <label for="text-field-hero-input"
-                                                                class="mdc-floating-label">Teléfono
-                                                                Fijo</label>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4">
-                                                        <div class="mdc-text-field w-100">
-                                                            <input class="mdc-text-field__input"
-                                                                id="text-field-hero-input"
-                                                                value="<%= empleado.celular %>" name="celular">
-                                                            <div class="mdc-line-ripple"></div>
-                                                            <label for="text-field-hero-input"
-                                                                class="mdc-floating-label">Celular</label>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-8">
-                                                        <div class="mdc-text-field w-100">
-                                                            <input class="mdc-text-field__input"
-                                                                id="text-field-hero-input"
-                                                                value="<%= empleado.correo %>" name="correo">
-                                                            <div class="mdc-line-ripple"></div>
-                                                            <label for="text-field-hero-input"
-                                                                class="mdc-floating-label">e-mail
-                                                                Personal</label>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
-                                                        <div class="mdc-text-field w-100">
-                                                            <input class="mdc-text-field__input"
-                                                                id="text-field-hero-input"
-                                                                value="<%= empleado.direccion %>" name="direccion">
-                                                            <div class="mdc-line-ripple"></div>
-                                                            <label for="text-field-hero-input"
-                                                                class="mdc-floating-label">Dirección</label>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
-                                                        <div class="mdc-text-field w-100">
-                                                            <input class="mdc-text-field__input"
-                                                                id="text-field-hero-input"
-                                                                value="<%= empleado.id_municipio %>"
-                                                                name="id_municipio">
-                                                            <div class="mdc-line-ripple"></div>
-                                                            <label for="text-field-hero-input"
-                                                                class="mdc-floating-label">Municipio</label>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
-                                                        <div class="mdc-text-field w-100">
-                                                            <input class="mdc-text-field__input"
-                                                                id="text-field-hero-input">
-                                                            <div class="mdc-line-ripple"></div>
-                                                            <label for="text-field-hero-input"
-                                                                class="mdc-floating-label">Departamento</label>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2">
-                                                    </div>
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2">
-                                                    </div>
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4">
-                                                        <div class="mdc-select demo-width-class w-100"
-                                                            data-mdc-auto-init="MDCSelect">
-                                                            <input type="hidden" name="genero"
-                                                                value="<%= empleado.genero %>" />
-                                                            <i class="mdc-select__dropdown-icon"></i>
-                                                            <div class="mdc-select__selected-text"></div>
-                                                            <div
-                                                                class="mdc-select__menu mdc-menu-surface demo-width-class">
-                                                                <ul class="mdc-list">
-
-                                                                    <li class="mdc-list-item" data-value="Hombre">Hombre
-                                                                    </li>
-                                                                    <li class="mdc-list-item" data-value="Mujer">Mujer
-                                                                    </li>
-                                                                    <li class="mdc-list-item" data-value="Otro">Otro
-                                                                    </li>
-                                                                    <li class="mdc-list-item" data-value=""></li>
-                                                                </ul>
-                                                            </div>
-                                                            <span class="mdc-floating-label">Género</span>
-                                                            <div class="mdc-line-ripple"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4">
-                                                        <div class="mdc-select demo-width-class w-100"
-                                                            data-mdc-auto-init="MDCSelect">
-                                                            <input type="hidden" name="estado_civil"
-                                                                value="<%= empleado.estado_civil %>" />
-                                                            <i class="mdc-select__dropdown-icon"></i>
-                                                            <div class="mdc-select__selected-text"></div>
-                                                            <div
-                                                                class="mdc-select__menu mdc-menu-surface demo-width-class">
-                                                                <ul class="mdc-list">
-                                                                    <li class="mdc-list-item" data-value="Soltero">
-                                                                        Soltero
-                                                                    </li>
-                                                                    <li class="mdc-list-item" data-value="Casado">
-                                                                        Casado
-                                                                    </li>
-                                                                    <li class="mdc-list-item" data-value="Acompañado">
-                                                                        Acompañado
-                                                                    </li>
-                                                                    <li class="mdc-list-item" data-value="Divorciado">
-                                                                        Divorciado
-                                                                    </li>
-                                                                    <li class="mdc-list-item" data-value="Viudo">
-                                                                        Viudo</li>
-                                                                    <li class="mdc-list-item" data-value="disabled">
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <span class="mdc-floating-label">Estado
-                                                                Civil</span>
-                                                            <div class="mdc-line-ripple"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-12-tablet">
-                                                        <div class="template-demo">
-                                                            <button type="submit"
-                                                                class="mdc-button mdc-button--unelevated">
-                                                                <i class="material-icons">save</i>&nbsp;&nbsp;Cambios
-                                                            </button>
-                                                            <button type="reset" class="mdc-button mdc-button--warning">
-                                                                <i class="material-icons">cancel</i>&nbsp;Cancelar
-                                                            </button>
-
-                                                            <a href="/empleados/edit"
-                                                                class="mdc-button mdc-button--unelevated filled-button--success">
-                                                                <i class="material-icons">arrow_back</i>&nbsp;Volver
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                        <% } %>
-                                </div>
-                            </div>
-                            <div class="content">
-                                <div class="to-do-list-content">
-                                    <% if(locals.empleado_lab){ %>
-                                        <form action="/empleados/edit_laboral/<%= empleado.cod_empleado %>"
-                                            method="POST">
-                                            <div class="template-demo">
-                                                <div class="mdc-layout-grid__inner">
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
-                                                        <div class="mdc-text-field w-100">
-                                                            <input class="mdc-text-field__input"
-                                                                id="text-field-hero-input"
-                                                                value="<%= empleado_lab.cod_empleado %>"
-                                                                name="cod_empleado">
-                                                            <div class="mdc-line-ripple"></div>
-                                                            <label for="text-field-hero-input"
-                                                                class="mdc-floating-label">Código de Empleado</label>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
-                                                        <div class="nativeDatePicker w-100">
-                                                            <div class="mdc-text-field">
-                                                                <input class="mdc-text-field__input" type="date"
-                                                                    value="<%= empleado_lab.fecha_registro %>"
-                                                                    name="fecha_registro" id="text-field-hero-input" />
-                                                                <div class="mdc-line-ripple"></div>
-                                                                <label for="text-field-hero-input"
-                                                                    class="mdc-floating-label">Fecha de Alta:</label>
-                                                                <span class="validity"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4">
-                                                        <div class="mdc-text-field w-100">
-                                                            <input class="mdc-text-field__input"
-                                                                id="text-field-hero-input"
-                                                                value="<%= empleado_lab.NIT %>" name="NIT">
-                                                            <div class="mdc-line-ripple"></div>
-                                                            <label for="text-field-hero-input"
-                                                                class="mdc-floating-label">NIT</label>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4">
-                                                        <div class="mdc-text-field w-100">
-                                                            <input class="mdc-text-field__input"
-                                                                id="text-field-hero-input"
-                                                                value="<%= empleado_lab.seguro_social %>"
-                                                                name="seguro_social">
-                                                            <div class="mdc-line-ripple"></div>
-                                                            <label for="text-field-hero-input"
-                                                                class="mdc-floating-label">No.Seguridad
-                                                                Social</label>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
-                                                        <div class="mdc-text-field w-100">
-                                                            <input class="mdc-text-field__input"
-                                                                id="text-field-hero-input"
-                                                                value="<%= empleado_lab.AFP %>" name="AFP">
-                                                            <div class="mdc-line-ripple"></div>
-                                                            <label for="text-field-hero-input"
-                                                                class="mdc-floating-label">AFP</label>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
-                                                        <div class="mdc-text-field w-100">
-                                                            <input class="mdc-text-field__input"
-                                                                id="text-field-hero-input"
-                                                                value="<%= empleado_lab.cuenta_bancaria %>"
-                                                                name="cuenta_bancaria">
-                                                            <div class="mdc-line-ripple"></div>
-                                                            <label for="text-field-hero-input"
-                                                                class="mdc-floating-label">Cuenta Bancaria</label>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
-                                                        <div class="mdc-text-field w-100">
-                                                            <input class="mdc-text-field__input"
-                                                                id="text-field-hero-input"
-                                                                value="<%= empleado_lab.id_contrato %>"
-                                                                name="id_contrato">
-                                                            <div class="mdc-line-ripple"></div>
-                                                            <label for="text-field-hero-input"
-                                                                class="mdc-floating-label">Contrato</label>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
-                                                        <div class="mdc-text-field w-100">
-                                                            <input class="mdc-text-field__input"
-                                                                id="text-field-hero-input"
-                                                                value="<%= empleado_lab.id_cargo %>" name="id_cargo">
-                                                            <div class="mdc-line-ripple"></div>
-                                                            <label for="text-field-hero-input"
-                                                                class="mdc-floating-label">Cargo</label>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
-                                                        <div class="mdc-text-field w-100">
-                                                            <input class="mdc-text-field__input"
-                                                                id="text-field-hero-input"
-                                                                value="<%= empleado_lab.cod_sucursal %>"
-                                                                name="cod_sucursal">
-                                                            <div class="mdc-line-ripple"></div>
-                                                            <label for="text-field-hero-input"
-                                                                class="mdc-floating-label">Sucursal</label>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
-                                                        <div class="mdc-text-field w-100">
-                                                            <input class="mdc-text-field__input"
-                                                                id="text-field-hero-input"
-                                                                value="<%= empleado_lab.jefe_inmediato %>"
-                                                                name="jefe_inmediato">
-                                                            <div class="mdc-line-ripple"></div>
-                                                            <label for="text-field-hero-input"
-                                                                class="mdc-floating-label">Jefe Inmediato</label>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
-                                                        <div class="mdc-text-field w-100">
-                                                            <input class="mdc-text-field__input"
-                                                                id="text-field-hero-input" name="estado"
-                                                                value="<%= empleado_lab.estado %>" value="Activo">
-                                                            <div class="mdc-line-ripple"></div>
-                                                            <label for="text-field-hero-input"
-                                                                class="mdc-floating-label">Estado Laboral</label>
-                                                        </div>
-                                                    </div>
-                                                    <!--<div
-                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
-                                                    <div class="nativeDatePicker w-100">
-                                                        <div class="mdc-text-field">
-                                                            <input class="mdc-text-field__input"
-                                                                id="text-field-hero-input" type="date" name="fecha_baja"
-                                                                disabled />
-                                                            <div class="mdc-line-ripple"></div>
-                                                            <label for="text-field-hero-input"
-                                                                class="mdc-floating-label">Fecha de Baja:</label>
-                                                            <span class="validity"></span>
-                                                        </div>
-                                                    </div>
-                                                </div>-->
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-12-tablet">
-                                                        <div class="template-demo">
-                                                            <button type="submit"
-                                                                class="mdc-button mdc-button--unelevated">
-                                                                <i class="material-icons">save</i>&nbsp;&nbsp;Guardar
-                                                            </button>
-                                                            <button type="reset"
-                                                                class="mdc-button mdc-button--unelevated filled-button--warning">
-                                                                <i class="material-icons">cancel</i>&nbsp;Cancelar
-                                                            </button>
-                                                            <a class="mdc-button mdc-button--unelevated filled-button--success"
-                                                                href='/empleados/edit_personal/<%= empleado.cod_empleado %>'><i
-                                                                    class="material-icons">arrow_back</i>&nbsp;Volver
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                        <% } %>
-                                </div>
-                            </div>
-                            <div class="content">
-                                <div class="to-do-list-content">
-                                    <% if(locals.empleado_lab){ %>
-                                        <form action="/empleados/edit_laboral/<%= empleado.cod_empleado %>" method="POST">
-                                            <div class="template-demo">
-                                                <div class="mdc-layout-grid__inner">
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-12-tablet">
-                                                        <div class="template-demo">
-                                                            <button type="submit" class="mdc-button mdc-button--unelevated">
-                                                                <i class="material-icons">save</i>&nbsp;&nbsp;Cambios
-                                                            </button>
-                                                            <button type="reset" class="mdc-button mdc-button--warning">
-                                                                <i class="material-icons">cancel</i>&nbsp;Cancelar
-                                                            </button>
-                                                            <a href="/empleados/edit_personal/<%= empleado.cod_empleado %>"
-                                                                class="mdc-button mdc-button--unelevated filled-button--success">
-                                                                <i class="material-icons">arrow_back</i>&nbsp;Volver
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    <% } %>
-                                </div>
-                            </div>
-                            <div class="content">
-                                <div class="to-do-list-content">
-                                    <% if(locals.empleado_lab){ %>
-                                        <form action="/empleados/edit_laboral/<%= empleado.cod_empleado %>" method="POST">
-                                            <div class="template-demo">
-                                                <div class="mdc-layout-grid__inner">
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-12-tablet">
-                                                        <div class="template-demo">
-                                                            <button type="submit" class="mdc-button mdc-button--unelevated">
-                                                                <i class="material-icons">save</i>&nbsp;&nbsp;Cambios
-                                                            </button>
-                                                            <button type="reset" class="mdc-button mdc-button--warning">
-                                                                <i class="material-icons">cancel</i>&nbsp;Cancelar
-                                                            </button>
-                                                            <a href="/empleados/edit_personal/<%= empleado.cod_empleado %>"
-                                                                class="mdc-button mdc-button--unelevated filled-button--success">
-                                                                <i class="material-icons">arrow_back</i>&nbsp;Volver
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    <% } %>
-                                </div>
-                            </div>
-                            <div class="content">
-                                <div class="to-do-list-content">
-                                    <% if(locals.empleado_lab){ %>
-                                        <form action="/empleados/edit_laboral/<%= empleado.cod_empleado %>" method="POST">
-                                            <div class="template-demo">
-                                                <div class="mdc-layout-grid__inner">
-                                                    <div
-                                                        class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-12-tablet">
-                                                        <div class="template-demo">
-                                                            <button type="submit" class="mdc-button mdc-button--unelevated">
-                                                                <i class="material-icons">save</i>&nbsp;&nbsp;Cambios
-                                                            </button>
-                                                            <button type="reset" class="mdc-button mdc-button--warning">
-                                                                <i class="material-icons">cancel</i>&nbsp;Cancelar
-                                                            </button>
-                                                            <a href="/empleados/edit_personal/<%= empleado.cod_empleado %>"
-                                                                class="mdc-button mdc-button--unelevated filled-button--success">
-                                                                <i class="material-icons">arrow_back</i>&nbsp;Volver
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    <% } %>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="toast-body">
+                    <strong style="color: white;">Uno o más campos contienen errores</strong>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/assets/js/validator.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<!--<script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.1.2/dist/autoComplete.min.js"></script>-->
+<!--<script>
+    const autoCompleteJS = new autoComplete({
+        placeHolder: "Search for Food...",
+        data: {
+            src: ["Sauce - Thousand Island", "Wild Boar - Tenderloin", "Goat - Whole Cut"],
+            cache: true,
+        },
+        resultsList: {
+            element: (list, data) => {
+                if (!data.results.length) {
+                    // Create "No Results" message element
+                    const message = document.createElement("div");
+                    // Add class to the created element
+                    message.setAttribute("class", "no_result");
+                    // Add message text content
+                    message.innerHTML = `<span>Found No Results for "${data.query}"</span>`;
+                    // Append message element to the results list
+                    list.prepend(message);
+                }
+            },
+            noResults: true,
+        },
+        resultItem: {
+            highlight: true
+        }
+    });
+</script>-->
+<!--Rename Imagen-->
+<!--<script>
+    const imageCod = async () => {
+        const letra = document.getElementById('apellido').value.charAt(0);
+  
+  
+        //const numero = await pool.query("SELECT COUNT(`cod_empleado`) as numero FROM empleados_personales where cod_empleado like "+ "'"+letra+"%'");
+  
+        const url = '/empleados/latestData/'+letra
+        await axios.get(url)
+            .then(res => {
+                console.log(res)
+                const num= parseInt(res.data[0].numero) + 1;
+
+                var cod_empleado=0;
+                if(num <= 9){
+                    cod_empleado = letra + '00' + num;
+                }else if(num > 9){
+                    cod_empleado = letra + '0' + num;
+                }
+                console.log(document.getElementById('file-upload').value) ;
+                var foto = cod_empleado;
+                console.log(foto)
+            })
+            .catch(err => {
+                console.error(err);
+            })
+    }
+</script>-->
+<!--Formulario-->
+<script>
+    /*function getInvalids() {
+        let formulario = document.getElementById('msform')
+        if (formulario.noValidate) {
+            var noValids = formulario.querySelectorAll(':invalid');
+            /*for (var item of noValids) {
+                //const element = array[index];
+                console.log(noValids)
+            }*/
+    /* noValids.forEach(element => {
+                console.log(element)
+            });
+        }
+    }*/
+    // Validación del formulario al cargar
+    /*function loadValidate() {
+        //let dui = document.getElementById('dui');
+        const datos = [errorHandler('dui', 'helpId', 'dui'), errorHandler('texto', 'helpN', 'nombres'), errorHandler('texto', 'helpN', 'apellidos')];
+        datos.forEach(element => {
+            window.onload = element;
+        });      
+    }
+    loadValidate();*/
+    let buttonSub = document.getElementById('msform')
+
+    buttonSub.addEventListener('submit', function () {
+        if (buttonSub.noValidate) {
+            // console.log('probadn0')
+            if (buttonSub['fechaN'].value == '' || buttonSub['date'].value == '' || buttonSub['dui'].value ==
+                '' || buttonSub['nombres'].value == '' || buttonSub['apellidos'].value == '' ||
+                buttonSub['movil'].value == '' || buttonSub['Email'].value == '' || buttonSub['Dirección']
+                .value == '' || buttonSub['NIT'].value == '' || buttonSub['social'].value == '' ||
+                buttonSub['AFP'].value == '' || buttonSub['cuenta'].value == '') {
+                //input.classList.remove('is-valid', '__empleados__success');
+                // buttonSub['imagen'].classList.add('is-invalid', '__empleados');
+                /* buttonSub['dui'].classList.add('is-invalid', '__empleados');
+                 buttonSub['nombres'].classList.add('is-invalid', '__empleados');
+                 buttonSub['apellidos'].classList.add('is-invalid', '__empleados');
+                 buttonSub['movil'].classList.add('is-invalid', '__empleados');
+                 buttonSub['Email'].classList.add('is-invalid', '__empleados');
+                 buttonSub['Dirección'].classList.add('is-invalid', '__empleados');
+                 buttonSub['NIT'].classList.add('is-invalid', '__empleados');
+                 buttonSub['social'].classList.add('is-invalid', '__empleados');
+                 buttonSub['AFP'].classList.add('is-invalid', '__empleados');
+                 buttonSub['cuenta'].classList.add('is-invalid', '__empleados');
+                 buttonSub['fechaN'].classList.add('is-invalid', '__empleados');
+                // span.style.color = '#dc3545';
+                 //span.innerHTML = 'Este Campo Es Obligatorio'
+                 document.getElementById('date').classList.add('is-invalid', '__empleados');*/
+                $('#liveToast').toast('show')
+            }
+
+            if (buttonSub['telefono'].classList.contains('is-invalid') && buttonSub['telefono'].value != '' ||
+                buttonSub['jefe'].classList.contains('is-invalid') && buttonSub['jefe'].value != '' ||
+                buttonSub['estado'].classList.contains('is-invalid') && buttonSub['estado'].value != '') {
+                $('#liveToast').toast('show')
+            }
+        }
+    })
+    // Imagen
+
+    function imagePreview(file) {
+        var img = document.querySelectorAll('img');
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            var img = document.getElementById('img_preview');
+            img.src = e.target.result;
+        }
+        reader.readAsDataURL(file[0]);
+    }
+
+    $(document).ready(function () {
+
+        var current_fs, next_fs, previous_fs; //fieldsets
+        var opacity;
+
+        $(".next").click(function () {
+
+            current_fs = $(this).parent();
+            next_fs = $(this).parent().next();
+
+            //Add Class Active
+            $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+            //show the next fieldset
+            next_fs.show();
+            //hide the current fieldset with style
+            current_fs.animate({
+                opacity: 0
+            }, {
+                step: function (now) {
+                    // for making fielset appear animation
+                    opacity = 1 - now;
+
+                    current_fs.css({
+                        'display': 'none',
+                        'position': 'relative'
+                    });
+                    next_fs.css({
+                        'opacity': opacity
+                    });
+                },
+                duration: 600
+            });
+        });
+
+        $(".previous").click(function () {
+
+            current_fs = $(this).parent();
+            previous_fs = $(this).parent().prev();
+
+            //Remove class active
+            $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+            //show the previous fieldset
+            previous_fs.show();
+
+            //hide the current fieldset with style
+            current_fs.animate({
+                opacity: 0
+            }, {
+                step: function (now) {
+                    // for making fielset appear animation
+                    opacity = 1 - now;
+
+                    current_fs.css({
+                        'display': 'none',
+                        'position': 'relative'
+                    });
+                    previous_fs.css({
+                        'opacity': opacity
+                    });
+                },
+                duration: 600
+            });
+        });
+
+        $('.radio-group .radio').click(function () {
+            $(this).parent().find('.radio').removeClass('selected');
+            $(this).addClass('selected');
+        });
+
+        $(".submit").click(function () {
+            return false;
+        })
+
+    });
+</script>
+<!--Bloque select-->
+<% block('footerjs', `<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+$(document).ready(function() {    
+  //funcion para llamar los municipios
+  $('.municipios').select2({
+    language: {
+        noResults: function() {
+            return "No hay resultado";        
+        },
+        searching: function() {
+            return "Buscando..";
+        }
+    },      
+    placeholder: 'Municipios',    
+    width: '100%',      
+    ajax: {        
+      url: '/municipios/list',        
+      dataType: 'json',                  
+      data: function (params) {          
+        return {            
+          q: params.term,             
+          page: params.page          
+        };        
+      },        
+      processResults: function (data, params) {          
+      return {            
+          results: data,          
+      };        
+      },        
+      cache: true             
+      }    
+    });
+
+    //funcion para llamar las sucursales
+  $('.sucursales').select2({
+    language: {
+        noResults: function() {
+            return "No hay resultado";        
+        },
+        searching: function() {
+            return "Buscando..";
+        }
+    },      
+    placeholder: 'Sucursales',    
+    width: '100%',      
+    ajax: {        
+      url: '/sucursales/list',        
+      dataType: 'json',                  
+      data: function (params) {          
+        return {            
+          q: params.term,             
+          page: params.page          
+        };        
+      },        
+      processResults: function (data, params) {          
+      return {            
+          results: data,          
+      };        
+      },        
+      cache: true             
+      }    
+    });
+
+    //funcion para llamar los cargos
+  $('.cargos').select2({
+    language: {
+        noResults: function() {
+            return "No hay resultado";        
+        },
+        searching: function() {
+            return "Buscando..";
+        }
+    },      
+    placeholder: 'Cargos',    
+    width: '100%',      
+    ajax: {        
+      url: '/cargos/list',        
+      dataType: 'json',                  
+      data: function (params) {          
+        return {            
+          q: params.term,             
+          page: params.page          
+        };        
+      },        
+      processResults: function (data, params) {          
+      return {            
+          results: data,          
+      };        
+      },        
+      cache: true             
+      }    
+    });
+
+    //funcion para llamar los contratos
+  $('.contratos').select2({
+    language: {
+        noResults: function() {
+            return "No hay resultado";        
+        },
+        searching: function() {
+            return "Buscando..";
+        }
+    },      
+    placeholder: 'Contratos',    
+    width: '100%',      
+    ajax: {        
+      url: '/contratos/list',        
+      dataType: 'json',                  
+      data: function (params) {          
+        return {            
+          q: params.term,             
+          page: params.page          
+        };        
+      },        
+      processResults: function (data, params) {          
+      return {            
+          results: data,          
+      };        
+      },        
+      cache: true             
+      }    
+    });
+    });
+
+    
+
+        
+        </script>`) 
+-%>

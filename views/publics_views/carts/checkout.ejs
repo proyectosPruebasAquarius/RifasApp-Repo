@@ -1,0 +1,450 @@
+<% layout('../../layout_public') -%>
+    <div id="header_imag" class="page-header text-center">
+        <div class="container">
+            <h1 id="titleH1" class="page-title">Verificación de Pago</h1>
+
+        </div>
+        <!-- End .container -->
+    </div>
+    <!-- End .page-header -->
+
+    <!-- End .breadcrumb-nav -->
+
+    <div class="page-content">
+        <div class="checkout">
+            <div class="container">
+
+                <!-- End .checkout-discount -->
+
+                <div class="row">
+                    <div class="col-lg-9">
+                        <h2 class="checkout-title">Detalles de la Compra</h2>
+                        <!-- End .checkout-title -->
+                        <table class="table table-cart table-mobile">
+                            <thead>
+                                <tr>
+                                    <th>Rifa</th>
+                                    <th>Numeros <br> de sorteo</th>
+                                    <th>Cantidad</th>
+                                    <th>Total</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="checkout">
+                                <!--   <tr >
+                                  <td class="product-col">
+                                            <div class="product">
+                                                <figure class="product-media">
+                                                    <a href="#">
+                                                        <img src="assets/images/productos/consola.png" alt="Product image">
+                                                    </a>
+                                                </figure>
+
+                                                <h3 class="product-title">
+                                                    <a href="#">Consola de Videojuegos</a>
+                                                </h3>
+                                                
+                                            </div>
+                                          
+                                        </td>
+                                        <td class="price-col">325</td>
+                                        <td class="quantity-col">
+                                            <div class="cart-product-quantity">
+                                                <input type="text" class="form-control disabled text-center" value="1" disabled>
+                                            </div>
+                                            
+                                        </td>
+                                        <td class="total-col">$5.00</td>
+
+                                </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- End .col-lg-9 -->
+
+                    <aside class="col-lg-3">
+                        <form action="ventas/transaccion" method="post" id="form_ventas">
+
+                            <div class="summary">
+                                <h3 class="summary-title">Tu Orden</h3>
+                                <!-- End .summary-title -->
+
+                                <table class="table table-summary" active>
+
+                                    <thead>
+                                        <tr>
+                                            <th>Rifa</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="detail">
+
+
+
+
+
+
+
+
+                                        <div class="d-none">
+                                            <input type="" class="form-control" name="forma_pago" id="forma_pago">
+                                            <input type="" class="form-control" name="id_cliente" id="id_cliente">
+                                            <input type="" class="form-control" name="total" id="total">
+                                        </div>
+
+
+
+
+                                    </tbody>
+
+                                    <tr class="summary-subtotal">
+                                        <td>Subtotal:</td>
+                                        <td>
+                                            <p id="sub">
+
+                                            </p>
+                                        </td>
+
+                                    </tr>
+
+
+
+
+                                    <tr class="summary-total">
+                                        <td>Total:</td>
+                                        <td id="total-td"></td>
+                                    </tr>
+
+
+                                </table>
+
+
+
+                                <!-- End .table table-summary -->
+
+                                <div class="accordion-summary" id="accordion-payment">
+                                    <div class="card">
+                                        <div class="card-header" id="heading-1">
+                                            <h2 class="card-title">
+                                                <a role="button" data-toggle="collapse" class="collapsed" href="#collapse-1" aria-expanded="false" aria-controls="collapse-1" id="transferencia" onclick="onClickPago('transferencia')">
+                                                    Transferencia Bancaria
+                                                </a>
+                                            </h2>
+                                        </div>
+                                        <!-- End .card-header -->
+                                        <div id="collapse-1" class="collapse" aria-labelledby="heading-1" data-parent="#accordion-payment">
+                                            <div class="card-body">
+                                                Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.
+                                            </div>
+                                            <!-- End .card-body -->
+                                        </div>
+                                        <!-- End .collapse -->
+                                    </div>
+
+                                    <div class="card">
+                                        <div class="card-header" id="heading-3">
+                                            <h2 class="card-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-3" aria-expanded="false" aria-controls="collapse-3" id="dinero" onclick="onClickPago('dinero')">
+                                                    Dinero en Mano
+                                                </a>
+                                            </h2>
+                                        </div>
+                                        <!-- End .card-header -->
+                                        <div id="collapse-3" class="collapse" aria-labelledby="heading-3" data-parent="#accordion-payment">
+                                            <div class="card-body">Quisque volutpat mattis eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros.
+                                            </div>
+                                            <!-- End .card-body -->
+                                        </div>
+                                        <!-- End .collapse -->
+                                    </div>
+                                    <!-- End .card -->
+
+                                    <div class="card">
+                                        <div class="card-header" id="heading-4">
+                                            <h2 class="card-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4" id="paypal" onclick="onClickPago('paypal')">
+                                                    PayPal 
+                                                </a>
+                                            </h2>
+                                        </div>
+                                        <!-- End .card-header -->
+                                        <div id="collapse-4" class="collapse" aria-labelledby="heading-4" data-parent="#accordion-payment">
+                                            <div class="card-body">
+                                                Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum.
+                                            </div>
+                                            <!-- End .card-body -->
+                                        </div>
+                                        <!-- End .collapse -->
+                                    </div>
+                                    <!-- End .card -->
+
+                                    <div class="card">
+                                        <div class="card-header" id="heading-5">
+                                            <h2 class="card-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-5" aria-expanded="false" aria-controls="collapse-5" id="tarjeta" onclick="onClickPago('tarjeta')">
+                                                   Tarjeta de Credito o Debito
+                                                    <img src="assets/images/payments-summary.png" alt="payments cards">
+                                                </a>
+                                            </h2>
+                                        </div>
+                                        <!-- End .card-header -->
+                                        <div id="collapse-5" class="collapse" aria-labelledby="heading-5" data-parent="#accordion-payment">
+                                            <div class="card-body"> Donec nec justo eget felis facilisis fermentum.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Lorem ipsum dolor sit ame.
+                                            </div>
+                                            <!-- End .card-body -->
+                                        </div>
+                                        <!-- End .collapse -->
+                                    </div>
+                                    <!-- End .card -->
+                                </div>
+
+
+                                <div class="mx-auto">
+                                    <button id="btn_pagar" class="btn btn-primary btn-block" onclick="refresh()">Pagar</button>
+                                </div>
+
+                            </div>
+                        </form>
+                        <!-- End .summary -->
+                    </aside>
+
+                    <!-- End .col-lg-3 -->
+                </div>
+                <!-- End .row -->
+
+            </div>
+            <!-- End .container -->
+        </div>
+        <!-- End .checkout -->
+    </div>
+    <div class="modal fade" id="number-modal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="form-box">
+                        <div class="form-tab">
+                            <ul class="nav nav-pills nav-fill" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="number-tab" data-toggle="tab" href="#number" role="tab" aria-controls="number" aria-selected="true">AVISO</a>
+                                </li>
+
+                            </ul>
+                            <div class="tab-content" id="tab-content-5">
+                                <div class="tab-pane fade show active" id="number" role="tabpanel" aria-labelledby="number-tab">
+                                    <h1 class="text-center">NO PUEDES LLEVAR MAS NUMEROS DE BOLETOS QUE LA CANTIDAD SELECCIONADA</h1>
+                                </div>
+                                <!-- .End .tab-pane -->
+
+                                <!-- .End .tab-pane -->
+                            </div>
+                            <div class="form-footer">
+                                <button class="btn btn-outline-primary-2" onclick="NoValid()">
+                                <span>ACEPTAR</span>
+                                
+                            </button>
+
+                            </div>
+                            <!-- End .tab-content -->
+                        </div>
+                        <!-- End .form-tab -->
+                    </div>
+                    <!-- End .form-box -->
+                </div>
+                <!-- End .modal-body -->
+            </div>
+            <!-- End .modal-content -->
+        </div>
+        <!-- End .modal-dialog -->
+    </div>
+    <style>
+        .img_cart {
+            background-image: url('assets/images/video/checkout.svg');
+            height: 170px;
+            width: 1920px;
+        }
+        
+        .img_cart_mobile {
+            background-image: url('assets/images/video/checkout_mobile.svg');
+            height: 170px;
+            width: 400px;
+        }
+    </style>
+
+    <!-- End .page-content -->
+    <script>
+        const rifas = [];
+
+        function NoneProduct() {
+            var x = document.getElementById('fade');
+            x.style.display = "block";
+            setTimeout(() => {
+                window.location.href = "https://brujirifas.com/inicio";
+            }, 1000);
+        }
+
+
+        window.onload = () => {
+
+            const productoExist = '<%=productos%>';
+            const productoExistLocal = localStorage.cart;
+            if (productoExist == 'null' && productoExistLocal == undefined) {
+                NoneProduct();
+            } else {
+                console.log(window.localStorage.getItem('cart'))
+                let table = '';
+                let detalle = '';
+                let subtotal = '';
+                let total = '';
+                let sub_total = 0;
+                let total_nun = 0;
+                let data = JSON.parse(localStorage.cart);
+                console.log({
+                    datosParse: data[0].item.id
+                })
+                data.forEach(d => {
+                    table += '<tr>'
+                    table += '<td class="product-col">'
+                    table += '<div class="product">'
+                    table += '<figure class="product-media">'
+                    table += '<a href="#"><img src="/images/publicaciones/' + d.item.imagen + '" alt="Product image"></a>'
+                    table += '</figure>'
+
+                    table += '<h3 class="product-title">'
+                    table += '<a href="#">' + d.item.titulo + '</a>'
+                    table += '</h3>'
+
+                    table += '</div>'
+
+                    table += '</td>'
+                    table += '<td class="price-col">' + d.No + '</td>'
+                    table += '<td class="quantity-col">'
+                    table += '<div class="cart-product-quantity">'
+                    table += '<input type="text" class="form-control disabled text-center" value="' + d.qty + '" disabled>'
+                    table += '</div>'
+
+                    table += '</td>'
+                    table += '<td class="total-col">$' + d.price + '</td>'
+                    table += '</tr>'
+                });
+                document.getElementById('checkout').innerHTML = table;
+
+                data.forEach(t => {
+                    sub_total += t.price;
+                    total_nun += t.price;
+                });
+
+
+
+                let cliente = '<%=user.id%>'
+
+                document.getElementById('id_cliente').value = cliente;
+                document.getElementById('total').value = total_nun;
+                data.forEach(e => {
+
+
+
+                    //Body
+
+                    //detalle += '<form action="/ventas/transaccion" method="POST">'
+                    detalle += '<tr>'
+                    detalle += '<td><a href="#">' + e.item.titulo + '</a></td>'
+                    detalle += '<td class="text-right">$' + e.price + '</td>'
+                    detalle += '<input type="hidden" class="form-control" name="id_boleto" value="' + e.item.id_boleto + '">'
+                    detalle += '<input type="hidden" class="form-control" name="numero" value="' + e.No + '">'
+                    detalle += '</tr>'
+                        // detalle += '</form>'
+
+                    rifas.push(e.item.id_boleto);
+                    rifas.push(e.No);
+                    console.log({
+                        distancia: e.No.length
+                    });
+
+                    if (e.No.length > e.qty) {
+
+                        $('#number-modal').modal('show')
+
+                    }
+                });
+
+                rifas.push(sub_total)
+                document.getElementById('detail').innerHTML = detalle;
+                document.getElementById("sub").innerHTML = '$' + sub_total;
+                document.getElementById('total-td').innerHTML = '$' + total_nun;
+            }
+
+
+
+
+
+        }
+
+        function NoValid() {
+            $('#number-modal').modal('hide')
+            fetch('/cart/destroy/session_cart')
+                .then(res => res.json())
+                .then(data => console.log(data));
+            localStorage.removeItem('removeData');
+            fetch('/cart/drop');
+            localStorage.removeItem('cart');
+            var x = document.getElementById('fade');
+            x.style.display = "block";
+            setTimeout(() => {
+                window.location.href = "https://brujirifas.com/inicio";
+            }, 1000);
+
+        }
+
+        function submitForm() { // submits form
+            document.getElementById("form_ventas").submit();
+
+        }
+
+        function refresh() {
+            var x = document.getElementById('fade');
+            x.style.display = "block";
+
+            localStorage.removeItem('cart');
+            localStorage.removeItem('initialTime');
+
+            localStorage.removeItem('executed');
+            if (document.getElementById("btn_pagar")) {
+                setTimeout("submitForm()", 3000); // set timout 
+            }
+            console.log("denttro de la funcipn");
+        }
+
+
+
+        function onClickPago(id) {
+            const forma_de_pago = document.getElementById(id).innerText;
+
+            rifas.push(forma_de_pago);
+            localStorage.setItem('venta', true)
+
+            document.getElementById('forma_pago').value = forma_de_pago;
+
+            console.log({
+                rifas: document.getElementById('forma_pago').value
+            });
+
+
+            // document.getElementById('rifas').value = rifas;
+        }
+
+        let banner = document.getElementById('header_imag');
+
+
+
+        if (screen.width <= 400) {
+            banner.style.backgroundImage = 'url(assets/images/video/checkout_mobile.svg)';
+            banner.style.height = '170px';
+
+            //  card.style = 'padding-left: 90px;';
+            document.getElementById('titleH1').innerText = ''
+        } else {
+            banner.style.backgroundImage = 'url(assets/images/video/checkout.svg)';
+            // banner.style.width = '1920px';
+        }
+    </script>

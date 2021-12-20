@@ -1,0 +1,53 @@
+<% layout('../layout') %>
+<div class="mdc-layout-grid">
+  <div class="mdc-layout-grid__inner">
+    <div class="mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-8-desktop stretch-card">
+      <div class="mdc-card p-0 to-do-list">
+        <div class="d-flex bg-primary text-white to-do-list-header">
+          <h4 class="card-title">ventas</h4>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hoverable">
+            <thead>
+              <tr  class="bg-primary">
+                
+                <th class="text-center text-white">Cliente</th>
+                <th class="text-center text-white">Forma de Pago</th>
+                <th class="text-center text-white">Fecha de Pago</th>
+                <th class="text-center text-white">Precio</th>
+                <th class="text-center text-white">Total</th>
+                <th class="text-center text-white">Empleado</th>
+                <th class="text-center text-white">Editar</th>
+                <th class="text-center text-white">Borrar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% ventas.forEach(function(venta) { %>
+              <tr>
+                <% i = 1; %>
+                
+                <td class="text-left"><%= venta.cliente %></td>
+                <td><%= venta.forma_pago %></td>
+                <td><%= moment(venta.fecha_pago).format('DD/MM/YYYY') %></td>
+                <td>$<%= venta.num_transaccion %></td>
+                <td><%= venta.total %></td>
+                <td>$<%= venta.empleado %></td>
+                <td>
+                  <a href="/ventas/edit/<%= venta.id %>" class="mdc-button mdc-button--raised filled-button--info">
+                    <i class="material-icons">edit</i>
+                  </a>
+                </td>
+                <td>
+                  <a href="/ventas/delete/<%= venta.id %>" class="mdc-button mdc-button--raised filled-button--secondary">
+                    <i class="material-icons">delete</i>
+                  </a>
+                </td>
+              </tr>
+              <% i++}); %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

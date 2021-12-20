@@ -1,0 +1,1005 @@
+<% layout('../layout') %>
+<div class="mdc-layout-grid">
+  <div>
+    <div style="display: block;
+        margin-left: auto;
+        margin-right: auto;"
+      class="mdc-layout-grid__cell stretch-card col-md-10 col-xxl-8 mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+      <div class="mdc-card p-0  to-do-list">
+        <div class="align-items-center back__head text-white to-do-list-header">
+          <div class="col-xs-6">
+            <h2 style="text-align: center;"><i class="material-icons">person_add</i>Lista de <b>Empleados</b></h2>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="input-group mb-3">
+                <div class="col text-center">
+                  <a href="/empleados/add" class="btn btn-light btn__center__add  btn-white btn-animate btn-sm" style="color: #2B579A;"><span
+                      class="material-icons" style="vertical-align: -6px;">
+                      library_add
+                    </span> Agregar Empleado</a>
+                </div>
+                <div class="col text-center">
+                  <a href="/empleados/ausencias"
+                    class="btn btn-light btn__center__add  btn-white btn-animate btn-sm" style="color: #2B579A;"><span class="material-icons"
+                      style="vertical-align: -6px;">
+                      assignment
+                    </span> Lista de Ausencias</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <!--foto-->
+      <!--fin foto-->
+      <!--lista-->
+      <% i=1; %>
+
+      <!--<input placeholder="Búsqueda" type="text" name="search" id="busqueda" onkeyup="getEmpleados()">-->
+
+
+      <div class="mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-3-desktop stretch-card">
+
+        <div class="table-responsive" style="overflow: hidden;">
+          <table class="table table-hoverable" id="myTable">
+            <thead>
+              <tr class="back__head">
+                <th class="text-white text-center">Acciones</th>
+                <th class="text-white text-center">Codigo</th>
+                <th class="text-white text-center">Nombres</th>
+                <th class="text-white text-center">Apellidos</th>
+                <th class="text-white text-center">Foto</th>
+              </tr>
+            </thead>
+            <tbody id="tableE">
+              <% empleados.forEach( (e) => { %>
+              <tr>
+
+                <td class="text-left">
+                  <a onclick="myFunction('<%= e.id %>')" data-toggle='modal' data-target='#myModal'
+                    class="mdc-button mdc-button--raised back__head" >
+                    <i class="material-icons" data-toggle="tooltip" data-placement="bottom" title="Ausencias">assignment</i>
+                  </a>
+                  &nbsp;
+
+                  <a  class="mdc-button mdc-button--warning mdc-ripple-upgraded mdc-button--raised"
+                    href='/empleados/edit/<%= e.cod_empleado %>' data-toggle="tooltip" data-placement="bottom" title="Editar"><i class='material-icons'>edit</i></a>
+
+                  &nbsp;
+
+                  <a class="mdc-button mdc-button--raised filled-button--info"
+                    href='/empleados/perfil/<%= e.cod_empleado %>' data-toggle="tooltip" data-placement="bottom" title="Perfil del Empleado"><i class='material-icons'>info</i></a>
+                </td>
+                <td><%= e.cod_empleado %></td>
+                <td><%= e.nombres %></td>
+                <td><%= e.apellidos %></td>
+                <td><img class="avatarTable img" src="http://localhost:3000/images/empleados/<%= e.foto %>"
+                    alt="<%= e.foto %>"></td>
+
+              </tr>
+              <% i++}) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!--fin de lista-->
+    </div>
+  </div>
+  <!--Aquí empieza el tab-->
+
+</div>
+
+<!--Inicio Modal-->
+<div class="modal fade" id="myModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+
+
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close" onclick="document.getElementById('formUOrI').reset();
+        $('#tipo').empty();
+        $('#motivo').empty();
+        $('#collapseExample').collapse('hide');"></button>
+
+      </div>
+      <div class="modal-body">
+        <div>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <div class="card user-card shadow-none">
+                  <div class="card-header">
+                    <h5 class="d-flex justify-content-center">Perfil</h5>
+                  </div>
+                  <div class="card-block">
+                    <div class="user-image">
+                      <img id="imagenC" class="img-radius img" alt="User-Profile-Image">
+                    </div>
+                    <h6 class="f-w-600 m-t-25 m-b-10" id="nombres"></h6>
+                    <p class="text-muted" id="apellidos"></p>
+                    <hr>
+                    <a class='mdc-button mdc-button--raised' data-toggle="collapse" href="#collapseExample"
+                      role="button" aria-expanded="false" aria-controls="collapseExample" onclick="javascript:document.querySelector('#saveOrUpdate').textContent  = 'Guardar'; document.getElementById('formUOrI').action = '/empleados/ausencias/add'; document.getElementById('formUOrI').reset();
+                      $('#tipo').empty();
+                      $('#motivo').empty();">
+                      Agregar Ausencia <i class="fa fa-plus" aria-hidden="true" data-toggle="tooltip"
+                        data-placement="top" title="Agregar Ausencia"></i>
+                    </a>
+                    <div class="collapse" id="collapseExample">
+                      <div class="card card-body">
+                        <form id="formUOrI" method="POST" class="needs-validation" novalidate>
+                          <div class="row justify-content-center">
+                            <div class="col">
+                              <div class="form-group">
+                                <label for="fechaI">Fecha Inicio</label>
+                                <input type="date" class="form-control form-control-sm" name="fecha_inicio" id="fechaI" required>
+                              </div>
+
+                            </div>
+                            <div class="col">
+                              <div class="form-group">
+                                <label for="fechaF">Fecha Fin</label>
+                                <input type="date" class="form-control form-control-sm" id="fechaF" name="fecha_fin" required>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row justify-content-center">
+                            <div class="col">
+                              <div class="form-group">
+                                <br>
+                                <textarea class="form-control form-control-sm" id="textArea" name="descripcion"
+                                  placeholder="Descripción"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row justify-content-center">
+                            <div class="col">
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="yesno" id="yesCheck" value="option1"
+                                  onclick="javascript:check();" checked>
+                                <label class="form-check-label" for="yesCheck">Incapacidad</label>
+                              </div>
+
+                            </div>
+                            <div class="col">
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="yesno" id="noCheck" value="option2"
+                                  onclick="javascript:check();">
+                                <label class="form-check-label" for="noCheck">Otro Motivo</label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row justify-content-center">
+                            <div id="ifYes" style="display: block;">
+                              <div class="col">
+                                <div class="form-group">
+                                  <select name="id_tipo_ausencia" id="tipo" class="tipos" required>
+
+                                  </select>
+                                </div>
+                              </div>
+
+                            </div>
+                            <div id="ifNot" style="display: none;">
+                              <div class="col">
+                                <div class="form-group">
+                                  <select name="id_motivo_ausencia" id="motivo" class="motivos" required>
+
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+
+                                <input type="hidden" class="form-control form-control-sm" name="id_empleado"
+                                  id="idEmpleado">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row justify-content-center">
+                            <div class="col">
+                              <br>
+                              <button type="submit" class="btn btn-primary" id="saveOrUpdate"></button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                    <div class="bg-c-blue counter-block m-t-10 p-20">
+                      <div class="row">
+                        <table>
+                          <thead>
+                            <tr class="bg-primary">
+                              <th class="text-white text-center">No</th>
+                              <th class="text-white text-center">Fecha de Inicio</th>
+                              <th class="text-white text-center">Fecha Fin</th>
+                              <th class="text-white text-center">Incapacidad</th>
+                              <th class="text-white text-center">Otro Motivo</th>
+                              <th class="text-white text-center">Acciones</th>
+                            </tr>
+                          </thead>
+                          <tbody id="tableTest"></tbody>
+                        </table>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>-->
+    </div>
+    <!--Fin Modal-->
+  </div>
+</div>
+<div class="btn-group-fab" role="group" aria-label="FAB Menu">
+  <div>
+    <button type="button" class="btn btn-main btn-primary has-tooltip" data-placement="left" title="Menu"> <i class="fa fa-bars"></i> </button>
+    <button type="button" class="btn btn-sub btn-white has-tooltip" data-placement="left" title="Agregar" onclick="javascript:window.location.href = '/empleados/add'"> <i class="bi bi-person-plus" style="color: #2B579A;"></i> </button>
+    <button type="button" class="btn btn-sub btn-white has-tooltip" data-placement="left" title="Lista de Ausencias" onclick="javascript:window.location.href = '/empleados/ausencias'"> <i class="bi bi-card-checklist" style="color: #2B579A;"></i> </button>
+    
+  </div>
+</div>
+</div>
+<style>
+  .select2-container {
+    z-index: 9999999 !important;
+  }
+
+
+
+  .card.user-card {
+    border-top: none;
+    -webkit-box-shadow: 0 0 1px 2px rgba(0, 0, 0, 0.05), 0 -2px 1px -2px rgba(0, 0, 0, 0.04), 0 0 0 -1px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 1px 2px rgba(0, 0, 0, 0.05), 0 -2px 1px -2px rgba(0, 0, 0, 0.04), 0 0 0 -1px rgba(0, 0, 0, 0.05);
+    -webkit-transition: all 150ms linear;
+    transition: all 150ms linear;
+  }
+
+  .card {
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+    box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+    border: none;
+    margin-bottom: 30px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .card .card-header {
+    background-color: transparent;
+    border-bottom: none;
+    padding: 25px;
+  }
+
+  .card .card-header h5 {
+    margin-bottom: 0;
+    color: #222;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-block;
+    margin-right: 10px;
+    line-height: 1.4;
+  }
+
+  .card .card-header+.card-block,
+  .card .card-header+.card-block-big {
+    padding-top: 0;
+  }
+
+  .user-card .card-block {
+    text-align: center;
+  }
+
+  .card .card-block {
+    padding: 25px;
+  }
+
+  .user-card .card-block .user-image {
+    position: relative;
+    margin: 0 auto;
+    display: inline-block;
+    padding: 5px;
+    width: 110px;
+    height: 110px;
+  }
+
+  .user-card .card-block .user-image img {
+    z-index: 20;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 100px;
+    height: 100px;
+  }
+
+  .img-radius {
+    border-radius: 50%;
+  }
+
+  .f-w-600 {
+    font-weight: 600;
+  }
+
+  .m-b-10 {
+    margin-bottom: 10px;
+  }
+
+  .m-t-25 {
+    margin-top: 25px;
+  }
+
+  .m-t-15 {
+    margin-top: 15px;
+  }
+
+  .card .card-block p {
+    line-height: 1.4;
+  }
+
+  .text-muted {
+    color: #919aa3 !important;
+  }
+
+  .user-card .card-block .activity-leval li.active {
+    background-color: #2ed8b6;
+  }
+
+  .user-card .card-block .activity-leval li {
+    display: inline-block;
+    width: 15%;
+    height: 4px;
+    margin: 0 3px;
+    background-color: #ccc;
+  }
+
+  .user-card .card-block .counter-block {
+    color: #fff;
+  }
+
+  .bg-c-blue {
+    background: linear-gradient(45deg, #4099ff, #73b4ff);
+  }
+
+  .bg-c-green {
+    background: linear-gradient(45deg, #2ed8b6, #59e0c5);
+  }
+
+  .bg-c-yellow {
+    background: linear-gradient(45deg, #FFB64D, #ffcb80);
+  }
+
+  .bg-c-pink {
+    background: linear-gradient(45deg, #FF5370, #ff869a);
+  }
+
+  .m-t-10 {
+    margin-top: 10px;
+  }
+
+  .p-20 {
+    padding: 20px;
+  }
+
+  .user-card .card-block .user-social-link i {
+    font-size: 30px;
+  }
+
+  .text-facebook {
+    color: #3B5997;
+  }
+
+  .text-twitter {
+    color: #42C0FB;
+  }
+
+  .text-dribbble {
+    color: #EC4A89;
+  }
+
+  .user-card .card-block .user-image:before {
+    bottom: 0;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+  }
+
+  .user-card .card-block .user-image:after,
+  .user-card .card-block .user-image:before {
+    content: "";
+    width: 100%;
+    height: 48%;
+    border: 2px solid #4099ff;
+    position: absolute;
+    left: 0;
+    z-index: 10;
+  }
+
+  .user-card .card-block .user-image:after {
+    top: 0;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+  }
+
+  .user-card .card-block .user-image:after,
+  .user-card .card-block .user-image:before {
+    content: "";
+    width: 100%;
+    height: 48%;
+    border: 2px solid #4099ff;
+    position: absolute;
+    left: 0;
+    z-index: 10;
+  }
+</style>
+<!--Axios & Jquery (para stepper)-->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/assets/js/validator.js"></script>
+<!--Populate selects-->
+<% block('footerjs', `<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script> 
+    
+<script>
+  
+    
+$(document).ready(function() {    
+  //funcion para llamar los municipios
+  $('.tipos').select2({
+    language: {
+        noResults: function() {
+            return "No hay resultado";        
+        },
+        searching: function() {
+            return "Buscando..";
+        }
+    },      
+    placeholder: 'Incapacidades',    
+    width: '100%', 
+    theme: "bootstrap-5",
+    dropdownParent: $('#myModal'),     
+    ajax: {        
+      url: '/tipos/list',        
+      dataType: 'json',                  
+      data: function (params) {          
+        return {            
+          q: params.term,             
+          page: params.page          
+        };        
+      },        
+      processResults: function (data, params) {          
+      return {            
+          results: data,          
+      };        
+      },        
+      cache: true             
+      }    
+    });
+    });
+    
+
+      
+  //funcion para llamar las sucursales
+  $('.motivos').select2({
+    language: {
+        noResults: function() {
+            return "No hay resultado";        
+        },
+        searching: function() {
+            return "Buscando..";
+        }
+    },      
+    placeholder: 'Otros Motivos',    
+    width: '100%',    
+    theme: "bootstrap-5",
+    dropdownParent: $('#myModal'),  
+    ajax: {        
+      url: '/motivos/list',        
+      dataType: 'json',                  
+      data: function (params) {          
+        return {            
+          q: params.term,             
+          page: params.page          
+        };        
+      },        
+      processResults: function (data, params) {          
+      return {            
+          results: data,          
+      };        
+      },        
+      cache: true             
+      }    
+    });
+ 
+
+    $(document).ready(function() {    
+  //funcion para llamar los cargos
+  $('.cargos').select2({
+    language: {
+        noResults: function() {
+            return "No hay resultado";        
+        },
+        searching: function() {
+            return "Buscando..";
+        }
+    },      
+    placeholder: 'Cargos',    
+    width: '100%',  
+    theme: "bootstrap-5",
+    dropdownParent: $('#myModal'),      
+    ajax: {        
+      url: '/cargos/list',        
+      dataType: 'json',                  
+      data: function (params) {          
+        return {            
+          q: params.term,             
+          page: params.page          
+        };        
+      },        
+      processResults: function (data, params) {          
+      return {            
+          results: data,          
+      };        
+      },        
+      cache: true             
+      }    
+    });
+    });
+    
+    $(document).ready(function() {    
+  //funcion para llamar los contratos
+  $('.contratos').select2({
+    language: {
+        noResults: function() {
+            return "No hay resultado";        
+        },
+        searching: function() {
+            return "Buscando..";
+        }
+    },      
+    placeholder: 'Contratos',    
+    width: '100%', 
+    theme: "bootstrap-5",
+    dropdownParent: $('#myModal'),       
+    ajax: {        
+      url: '/contratos/list',        
+      dataType: 'json',                  
+      data: function (params) {          
+        return {            
+          q: params.term,             
+          page: params.page          
+        };        
+      },        
+      processResults: function (data, params) {          
+      return {            
+          results: data,          
+      };        
+      },        
+      cache: true             
+      }    
+    });
+    });
+
+        
+        </script>`) 
+-%>
+<!--Petición axios para tabla y busqueda con parametros-->
+<script>
+  $(document).ready(function () {
+    $(function() {
+  $('.btn-group-fab').on('click', '.btn', function() {
+    $('.btn-group-fab').toggleClass('active');
+  });
+  $('has-tooltip').tooltip();
+});
+    $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
+    var datos = "";
+    // Obtiene los datos atravez de una petición axios al servidor
+    const getEmpleados = async () => {
+      //var param = document.getElementById('busqueda').value;
+      var uri = '/empleados/edit/all'
+      await axios.get(uri)
+        .then(res => {
+          //console.log(res.data)
+          datos = res.data;
+          // console.log(datos)
+          //return datos;
+
+          let tableText = '';
+
+          /*datos.forEach((empleado) => {
+            tableText += "<tr>";
+            tableText += "<td class='text-center'>" +
+              "<a type='button' class='btn btn-outline-primary btn-sm' onclick="+myFunction(empleado.cod_empleado)+"" + ">" +
+              "<i class='material-icons'>assignment</i>" +
+              "</a>" + "&nbsp;" +
+              "<a  id=" + empleado.id + " class='btn btn-outline-success btn-sm' href='/empleados/edit/" +
+              empleado.cod_empleado + "' >" +
+              "<i class='material-icons'>edit</i>" +
+              "</a>" + "&nbsp;" + "<a type='button' class='btn btn-outline-danger btn-sm' onclick='" +
+              assignValue(empleado) + "'" + "data-toggle='modal' data-target='#myModal'>" +
+              "<i class='material-icons'>delete</i>" +
+              "</a>" + "</td>";
+            tableText += "<td class='text-center'>" + empleado.cod_empleado + "</td>";
+            tableText += "<td class='text-center'>" + empleado.nombres + "</td>";
+            tableText += "<td class='text-center'>" + empleado.apellidos + "</td>";
+            tableText += "<td class='text-center'>" +
+              "<img class='avatarTable img'  src='http://localhost:3000/images/empleados/" + empleado
+              .foto +
+              "'>" +
+              "</img>" + "</td>";
+            tableText += "</tr>";
+            // console.log(empleado);
+          });
+          document.getElementById('tableE').innerHTML = tableText;*/
+
+          $('#myTable').DataTable({
+            responsive: true,
+            language: {
+              "decimal": "",
+              "emptyTable": "No hay información",
+              "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+              "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+              "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+              "infoPostFix": "",
+              "thousands": ",",
+              "lengthMenu": "Mostrar _MENU_ Entradas",
+              "loadingRecords": "Cargando...",
+              "processing": "Procesando...",
+              "search": "Buscar:",
+              "zeroRecords": "Sin resultados encontrados",
+              "paginate": {
+                "first": "Primero",
+                "last": "Ultimo",
+                "next": "Siguiente",
+                "previous": "Anterior"
+              }
+            },
+          });
+
+          var current_fs, next_fs, previous_fs; //fieldsets
+          var opacity;
+
+          $(".next").click(function () {
+
+            current_fs = $(this).parent();
+            next_fs = $(this).parent().next();
+
+            //Add Class Active
+            $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+            //show the next fieldset
+            next_fs.show();
+            //hide the current fieldset with style
+            current_fs.animate({
+              opacity: 0
+            }, {
+              step: function (now) {
+                // for making fielset appear animation
+                opacity = 1 - now;
+
+                current_fs.css({
+                  'display': 'none',
+                  'position': 'relative'
+                });
+                next_fs.css({
+                  'opacity': opacity
+                });
+              },
+              duration: 600
+            });
+          });
+
+          $(".previous").click(function () {
+
+            current_fs = $(this).parent();
+            previous_fs = $(this).parent().prev();
+
+            //Remove class active
+            $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+            //show the previous fieldset
+            previous_fs.show();
+
+            //hide the current fieldset with style
+            current_fs.animate({
+              opacity: 0
+            }, {
+              step: function (now) {
+                // for making fielset appear animation
+                opacity = 1 - now;
+
+                current_fs.css({
+                  'display': 'none',
+                  'position': 'relative'
+                });
+                previous_fs.css({
+                  'opacity': opacity
+                });
+              },
+              duration: 600
+            });
+          });
+
+          $('.radio-group .radio').click(function () {
+            $(this).parent().find('.radio').removeClass('selected');
+            $(this).addClass('selected');
+          });
+
+          $(".submit").click(function () {
+            return false;
+          })
+
+        })
+        .catch(err => {
+          console.error(err);
+        })
+    }
+    getEmpleados();
+
+
+    // Recbie un empleado desde el boton seleccionado en getEmpleados y asigna empleado a los values
+    const assignValue = (empleado) => {
+      //console.log(empleado)
+
+    };
+
+
+
+    // Insert Row, Atravez de Post de Axios
+    const insertE = () => {
+      const id = document.getElementById('cod_empleado').value;
+      const uri = "/edit_personal/" + id;
+      axios.post(uri)
+        .then(res => {
+          //console.log(res)
+
+        })
+        .catch(err => {
+          console.error(err);
+        })
+    };
+  });
+
+  function myFunction(cod_empleado) {
+    let cod = cod_empleado;
+    document.getElementById('idEmpleado').value = cod
+    axios.get("/empleados/ausencias/" + cod)
+      .then(res => {
+        console.log(res)
+        const empleado = res.data[0];
+        document.getElementById('imagenC').src = 'http://localhost:3000/images/empleados/' + empleado.foto
+        document.getElementById('nombres').innerHTML = empleado.empleado
+        document.getElementById('apellidos').innerHTML = empleado.cod_empleado
+        let tableText = '';
+        let counter = 0;
+        let ausencia = '';
+        let incapacidad = '';
+        if (res.data[0].fecha_fin != null && res.data[0].idEmpleado == cod) {
+          res.data.forEach((element) => {
+            console.log(element)
+            //document.getElementById('contenido').innerHTML =  element
+
+            counter = counter + 1
+            ausencia = element.motivo_ausencia === null ? "-" : element.motivo_ausencia;
+            incapacidad = element.tipo_incapacidad === null ? "-" : element.tipo_incapacidad;
+
+            tableText += "<tr>";
+            tableText += "<td class='text-center'>" + counter + "</td>";
+
+            tableText += "<td class='text-center'>" + format(element.fecha_inicio) + "</td>";
+
+            tableText += "<td class='text-center'>" + format(element.fecha_fin) + "</td>";
+
+            tableText += "<td class='text-center'>" + incapacidad + "</td>";
+
+            tableText += "<td class='text-center'>" + ausencia + "</td>";
+
+            tableText += "<td class='text-center'>" + "<a type='button' style='margin-top: 5px;' class='mdc-button mdc-button--raised icon-button shaped-button mdc-button--warning mdc-ripple-upgraded' id=" + element.id +
+              " onclick='getValues(this.id)'  data-toggle='tooltip' data-placement='bottom' title='editar'><i class='fa fa-pencil' aria-hidden='true'></i></a>" +
+              "&nbsp; &nbsp;" + "<a style='margin-top: 5px;' type='button' class='mdc-button mdc-button--raised icon-button shaped-button filled-button--secondary mdc-ripple-upgraded' id=" + element.id +
+              " onclick='eliminar(this.id)' data-toggle='tooltip' data-placement='bottom' title='Eliminar'><i class='fa fa-trash-o' aria-hidden='true'></i></a>" + "</td>";
+
+            tableText += "</tr>";
+            // console.log(empleado);
+
+            //document.getElementById('idEmpleado').value = cod
+          });
+
+        } else {
+          //ausencia = element.motivo_ausencia === null ? "-" : element.motivo_ausencia;
+          //incapacidad = element.tipo_incapacidad === null ? "-" : element.tipo_incapacidad;
+
+          tableText += "<tr>";
+          tableText += "<td class='text-center'></td>";
+
+          tableText += "<td class='text-center'></td>";
+
+          tableText += "<td class='text-center'></td>";
+
+          tableText += "<td class='text-center'></td>";
+
+          tableText += "<td class='text-center'></td>";
+
+          //tableText += "<td class='text-center'>" + "<a type='button'  onclick='getValues(this.id)'><i class='material-icons'>edit</i></a>" + "</td>";
+
+          tableText += "</tr>";
+        }
+        document.getElementById('tableTest').innerHTML = tableText;
+      })
+      .catch(err => {
+        console.error(err);
+      })
+
+  }
+
+  function format(inputDate) {
+    var date = new Date(inputDate);
+    if (!isNaN(date.getTime())) {
+      // Months use 0 index.
+      let month = date.getMonth() + 1
+      return date.getDate() + '/' + month + '/' + date.getFullYear();
+    }
+  }
+
+  function check() {
+    if (document.getElementById('yesCheck').checked) {
+      document.getElementById('ifYes').style.display = 'block';
+      document.getElementById('ifNot').style.display = 'none';
+      document.getElementById("tipo").required = true;
+      document.getElementById("motivo").required = false;
+    } else if ('noCheck') {
+      document.getElementById('ifYes').style.display = 'none';
+      document.getElementById('ifNot').style.display = 'block';
+      document.getElementById("tipo").required = false;
+      document.getElementById("motivo").required = true;
+    }
+
+  }
+
+  function isRequired(value) {
+    return value;
+  }
+
+  function isRequiredM(value) {
+    return value;
+  }
+
+  function getValues(element) {
+    console.log(element)
+    $.getJSON('/empleados/ausencias/values/' + element, (res) => {
+      console.log(res);
+      document.querySelector("#saveOrUpdate").textContent = "actualizar"
+      $("#collapseExample").collapse('show');
+      document.getElementById('fechaI').value = res[0].fecha_inicio.slice(0, 10);
+      document.getElementById('fechaF').value = res[0].fecha_fin.slice(0, 10);
+      document.getElementById('textArea').value = res[0].descripcion;
+      //let isInOrMot = res[0].id_tipo_ausencia === null ? document.getElementById('noCheck').checked = true : document.getElementById('yesCheck').checked
+      if (res[0].id_tipo_ausencia === null) {
+        document.getElementById('noCheck').checked = true;
+        document.getElementById('ifYes').style.display = 'none';
+        document.getElementById('ifNot').style.display = 'block';
+        document.getElementById("tipo").required = false;
+        document.getElementById("motivo").required = true;
+
+        var select = document.getElementById('motivo');
+        var option = document.createElement('option');
+        option.value = res[0].id_motivo_ausencia;
+        option.text = res[0].textMotivo;
+        option.selected = res[0].id_motivo_ausencia;
+        select.add(option);
+      } else {
+        document.getElementById('yesCheck').checked = true;
+        document.getElementById('ifYes').style.display = 'block';
+        document.getElementById('ifNot').style.display = 'none';
+        document.getElementById("tipo").required = true;
+        document.getElementById("motivo").required = false;
+
+        var select = document.getElementById('tipo');
+        var option = document.createElement('option');
+        option.value = res[0].id_tipo_ausencia;
+        option.text = res[0].textTipo;
+        option.selected = res[0].id_tipo_ausencia;
+        select.add(option);
+      }
+
+      document.getElementById('formUOrI').action = '/empleados/ausencias/values/' + element
+    });
+  }
+
+  window.onload = function cleanForm() {
+    /*document.getElementById('fechaI').value = '';
+    document.getElementById('fechaF').value = '';
+    document.getElementById('textArea').value = '';
+
+    var select = document.getElementById('tipo');
+    var option = document.createElement('option');
+    option.value = ' ';
+    option.text = ' ';
+    option.selected = ' ';
+    select.add(option);
+
+    var sel = document.getElementById('motivo');
+    var opt = document.createElement('option');
+    opt.value = '';
+    opt.text = '';
+    opt.selected = '';
+    sel.add(opt);
+
+    document.getElementById('yesCheck').checked = true;
+    document.getElementById('ifYes').style.display = 'block';
+    document.getElementById('ifNot').style.display = 'none';*/
+    document.getElementById('formUOrI').reset();
+    $("#tipo").empty();
+    $("#motivo").empty();
+    //$("#tipos").select2("val", "");
+    $("#collapseExample").collapse('hide');
+  }
+
+  function eliminar(params) {
+    $.ajax({
+      url: '/empleados/ausencias/delete/' + params,
+      type: 'GET',
+      success: function (result) {
+        location.reload();
+      }
+    });
+
+  }
+
+  '<% if(message.length > 0 && message == "Guardado con exito" || message.length > 0 && message == "Actualizado con exito") { %>'
+  //console.log('<%= message %>')
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: '<%= message %>'
+    })
+ 
+  '<% } else if (message.length > 0 && message == "Ocurriò un error inesperado") {%>'
+  const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'error',
+      title: '<%= message %>'
+    })
+  '<% } %>'
+</script>

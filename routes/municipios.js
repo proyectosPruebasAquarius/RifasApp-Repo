@@ -7,8 +7,10 @@ const { isLoggedIn } = require('../config/auth');
 //ruta para listar los municipios en select2
 router.get("/list", async (req, res) => {
    const nombre = req.query.q;
-   const municipios = await 
-   pool.query("select a.id, concat(a.nombre,' - ', b.nombre) as text from municipios as a inner join departamentos as b on a.id_departamento = b.id where a.nombre like '%" + nombre + "%'");
+   const municipios = nombre != null && nombre != "" ? await 
+   pool.query("select a.id, concat(a.nombre,' - ', b.nombre) as text from municipios as a inner join departamentos as b on a.id_departamento = b.id where a.nombre like '%" + nombre + "%'") : 
+   await 
+   pool.query("select a.id, concat(a.nombre,' - ', b.nombre) as text from municipios as a inner join departamentos as b on a.id_departamento = b.id");
    res.send(municipios);
 });
 module.exports = router;

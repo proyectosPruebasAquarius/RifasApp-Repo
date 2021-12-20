@@ -1,364 +1,276 @@
 <% layout('layout') -%>
-<div class="mdc-card">
-    <h6 class="card-title">Switch</h6>
-    <div class="template-demo">
-      <div class="mdc-switch" data-mdc-auto-init="MDCSwitch">
-        <div class="mdc-switch__track"></div>
-        <div class="mdc-switch__thumb-underlay">
-          <div class="mdc-switch__thumb">
-              <input type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch">
-          </div>
-        </div>
-      </div>
-      <div class="mdc-switch mdc-switch--checked" data-mdc-auto-init="MDCSwitch">
-        <div class="mdc-switch__track"></div>
-        <div class="mdc-switch__thumb-underlay">
-          <div class="mdc-switch__thumb">
-              <input type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch" checked>
-          </div>
-        </div>
-      </div>
-      <div class="mdc-switch mdc-switch--disabled" data-mdc-auto-init="MDCSwitch">
-        <div class="mdc-switch__track"></div>
-        <div class="mdc-switch__thumb-underlay">
-          <div class="mdc-switch__thumb">
-              <input type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch">
-          </div>
-        </div>
-      </div>
-      <div class="mdc-switch mdc-switch--secondary" data-mdc-auto-init="MDCSwitch">
-        <div class="mdc-switch__track"></div>
-        <div class="mdc-switch__thumb-underlay">
-          <div class="mdc-switch__thumb">
-              <input type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch" checked>
-          </div>
-        </div>
-      </div>
-      <div class="mdc-switch mdc-switch--success" data-mdc-auto-init="MDCSwitch">
-        <div class="mdc-switch__track"></div>
-        <div class="mdc-switch__thumb-underlay">
-          <div class="mdc-switch__thumb">
-              <input type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch" checked>
-          </div>
-        </div>
-      </div>
-      <div class="mdc-switch mdc-switch--info" data-mdc-auto-init="MDCSwitch">
-        <div class="mdc-switch__track"></div>
-        <div class="mdc-switch__thumb-underlay">
-          <div class="mdc-switch__thumb">
-              <input type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch" checked>
-          </div>
-        </div>
-      </div>
-      <div class="mdc-switch mdc-switch--warning" data-mdc-auto-init="MDCSwitch">
-        <div class="mdc-switch__track"></div>
-        <div class="mdc-switch__thumb-underlay">
-          <div class="mdc-switch__thumb">
-              <input type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch" checked>
-          </div>
-        </div>
-      </div>
-      <div class="mdc-switch mdc-switch--light" data-mdc-auto-init="MDCSwitch">
-        <div class="mdc-switch__track"></div>
-        <div class="mdc-switch__thumb-underlay">
-          <div class="mdc-switch__thumb">
-              <input type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch" checked>
-          </div>
-        </div>
-      </div>
-      <div class="mdc-switch mdc-switch--dark" data-mdc-auto-init="MDCSwitch">
-        <div class="mdc-switch__track"></div>
-        <div class="mdc-switch__thumb-underlay">
-          <div class="mdc-switch__thumb">
-              <input type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch" checked>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-6-desktop stretch-card">
-  <div class="mdc-card">
-    <h6 class="card-title">Select Menu</h6>
-    <div class="template-demo">
-      <div class="mdc-select demo-width-class" data-mdc-auto-init="MDCSelect">
-        <input type="hidden" name="enhanced-select">
-        <i class="mdc-select__dropdown-icon"></i>
-        <div class="mdc-select__selected-text"></div>
-        <div class="mdc-select__menu mdc-menu-surface demo-width-class">
-          <ul class="mdc-list">
-            <li class="mdc-list-item mdc-list-item--selected" data-value="" aria-selected="true">
-            </li>
-            <li class="mdc-list-item" data-value="grains">
-              Bread, Cereal, Rice, and Pasta
-            </li>
-            <li class="mdc-list-item" data-value="vegetables">
-              Vegetables
-            </li>
-            <li class="mdc-list-item" data-value="fruit">
-              Fruit
-            </li>
-          </ul>
-        </div>
-        <span class="mdc-floating-label">Pick a Food Group</span>
-        <div class="mdc-line-ripple"></div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-</div>
-<div class="mdc-layout-grid">
-<div class="mdc-layout-grid__inner">
-<div class="mdc-layout-grid__cell--span-12">
-  <div class="mdc-card">
-    <h6 class="card-title">Text Field</h6>
-    <div class="template-demo">
-      <div class="mdc-layout-grid__inner">
-        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
-          <div class="mdc-text-field">
-            <input class="mdc-text-field__input" type="date" id="text-field-hero-input">
-            <div class="mdc-line-ripple"></div>
-            <label for="text-field-hero-input" class="mdc-floating-label">Name</label>
-          </div>
-        </div>
-        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
-          <div class="mdc-text-field mdc-text-field--outlined">
-            <input class="mdc-text-field__input" id="text-field-hero-input">
-            <div class="mdc-notched-outline">
-              <div class="mdc-notched-outline__leading"></div>
-              <div class="mdc-notched-outline__notch">
-                <label for="text-field-hero-input" class="mdc-floating-label">Name</label>
-              </div>
-              <div class="mdc-notched-outline__trailing"></div>
-            </div>
-          </div>
-        </div>
+
+    <% if (user.id_tipo_usuario ==1) { %>
+        <div class="page-wrapper mdc-toolbar-fixed-adjust">
+            <main class="content-wrapper">
+                <div class="mdc-layout-grid">
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+                            <div class="mdc-card info-card info-card--success">
+                                <div class="card-inner">
+                                    <h5 class="card-title">Ventas Diarias</h5>
+                                    <% if (VentaDiaria != null) { %>
+                                        <h5 class="font-weight-light pb-2 mb-1 border-bottom">
+                                            $<%=VentaDiaria %>
+                                        </h5>
+                                        <% }else{ %>
+                                            <h5 class="font-weight-light pb-2 mb-1 border-bottom">
+                                                No hay ventas
+                                            </h5>
+                                            <% } %>
+                                               
+                                                <div class="card-icon-wrapper">
+                                                    <i class="material-icons">dvr</i>
+                                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+                            <div class="mdc-card info-card info-card--danger">
+                                <div class="card-inner">
+                                    <h5 class="card-title" id="anual">Ganancia Anual del año: </h5>
+                                    <% if (VentaAnual != null) { %>
+                                        <h5 class="font-weight-light pb-2 mb-1 border-bottom">
+                                            $<%=VentaAnual  %>
+                                        </h5>
+                                        <% }else { %>
+                                            <h5 class="font-weight-light pb-2 mb-1 border-bottom">
+                                                No hay ventas Anuales
+                                            </h5>
+                                            <% } %>
+                                               
+                                                <div class="card-icon-wrapper">
+                                                    <i class="material-icons">attach_money</i>
+                                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+                            <div class="mdc-card info-card info-card--primary">
+                                <div class="card-inner">
+                                    <h5 class="card-title">Rifa con mas participaciones</h5>
+                                    <% if (maxParticipation != null) { %>
+                                      <h5 class="font-weight-light pb-2 mb-1 border-bottom"> <%=maxParticipation%> </h5>
+                                    <% } else{%>
+                                        <h5 class="font-weight-light pb-2 mb-1 border-bottom"> Todavía noy hay rifas activas </h5>
+                                        <%}%>
+                                   
+                                    <p class="tx-12 text-muted"> <%= maxPerson%> personas estan participando</p>
+                                    <div class="card-icon-wrapper">
+                                        <i class="material-icons">trending_up</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+                            <div class="mdc-card info-card info-card--info">
+                                <div class="card-inner">
+                                    <h5 class="card-title">Categoria de Productos con mas participaciones</h5>
+    
+                                    <% if (popular != null) { %>
+                                      
+                                     <h5 class="font-weight-light pb-2 mb-1 border-bottom"> <%=popular  %>  </h5>
+                                    <% } else { %>
+                                        <h5 class="font-weight-light pb-2 mb-1 border-bottom"> Todavía noy hay rifas activas </h5>
+                                        <% } %> 
+                                   
+                                    <p class="tx-12 text-muted"><%= maxPersonPopular%> personas estan participando  </p>
+                                    <div class="card-icon-wrapper">
+                                        <i class="material-icons">category</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        
+                       
 
 
-        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
-          <div class="mdc-text-field mdc-text-field--outlined">
-            <input class="mdc-text-field__input" id="text-field-hero-input">
-            <div class="mdc-notched-outline">
-              <div class="mdc-notched-outline__leading"></div>
-              <div class="mdc-notched-outline__notch">
-                <label for="text-field-hero-input" class="mdc-floating-label">Name</label>
-              </div>
-              <div class="mdc-notched-outline__trailing"></div>
-            </div>
-          </div>
-        </div>
+                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                            <div class="mdc-card d-block d-lg-flex flex-row p-0">
+                              <div class="w-lg-50">
+                                <div class="mdc-layout-grid__inner grid-gap-0">
+                                  
+                                  <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                                    <div class="d-block d-md-flex">
+                                      <div class="mdc-card box-shadow-none rounded-0 statitics-card">
+                                        <div class="d-flex justify-content-between statitics-card-header">
+                                          <h6 class="font-weight-light">Usuarios Totales</h6>
+                                         
+                                        </div>
+                                        <div class="d-flex justify-content-between mt-4 statitics-card-content">
+                                          <div>
+                                            <h3> <%=UsuarioAnual %></h3>
+                                            <% if (UsuarioDiario != null) { %>
+                                            <h6 class="font-weight-light">Usuarios Diarios: <%=UsuarioDiario %></h6>
+                                            <% } %>
+                                          </div>
+                                          <i class="material-icons text-success">people</i>
+                                        </div>
+                                      </div>
+                                      <div class="mdc-card box-shadow-none rounded-0 statitics-card">
+                                        <div class="d-flex justify-content-between statitics-card-header">
+                                          <h6 class="font-weight-light">Rifas Totales</h6>
+                                         
+                                        </div>
+                                        <div class="d-flex justify-content-between mt-4 statitics-card-content">
+                                          <div>
+                                            <h3><%=AllRifas%>  </h3>
+                                            <% if (RifasActivas != null) { %>
+                                            <h6 class="font-weight-light">Rifas Activas: <%=RifasActivas  %> </h6>
+                                            <% } %>
+                                          </div>
+                                          <i class="material-icons text-info">redeem</i>
+                                        </div>
+                                      </div>  
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="w-lg-50">
+                                <div class="mdc-layout-grid__inner grid-gap-0">
+                                  
+                                  <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                                    <div class="d-block d-md-flex">
+                                      <div class="mdc-card box-shadow-none rounded-0 statitics-card">
+                                        <div class="d-flex justify-content-between statitics-card-header">
+                                          <h6 class="font-weight-light">Ultima Venta</h6>
+                                         
+                                        </div>
+                                        <div class="d-flex justify-content-between mt-4 statitics-card-content">
+                                          <div>
+                                            <h4>$<%=lastSale.total%>  </h4>
+                                            <h6 class="font-weight-light">Cliente: <%=lastSale.cliente%> </h6>
+                                            
+                                          </div>
+                                          <i class="material-icons text-success">point_of_sale</i>
+                                        </div>
+                                      </div>
+                                      <div class="mdc-card box-shadow-none rounded-0 statitics-card">
+                                        <div class="d-flex justify-content-between statitics-card-header">
+                                          <h6 class="font-weight-light">Cliente con mas compras</h6>
+                                         
+                                        </div>
+                                        <div class="d-flex justify-content-between mt-4 statitics-card-content">
+                                          <div>
+                                            <h3>Compras: <%=mostSalePerson.compras %></h3>
+                                            <h6 class="font-weight-light">Cliente: <%=mostSalePerson.cliente %> </h6>
+                                          </div>
+                                          <i class="material-icons text-info">assessment</i>
+                                        </div>
+                                      </div>  
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>  
 
-        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
-          <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon">
-            <i class="material-icons mdc-text-field__icon">favorite</i>
-            <input class="mdc-text-field__input" id="text-field-hero-input">
-            <div class="mdc-notched-outline">
-              <div class="mdc-notched-outline__leading"></div>
-              <div class="mdc-notched-outline__notch">
-                <label for="text-field-hero-input" class="mdc-floating-label">Name</label>
-              </div>
-              <div class="mdc-notched-outline__trailing"></div>
-            </div>
-          </div>
+
+
+
+
+                        
+                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-8">
+                            <div class="mdc-card">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h4 class="card-title mb-2 mb-sm-0">Actividad del sistema</h4>
+                                   
+                                </div>
+                                <div class="d-block d-sm-flex justify-content-between align-items-center">
+                                    <h6 class="card-sub-title mb-0">Acciones realizadas en el sistema por los usuarios</h6>
+                                
+                                </div>
+                                <div class="chart-container mt-6" style="overflow-y: auto; max-height: 320px;" >
+                                    <div class="table-responsive mt-3">
+                                        <table class="table dashboard-table sales-table">
+                                          <thead  >
+                                            <tr>
+                                              <th class="text-center">Empleado</th>
+                                              <th class="text-center">Foto</th>
+                                              <th class="text-center">Host</th>
+                                              <th class="text-center">Tabla</th>
+                                              <th class="text-center">Acción</th>
+                                              <th class="text-center">Fecha de Registro</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                           
+                                              <% bitacora.forEach(function(bitacora) {%>
+                                              <tr>
+                                                <td class="text-center">
+                                                  <%= bitacora.empleado %> 
+                                                </td>
+                                                <td class="text-center">
+                                                    
+                                                    <img src="/images/empleados/<%= bitacora.foto %>" alt="Imagen del empleado" style="max-height: 50px;min-height: 50px;"> 
+                                                </td>
+                                                <td class="text-center">
+                                                    <%= bitacora.host %> 
+                                                </td>
+                                                <td class="text-center">
+                                                    <%= bitacora.tabla %> 
+                                                </td>
+                                                <td class="text-center">
+                                                    <%= bitacora.accion %> 
+                                                </td>
+                                                <td class="text-center">
+                                                    <%= bitacora.fecha_registro %> 
+                                                </td>
+                                              </tr>
+                                              <%});  %>
+                                            
+                                             
+                                          </tbody>
+                                        </table>
+                                      </div>
+                                </div>
+                            </div>
+                        </div>
+                  
+    
+                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4" >
+                            <div class="mdc-card p-0 product-list" style="overflow-y: auto; max-height: 420px;">
+                              <div class="product-list-header">
+                                <h4 class="card-title">Stock de Productos</h4>
+                                <h5 class="card-sub-title">Productos Utilizados en las rifas.</h5>  
+                              </div>                                              
+                              <% Productos.forEach(function(pro) {%>
+                               <div class="product-list-item">
+                                <div class="d-flex align-items-center">
+                                  <img src="/images/productos/<%= pro.imagen %>" alt="Imagen del Producto" style="max-height: 50px;min-height: 50px;">
+                                  <div class="ml-3">
+                                    <h5 class="font-weight-medium mb-0"> Producto: <%=pro.nombre  %>   </h5>
+                                    <p class="mb-0 text-muted">Stock: <%=pro.stock  %></p>
+                                  </div>
+                                </div>
+                               
+                              </div>
+                              <%});  %>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </main>
+    
+    
         </div>
-        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
-          <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-trailing-icon">
-            <i class="material-icons mdc-text-field__icon">visibility</i>
-            <input class="mdc-text-field__input" id="text-field-hero-input">
-            <div class="mdc-notched-outline">
-              <div class="mdc-notched-outline__leading"></div>
-              <div class="mdc-notched-outline__notch">
-                <label for="text-field-hero-input" class="mdc-floating-label">Name</label>
-              </div>
-              <div class="mdc-notched-outline__trailing"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-</div>
-<div class="mdc-layout-grid">
-<div class="mdc-layout-grid__inner">
-<div class="mdc-layout-grid__cell--span-12">
-  <div class="mdc-card">
-    <h6 class="card-title">Checkbox</h6>
-    <div class="template-demo">
-      <div class="mdc-form-field">
-        <div class="mdc-checkbox">
-          <input type="checkbox"
-                  class="mdc-checkbox__native-control"
-                  id="checkbox-1"/>
-          <div class="mdc-checkbox__background">
-            <svg class="mdc-checkbox__checkmark"
-                  viewBox="0 0 24 24">
-              <path class="mdc-checkbox__checkmark-path"
-                    fill="none"
-                    d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
-            </svg>
-            <div class="mdc-checkbox__mixedmark"></div>
-          </div>
-        </div>
-        <label for="checkbox-1">Default</label>
-      </div>
-      <div class="mdc-form-field">
-        <div class="mdc-checkbox mdc-checkbox--disabled">
-          <input type="checkbox"
-                  id="basic-disabled-checkbox"
-                  class="mdc-checkbox__native-control"
-                  disabled />
-          <div class="mdc-checkbox__background">
-            <svg class="mdc-checkbox__checkmark"
-                  viewBox="0 0 24 24">
-              <path class="mdc-checkbox__checkmark-path"
-                    fill="none"
-                    d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
-            </svg>
-            <div class="mdc-checkbox__mixedmark"></div>
-          </div>
-        </div>
-        <label for="basic-disabled-checkbox" id="basic-disabled-checkbox-label">Disabled</label>
-      </div>
-      <div class="mdc-form-field">
-        <div class="mdc-checkbox">
-          <input type="checkbox"
-                  id="basic-disabled-checkbox"
-                  class="mdc-checkbox__native-control"
-                  checked />
-          <div class="mdc-checkbox__background">
-            <svg class="mdc-checkbox__checkmark"
-                  viewBox="0 0 24 24">
-              <path class="mdc-checkbox__checkmark-path"
-                    fill="none"
-                    d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
-            </svg>
-            <div class="mdc-checkbox__mixedmark"></div>
-          </div>
-        </div>
-        <label for="basic-disabled-checkbox" id="basic-disabled-checkbox-label">Primary Checked</label>
-      </div>
-      <div class="mdc-form-field">
-        <div class="mdc-checkbox mdc-checkbox--secondary">
-          <input type="checkbox"
-                  id="basic-disabled-checkbox"
-                  class="mdc-checkbox__native-control"
-                  checked />
-          <div class="mdc-checkbox__background">
-            <svg class="mdc-checkbox__checkmark"
-                  viewBox="0 0 24 24">
-              <path class="mdc-checkbox__checkmark-path"
-                    fill="none"
-                    d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
-            </svg>
-            <div class="mdc-checkbox__mixedmark"></div>
-          </div>
-        </div>
-        <label for="basic-disabled-checkbox" id="basic-disabled-checkbox-label">Secondary</label>
-      </div>
-      <div class="mdc-form-field">
-        <div class="mdc-checkbox mdc-checkbox--success">
-          <input type="checkbox"
-                  id="basic-disabled-checkbox"
-                  class="mdc-checkbox__native-control"
-                  checked />
-          <div class="mdc-checkbox__background">
-            <svg class="mdc-checkbox__checkmark"
-                  viewBox="0 0 24 24">
-              <path class="mdc-checkbox__checkmark-path"
-                    fill="none"
-                    d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
-            </svg>
-            <div class="mdc-checkbox__mixedmark"></div>
-          </div>
-        </div>
-        <label for="basic-disabled-checkbox" id="basic-disabled-checkbox-label">Success</label>
-      </div>
-      <div class="mdc-form-field">
-        <div class="mdc-checkbox mdc-checkbox--info">
-          <input type="checkbox"
-                  id="basic-disabled-checkbox"
-                  class="mdc-checkbox__native-control"
-                  checked />
-          <div class="mdc-checkbox__background">
-            <svg class="mdc-checkbox__checkmark"
-                  viewBox="0 0 24 24">
-              <path class="mdc-checkbox__checkmark-path"
-                    fill="none"
-                    d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
-            </svg>
-            <div class="mdc-checkbox__mixedmark"></div>
-          </div>
-        </div>
-        <label for="basic-disabled-checkbox" id="basic-disabled-checkbox-label">Info</label>
-      </div>
-      <div class="mdc-form-field">
-        <div class="mdc-checkbox mdc-checkbox--warning">
-          <input type="checkbox"
-                  id="basic-disabled-checkbox"
-                  class="mdc-checkbox__native-control"
-                  checked />
-          <div class="mdc-checkbox__background">
-            <svg class="mdc-checkbox__checkmark"
-                  viewBox="0 0 24 24">
-              <path class="mdc-checkbox__checkmark-path"
-                    fill="none"
-                    d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
-            </svg>
-            <div class="mdc-checkbox__mixedmark"></div>
-          </div>
-        </div>
-        <label for="basic-disabled-checkbox" id="basic-disabled-checkbox-label">Warning</label>
-      </div>
-      <div class="mdc-form-field">
-        <div class="mdc-checkbox mdc-checkbox--light">
-          <input type="checkbox"
-                  id="basic-disabled-checkbox"
-                  class="mdc-checkbox__native-control"
-                  checked />
-          <div class="mdc-checkbox__background">
-            <svg class="mdc-checkbox__checkmark"
-                  viewBox="0 0 24 24">
-              <path class="mdc-checkbox__checkmark-path"
-                    fill="none"
-                    d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
-            </svg>
-            <div class="mdc-checkbox__mixedmark"></div>
-          </div>
-        </div>
-        <label for="basic-disabled-checkbox" id="basic-disabled-checkbox-label">Light</label>
-      </div>
-      <div class="mdc-form-field">
-        <div class="mdc-checkbox mdc-checkbox--dark">
-          <input type="checkbox"
-                  id="basic-disabled-checkbox"
-                  class="mdc-checkbox__native-control"
-                  checked />
-          <div class="mdc-checkbox__background">
-            <svg class="mdc-checkbox__checkmark"
-                  viewBox="0 0 24 24">
-              <path class="mdc-checkbox__checkmark-path"
-                    fill="none"
-                    d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
-            </svg>
-            <div class="mdc-checkbox__mixedmark"></div>
-          </div>
-        </div>
-        <label for="basic-disabled-checkbox" id="basic-disabled-checkbox-label">Dark</label>
-      </div>
-      <div class="mdc-form-field">
-        <div class="mdc-checkbox mdc-checkbox--custom">
-          <input type="checkbox" id="basic-custom-checkbox" class="mdc-checkbox__native-control" />
-          <div class="mdc-checkbox__background">
-            <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
-              <path class="mdc-checkbox__checkmark__path" dropzone=""fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
-            </svg>
-            <div class="mdc-checkbox__mixedmark"></div>
-          </div>
-        </div>
-        <label for="basic-custom-checkbox">Custom colored</label>
-      </div>
-    </div>
-  </div>
+    <% }else{ %>
+        <% if (user.id_tipo_usuario == 2) { %>
+            <img src="/assets/images/demos/demo-6/bruja.svg" alt="Logo de Brujirifas" class="rounded mx-auto d-block" style="height: 700px;">
+            <h1 class="text-center">Bienvenido  <%=user.nombre%> </h1>
+        <% } %>
+
+
+    <%}%>
+        
+   
+    <script>
+       
+
+        var fecha = new Date()
+       // console.log(fecha.getDate());
+
+        document.getElementById('anual').innerText = 'Ganancia Anual del año: ' + fecha.getFullYear()
+    </script>

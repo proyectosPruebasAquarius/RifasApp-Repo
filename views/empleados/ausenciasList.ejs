@@ -1,0 +1,499 @@
+<% layout('../layout') %>
+<div class="mdc-layout-grid">
+  <div>
+    <!--<% if(message.length > 0) { %>
+    <div class="alert alert-success">
+      <%= message %>
+    </div>
+    <% } %>-->
+    <div style="display: block;
+        margin-left: auto;
+        margin-right: auto;"
+      class="mdc-layout-grid__cell stretch-card col-md-10 col-xxl-8 mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+      <div class="mdc-card p-0  to-do-list">
+        <div class="align-items-center back__head text-white to-do-list-header">
+          <div class="col-xs-6">
+            <h2 style="text-align: center;"><i class="bi bi-person-badge-fill"  style="vertical-align: 4px;">&nbsp;</i>Lista de <b>Ausencias</b></h2>
+          </div>
+          <div class="row">
+            <div class="col-xs-4">
+              <a onclick="getList(); document.getElementById('texto').innerHTML = 'Incapacidades'" id="inca"
+                data-toggle='modal' data-target='#myModal'
+                class="btn btn-light btn__center__add  btn-white btn-animate rounded-pill" style="color: #2B579A;"><span class="material-icons"
+                  style="vertical-align: -6px;">
+                  assignment
+                </span> Incapacidades</a>
+              <a class="btn btn-light btn__center__add  btn-white btn-animate rounded-pill" id="otros"
+                data-toggle='modal' data-target='#myModal' style="color: #2B579A;"><span class="material-icons"
+                  style="vertical-align: -6px;">
+                  assignment
+                </span> Otros Motivos</a>
+
+              <a class="mdc-button mdc-button--warning mdc-ripple-upgraded mdc-button--raised btn rounded-pill"
+                id="empleadosBack">
+                <span class="material-icons" style="vertical-align: -6px;">
+                  arrow_back
+                </span> Empleados</a>
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+      <!--foto-->
+      <!--fin foto-->
+      <!--lista-->
+      <% i=1; %>
+
+      <!--<input placeholder="Búsqueda" type="text" name="search" id="busqueda" onkeyup="getEmpleados()">-->
+
+
+      <div class="mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-3-desktop stretch-card">
+
+        <div class="table-responsive">
+          <table class="table table-hoverable" id="myTable">
+            <thead>
+              <tr class="back__head">
+                <th class="text-white text-center">Editar</th>
+                <th class="text-white text-center">Empleado</th>
+                <th class="text-white text-center">Fecha de Incio</th>
+                <th class="text-white text-center">Fecha de Finalización</th>
+                <th class="text-white text-center">Descripción</th>
+              </tr>
+            </thead>
+            <tbody id="tableE">
+              <% ausencias.forEach( (a) => { %>
+              <tr>
+
+                <td>
+                  <a class="mdc-button mdc-button--warning mdc-ripple-upgraded mdc-button--raised"><i
+                      class='material-icons'>edit</i></a>
+
+                  &nbsp;
+
+                  <a class="mdc-button mdc-button--raised filled-button--secondary"><i
+                      class='material-icons'>delete</i></a>
+                </td>
+                <td><%= a.empleado %></td>
+                <td>Desde <%= moment(a.fecha_inicio).format('DD/M/YYYY') %></td>
+                <td>Hasta <%= moment(a.fecha_fin).format('DD/M/YYYY') %></td>
+                <td><%= a.descripcion %></td>
+
+              </tr>
+              <% i++}) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!--fin de lista-->
+    </div>
+  </div>
+  <!--Aquí empieza el tab-->
+
+</div>
+
+<!--Inicio Modal-->
+<div class="modal fade" id="myModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+
+
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
+          onclick="javascript:document.getElementById('inOrMot').reset();  $('#collapseExample').collapse('hide');"></button>
+
+      </div>
+      <div class="modal-body">
+        <div>
+          <div class="row">
+            <div class="md-auto ms-auto">
+              <div class="card border-0 shadow-none">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <div class="row">
+                      <div class="col">
+                        <h2>Lista de <b id="texto"></b></h2>
+                      </div>
+                      <div class="col">
+                        <a id="uno" class="btn btn-light btn__center__add  btn-white btn-animate btn-sm"
+                          onclick="javascript:document.getElementById('inOrMot').reset(); document.getElementById('inOrMot').action = '/tipos/incapacidades'"
+                          data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+                          aria-controls="collapseExample" style="display: none; color: #2B579A;"><span class="material-icons"
+                            style="color: #2B579A; vertical-align: -6px;">
+                            library_add
+                          </span> Agregar Incapacidad</a>
+
+                        <a id="dos" class="btn btn-light btn__center__add  btn-white btn-animate btn-sm"
+                          onclick="javascript:document.getElementById('inOrMot').reset(); document.getElementById('inOrMot').action = '/motivos/otros'"
+                          data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+                          aria-controls="collapseExample" style="display: none; color: #2B579A;"><span class="material-icons"
+                            style="color: #2B579A; vertical-align: -6px;">
+                            library_add
+                          </span> Agregar Motivo</a>
+                      </div>
+                    </div>
+                  </h5>
+                  <br>
+                  <p class="card-text">
+                    <div class="collapse" id="collapseExample">
+                      <div class="card card-body">
+                        <form method="POST" id="inOrMot" class="needs-validation" novalidate>
+                          <div class="form-group">
+
+                            <input type="text" name="nombre" id="nombres" class="form-control" placeholder="Nombre"
+                              aria-describedby="helpId" maxlength="50" minlength="5" onkeyup="errorHandler('texto', 'helpId', this.id)" required>
+                            <small id="helpId" class="text-muted"></small>
+                            
+                          </div>
+                          <br>
+                          <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary ">Guardar</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                    <table class="table shadow-lg ">
+                      <tbody id="bodyIncapa">
+                        <thead>
+                          <tr class="back__head">
+                            <th class="text-center text-white">No</th>
+                            <th class="text-center text-white">Nombre</th>
+                            <th class="text-center text-white">Acciones</th>
+                          </tr>
+                        </thead>
+                      </tbody>
+                    </table>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>-->
+    </div>
+    <!--Fin Modal-->
+  </div>
+</div>
+</div>
+
+<!--Axios & Jquery (para stepper)-->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/assets/js/validator.js"></script>
+<!--Populate selects-->
+<% block('footerjs', `<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>     
+<script>
+  
+    $("#municipios").first().select2({
+    dropdownParent: $("#myModal")
+})
+$(document).ready(function() {    
+  //funcion para llamar los municipios
+  $('.municipios').select2({
+    language: {
+        noResults: function() {
+            return "No hay resultado";        
+        },
+        searching: function() {
+            return "Buscando..";
+        }
+    },      
+    placeholder: 'Municipios',    
+    width: '100%', 
+    theme: "bootstrap-5",
+    dropdownParent: $('#myModal'),     
+    ajax: {        
+      url: '/municipios/list',        
+      dataType: 'json',                  
+      data: function (params) {          
+        return {            
+          q: params.term,             
+          page: params.page          
+        };        
+      },        
+      processResults: function (data, params) {          
+      return {            
+          results: data,          
+      };        
+      },        
+      cache: true             
+      }    
+    });
+    });
+
+    $(document).ready(function() {    
+  //funcion para llamar las sucursales
+  $('.sucursales').select2({
+    language: {
+        noResults: function() {
+            return "No hay resultado";        
+        },
+        searching: function() {
+            return "Buscando..";
+        }
+    },      
+    placeholder: 'Sucursales',    
+    width: '100%',      
+    ajax: {        
+      url: '/sucursales/list',        
+      dataType: 'json',                  
+      data: function (params) {          
+        return {            
+          q: params.term,             
+          page: params.page          
+        };        
+      },        
+      processResults: function (data, params) {          
+      return {            
+          results: data,          
+      };        
+      },        
+      cache: true             
+      }    
+    });
+    });
+
+    $(document).ready(function() {    
+  //funcion para llamar los cargos
+  $('.cargos').select2({
+    language: {
+        noResults: function() {
+            return "No hay resultado";        
+        },
+        searching: function() {
+            return "Buscando..";
+        }
+    },      
+    placeholder: 'Cargos',    
+    width: '100%',  
+    theme: "bootstrap-5",
+    dropdownParent: $('#myModal'),      
+    ajax: {        
+      url: '/cargos/list',        
+      dataType: 'json',                  
+      data: function (params) {          
+        return {            
+          q: params.term,             
+          page: params.page          
+        };        
+      },        
+      processResults: function (data, params) {          
+      return {            
+          results: data,          
+      };        
+      },        
+      cache: true             
+      }    
+    });
+    });
+    
+    $(document).ready(function() {    
+  //funcion para llamar los contratos
+  $('.contratos').select2({
+    language: {
+        noResults: function() {
+            return "No hay resultado";        
+        },
+        searching: function() {
+            return "Buscando..";
+        }
+    },      
+    placeholder: 'Contratos',    
+    width: '100%', 
+    theme: "bootstrap-5",
+    dropdownParent: $('#myModal'),       
+    ajax: {        
+      url: '/contratos/list',        
+      dataType: 'json',                  
+      data: function (params) {          
+        return {            
+          q: params.term,             
+          page: params.page          
+        };        
+      },        
+      processResults: function (data, params) {          
+      return {            
+          results: data,          
+      };        
+      },        
+      cache: true             
+      }    
+    });
+    });
+
+        
+        </script>`) 
+-%>
+<!--Petición axios para tabla y busqueda con parametros-->
+<script>
+  // Solución al problema de margenes internos del botón con HREF
+  let empl = document.getElementById('empleadosBack');
+  empl.addEventListener('click', function () {
+    window.location.href = 'http://localhost:3000/empleados'
+  });
+  $(document).ready(() => {
+    $('#myTable').DataTable({
+      responsive: true,
+      language: {
+        "decimal": "",
+        "emptyTable": "No hay información",
+        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+        "infoPostFix": "",
+        "thousands": ",",
+        "lengthMenu": "Mostrar _MENU_ Entradas",
+        "loadingRecords": "Cargando...",
+        "processing": "Procesando...",
+        "search": "Buscar:",
+        "zeroRecords": "Sin resultados encontrados",
+        "paginate": {
+          "first": "Primero",
+          "last": "Ultimo",
+          "next": "Siguiente",
+          "previous": "Anterior"
+        }
+      },
+    });
+  })
+  document.getElementById('otros').addEventListener('click', () => {
+    let table = '';
+    let counter = 0;
+    $.ajax({
+      url: '/motivos/',
+      type: 'GET',
+      success: function (result) {
+        console.log(result)
+        result.forEach(element => {
+          counter = counter + 1
+          table += '<tr>'
+          table += '<td class="text-center">' + counter + '</td>'
+          table += '<td class="text-center">' + element.nombre + '</td>'
+          table += "<td class='text-center'>" + "<a type='button' id=" + element.id +
+            " onclick='assginValueMot(this.id)' class='mdc-button mdc-button--warning mdc-ripple-upgraded mdc-button--raised shaped-button'><i class='fa fa-pencil' aria-hidden='true'></i></a>" +
+            "&nbsp; &nbsp;" + "<a type='button' id=" + element.id +
+            " href='/motivos/delete/"+element.id+"' class='mdc-button mdc-button--raised filled-button--secondary shaped-button mdc-ripple-upgraded'><i class='fa fa-trash-o' aria-hidden='true'></i></a>" +
+            "</td>";
+          table += '</tr>'
+        });
+        document.getElementById('uno').style.display = 'none';
+        document.getElementById('dos').style.display = 'block';
+        document.getElementById('texto').innerHTML = 'Motivos'
+        document.getElementById('bodyIncapa').innerHTML = table;
+      }
+    });
+
+  })
+
+  function getList() {
+    let table = '';
+    let counter = 0;
+    $.ajax({
+      url: '/tipos/',
+      type: 'GET',
+      success: function (result) {
+        console.log(result)
+        result.forEach(element => {
+          counter = counter + 1
+          table += '<tr>'
+          table += '<td class="text-center">' + counter + '</td>'
+          table += '<td class="text-center">' + element.nombre + '</td>'
+          table += "<td class='text-center'>" + "<a type='button' id=" + element.id +
+            " onclick='assginValue(this.id)' class='mdc-button mdc-button--warning mdc-ripple-upgraded mdc-button--raised shaped-button'><i class='fa fa-pencil' aria-hidden='true'></i></a>" +
+            "&nbsp; &nbsp;" + "<a type='button' id=" + element.id +
+            " href='/tipos/delete/"+element.id+"' class='mdc-button mdc-button--raised filled-button--secondary mdc-ripple-upgraded shaped-button'><i class='fa fa-trash-o' aria-hidden='true'></i></a>" + "</td>";
+          table += '</tr>'
+        });
+        document.getElementById('dos').style.display = 'none';
+        document.getElementById('uno').style.display = 'block';
+        document.getElementById('bodyIncapa').innerHTML = table;
+      }
+    });
+  }
+
+  function assginValue(id) {
+    //console.log(nombre)
+    /*document.getElementById(id).addEventListener("click", function () {
+      console.log('hola')
+    });*/
+    $.getJSON('/tipos/value/' + id, (res) => {
+      //console.log(res)
+      document.getElementById("nombres").value = res[0].nombre;
+      document.getElementById('inOrMot').action = '/tipos/incapacidades/' + id
+      $("#collapseExample").collapse('show');
+    })
+
+  }
+
+  function assginValueMot(id) {
+    //console.log(nombre)
+    /*document.getElementById(id).addEventListener("click", function () {
+      console.log('hola')
+    });*/
+    $.getJSON('/motivos/value/' + id, (res) => {
+      //console.log(res)
+      document.getElementById("nombres").value = res[0].nombre;
+      document.getElementById('inOrMot').action = '/motivos/otros/' + id
+      $("#collapseExample").collapse('show');
+    })
+
+  }
+
+  function eliminar(id) {
+    $.get('/tipos/delete/' + id, (res) => {
+      location.reload();
+    })
+  }
+
+  function eliminarMot(id) {
+    $.get('/motivos/delete/' + id, (res) => {
+      location.reload();
+    })
+  }
+  //console.log('<%= message %>')
+  '<% if(message.length > 0 && message == "Guardado con éxito" || message.length > 0 && message == "Actualizado con éxito" || message == "Eliminado con éxito") { %>'
+  //console.log('<%= message %>')
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: '<%= message %>'
+    })
+ 
+  '<% } else if (message.length > 0 && message == "Ocurriò un error inesperado") {%>'
+  const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'error',
+      title: '<%= message %>'
+    })
+  '<% } %>'
+</script>

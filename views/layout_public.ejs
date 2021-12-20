@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Brujirifas/index-6.html  22 Nov 2019 09:56:18 GMT -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+        <%= title  %>
+    </title>
+    <meta name="keywords" content="Brujirifas">
+    <meta name="description" content="Rifas de productos electronicos">
+    <meta name="author" content="Brujirifas.com">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/demos/demo-6/icons.png">
+    <link rel="icon" sizes="16x16" type="image/png" href="assets/images/demos/demo-6/icons.png">
+
+    <link rel="mask-icon" href="assets/images/icons/safari-pinned-tab.svg" color="#666666">
+
+    <meta name="apple-mobile-web-app-title" content="Brujirifas">
+    <meta name="application-name" content="Brujirifas">
+    <meta name="msapplication-TileColor" content="#cc9966">
+    <meta name="msapplication-config" content="assets/images/icons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="assets/vendors/line-awesome/line-awesome/line-awesome/css/line-awesome.min.css">
+    <!-- Plugins CSS File -->
+
+    <link rel="stylesheet" href="assets/css/timeline.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/owl-carousel/owl.carousel.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <!-- Main CSS File -->
+    <link rel="stylesheet" href="assets/css/stylePublic.min.css">
+
+    <link rel="stylesheet" href="assets/css/skins/skin-demo-6.css">
+    <link rel="stylesheet" href="assets/css/demos/demo-6.css">
+    <link rel="stylesheet" href="assets/css/overlay.css">
+    <link rel="stylesheet" href="assets/css/procesando.css">
+    <!--Added CSS -->
+    <link rel="stylesheet" href="assets/css/materialPopUp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <div id="intro" class="sticky-header fixed d-none">
+            <h2 id="countdown"></h2>
+        </div>
+
+        <div id="fade" class="fadeMe d-flex justify-content-center" style="display:none !important;">
+            <div class="content">
+                <img src="/assets/images/demos/demo-6/bruja.svg" alt="Bruja">
+                <p>Procesando...</p>
+            </div>
+        </div>
+        <header class="header header-6">
+            <div class="header-top">
+                <div class="container">
+                    <div class="header-left">
+                        <ul class="top-menu top-link-menu d-none d-md-block">
+                            <li>
+                                <a href="#">Links</a>
+                                <ul>
+                                    <li><a><i class="icon-phone"></i>Teléfono: 2301-2332</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <!-- End .top-menu -->
+                    </div>
+                    <!-- End .header-left -->
+
+                    <div class="header-right">
+                        <div class="social-icons social-icons-color">
+                            <a href="#https://facebook.com" class="social-icon social-facebook" data-toggle="tooltip" data-placement="left" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
+                            <a href="https://twitter.com" class="social-icon social-twitter" data-toggle="tooltip" data-placement="left" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+
+                            <a href="https://instagram.com" class="social-icon social-instagram" data-toggle="tooltip" data-placement="left" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
+                        </div>
+                        <!-- End .soial-icons -->
+
+
+
+
+                        <ul class="top-menu top-link-menu">
+                            <li>
+
+                                <ul>
+
+
+                                    <% if(user == null){ %>
+                                        <li><a href="#signin-modal" data-toggle="modal"><i class="icon-user" ></i>Iniciar Sesion</a></li>
+
+                                        <% } else { %>
+                                            <div class="dropdown cart-dropdown"><a href="/perfil" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"><i class="icon-user"></i><%= user.nombre %></a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <div class="dropdown-cart-products">
+                                                        <div class="product">
+                                                            <a href="/perfil">Perfil</a>
+                                                        </div>
+                                                        <!-- End .product -->
+
+                                                        <div class="product">
+                                                            <a href="/logout">Cerrar Sesión</a>
+                                                        </div>
+                                                        <!-- End .product -->
+                                                    </div>
+                                                    <!-- End .cart-product -->
+                                                </div>
+                                            </div>
+                                            <% } %>
+                                </ul>
+
+
+
+                            </li>
+
+
+                        </ul>
+                        <!-- End .top-menu -->
+
+
+                        <!-- End .header-dropdown -->
+                    </div>
+                    <!-- End .header-right -->
+                </div>
+            </div>
+            <div class="header-middle">
+                <div class="container">
+
+                    <div class="header-center">
+                        <a href="/inicio" class="logo">
+                            <div width="200" height="200">
+                                <svg id="boream" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 342.74 70.91" width="200" height="200"> 
+                                    <defs>
+                                    
+                                    </defs> <path class="chart-b"  d="M253.78,462a26.11,26.11,0,0,1,6,1.19,16.66,16.66,0,0,1,5.16,2.7,13.45,13.45,0,0,1,3.57,4.28,12.18,12.18,0,0,1,1.35,5.79,16.92,16.92,0,0,1-1.23,6.79,11.67,11.67,0,0,1-3.49,4.6,14.58,14.58,0,0,1-5.36,2.61,26.3,26.3,0,0,1-6.9.84H224.82a16.67,16.67,0,0,0,.84-3.25c.23-1.38.43-2.89.59-4.53s.28-3.37.36-5.19.14-3.58.2-5.28.09-3.25.11-4.68.05-2.59.05-3.49q0-2.78-.05-6.54c0-2.51-.11-5.08-.27-7.69s-.4-5.17-.72-7.66a39.58,39.58,0,0,0-1.26-6.34,18.13,18.13,0,0,0,3.17.47c1.32.11,2.71.17,4.16.2s2.91,0,4.36,0h15a25.93,25.93,0,0,1,5.67.63,16.51,16.51,0,0,1,5,2,11.39,11.39,0,0,1,3.56,3.45,9,9,0,0,1,1.39,5.11,11.09,11.09,0,0,1-1,5,12.15,12.15,0,0,1-2.81,3.69,21.39,21.39,0,0,1-4.17,2.86Q256.56,460.79,253.78,462Zm-12.93-24.43a33.73,33.73,0,0,0-1.19,5.44q-.48,3.21-.76,6.66t-.39,6.62c-.08,2.12-.12,3.86-.12,5.24l3.33.08q6.1,0,9.68-2.86t3.57-9.6a10.85,10.85,0,0,0-3.34-8.28Q248.3,437.72,240.85,437.55Zm-.16,52.51a25.37,25.37,0,0,0,6.7-1.3,17.32,17.32,0,0,0,5.28-2.9,13.35,13.35,0,0,0,3.48-4.36,12.55,12.55,0,0,0,1.27-5.71q0-6.19-3.52-9.8t-9.72-3.61h-5.79c0,1.85,0,4,.08,6.43s.16,4.94.31,7.53.39,5.09.68,7.5A36.75,36.75,0,0,0,240.69,490.06Z" transform="translate(-224.67 -436.13)"/>
+                                      
+                                      <!--ESta es la r-->
+                                      <path class="chart-r" d="M305.73,460.79a9.65,9.65,0,0,1-.4,3.89,4.93,4.93,0,0,1-1.66,2.34,6.55,6.55,0,0,1-2.74,1.15,18.52,18.52,0,0,1-3.53.32,5.52,5.52,0,0,1-2.58-.44,1.4,1.4,0,0,1-.71-1.39,6.69,6.69,0,0,1,.71-2.42c.45-1,1-2.12,1.63-3.45.9-1.69,1-3.06.32-4.12a4,4,0,0,0-3.65-1.59,4.53,4.53,0,0,0-3.65,1.59,10.78,10.78,0,0,0-2.06,3.89q-.48,3.72-.64,8.13c-.1,2.93-.12,5.8,0,8.6a74.46,74.46,0,0,0,.6,7.78,21.23,21.23,0,0,0,1.42,5.71h-15.7a17.54,17.54,0,0,0,1-3.81q.43-2.54.76-5.67c.21-2.09.36-4.3.47-6.62s.12-4.55,0-6.67a50.68,50.68,0,0,0-.51-5.71,12.78,12.78,0,0,0-1.12-3.88,19.29,19.29,0,0,0,4-.56,29.34,29.34,0,0,0,3.65-1.19c1.19-.48,2.35-1,3.49-1.59l3.53-1.82a11.7,11.7,0,0,0-.36,1.82c-.13.9-.25,1.56-.36,2a8.82,8.82,0,0,1,7.86-4.13,13.47,13.47,0,0,1,3.57.48,10.73,10.73,0,0,1,3.17,1.43,8.41,8.41,0,0,1,2.38,2.41A7.55,7.55,0,0,1,305.73,460.79Z" transform="translate(-224.67 -436.13)"/>
+                                      
+                                      <!--ESta es la u-->
+                                      <path class="chart-u" d="M333.41,490.78a20.92,20.92,0,0,0,1.35-4.52,51.27,51.27,0,0,0,.71-5.24,33.62,33.62,0,0,1-1.66,3.09,22.86,22.86,0,0,1-2.1,2.94,19.34,19.34,0,0,1-2.46,2.42,10.38,10.38,0,0,1-2.74,1.63,8.93,8.93,0,0,1-2.18.43c-.87.08-1.68.12-2.42.12a11.67,11.67,0,0,1-5-1,10.81,10.81,0,0,1-3.68-2.82,11.92,11.92,0,0,1-2.27-4.24,18.15,18.15,0,0,1-.75-5.32c0-1.53,0-3.07.12-4.64s.12-3.1.12-4.63c0-.69,0-1.58,0-2.66s-.09-2.21-.2-3.37-.25-2.26-.44-3.3a7.48,7.48,0,0,0-.83-2.49,46.91,46.91,0,0,0,7.46-1,27.55,27.55,0,0,0,7.06-2.45,12.25,12.25,0,0,0-.87,3.68c-.22,1.72-.39,3.55-.52,5.48s-.21,3.8-.24,5.63,0,3.16,0,4,0,2.23,0,4a45.32,45.32,0,0,0,.4,5.28,24.48,24.48,0,0,0,1.11,4.83,3.83,3.83,0,0,0,2.18,2.66,2.72,2.72,0,0,0,2.22-.44,11.75,11.75,0,0,0,2.78-2.26,27.09,27.09,0,0,0,2.77-3.49,24.43,24.43,0,0,0,2.3-4.2c.11-1.8.15-3.49.12-5.08s0-3.12,0-4.6c0-.74,0-1.66,0-2.77s-.09-2.24-.2-3.37a24.71,24.71,0,0,0-.51-3.3,9.27,9.27,0,0,0-.91-2.54,45.39,45.39,0,0,0,7.61-.91,26.2,26.2,0,0,0,7.06-2.57,20.94,20.94,0,0,0-.79,3.72c-.21,1.54-.39,3.14-.52,4.8s-.21,3.29-.24,4.88,0,2.88,0,3.89c0,1.21,0,2.72,0,4.52s.12,3.63.28,5.51.38,3.69.68,5.43a18.72,18.72,0,0,0,1.15,4.29Z" transform="translate(-224.67 -436.13)"/>
+                                      <!--ESta es la j-->
+                                      <path class="chart-u" d="M368.87,453.74a9.13,9.13,0,0,0-.8,2.77,43.2,43.2,0,0,0-.47,4.36c-.11,1.64-.2,3.36-.28,5.16s-.12,3.54-.12,5.23V479q0,3.65.08,7.26t.08,7.25a18.85,18.85,0,0,1-.72,5.32,12.77,12.77,0,0,1-2.1,4.28,9.64,9.64,0,0,1-3.49,2.86,11.22,11.22,0,0,1-4.95,1,22,22,0,0,1-4-.36,10.14,10.14,0,0,1-3.45-1.27,7.8,7.8,0,0,1-2.5-2.42,7.38,7.38,0,0,1-1.07-3.88,2.1,2.1,0,0,1,.67-1.75,2.55,2.55,0,0,1,1.79-.71,2.42,2.42,0,0,1,1.63.59,1.78,1.78,0,0,1,.67,1.31,1.68,1.68,0,0,1-.36,1c-.24.32-.49.66-.75,1a5.07,5.07,0,0,0-.64,1.19,2,2,0,0,0,.08,1.43,2.89,2.89,0,0,0,1.67,1.67,2.57,2.57,0,0,0,2.14.15,4.25,4.25,0,0,0,2.5-2.85,21,21,0,0,0,1.11-5.12,54.18,54.18,0,0,0,.28-5.47v-4c0-1,0-2.32,0-4s.05-3.45.08-5.43,0-4,0-6.15-.1-4.14-.2-6.07-.28-3.66-.52-5.2a14.72,14.72,0,0,0-.91-3.57,38.58,38.58,0,0,0,7.5-1A35.79,35.79,0,0,0,368.87,453.74Zm-7.06-3.81a5.92,5.92,0,0,1-4.41-1.83,6.09,6.09,0,0,1-1.78-4.44,6.2,6.2,0,0,1,1.82-4.48,5.91,5.91,0,0,1,4.37-1.86,5.77,5.77,0,0,1,4.32,1.86,6.24,6.24,0,0,1,1.78,4.48,6.14,6.14,0,0,1-1.78,4.4A5.74,5.74,0,0,1,361.81,449.93Z" transform="translate(-224.67 -436.13)"/>
+                                      <!--ESta es la i-->
+                                      <path class="chart-u"  d="M387.35,453.74a31,31,0,0,0-.92,4.91c-.23,2-.42,4.19-.55,6.55s-.21,4.8-.24,7.33,0,5,.2,7.26.38,4.42.67,6.35a17.88,17.88,0,0,0,1.23,4.64H372a17.54,17.54,0,0,0,1-3.89q.44-2.61.75-5.91c.21-2.19.37-4.51.48-6.94s.12-4.74,0-6.94a51.39,51.39,0,0,0-.52-5.91,12.78,12.78,0,0,0-1.11-4,41.37,41.37,0,0,0,7.66-.91A31.21,31.21,0,0,0,387.35,453.74ZM373.7,443.5a6.37,6.37,0,0,1,6.27-6.26,5.88,5.88,0,0,1,4.36,1.86,6.07,6.07,0,0,1,1.83,4.4,6.15,6.15,0,0,1-1.83,4.48,5.86,5.86,0,0,1-4.36,1.87,6,6,0,0,1-4.44-1.83A6.11,6.11,0,0,1,373.7,443.5Z" transform="translate(-224.67 -436.13)"/>
+                                      
+                                      <!--ESta es la R-->
+                                      <path class="chart-R" d="M433.71,471.66A13.36,13.36,0,0,0,437,473.8a13,13,0,0,0,3.84,1.15,10.49,10.49,0,0,0,3.91-.16,9,9,0,0,0,3.6-1.7c0,1.9-.06,4-.19,6.19a22.09,22.09,0,0,1-1.23,6.18,9.36,9.36,0,0,1-3,4.41,8.15,8.15,0,0,1-4.31,1.86,6.87,6.87,0,0,1-7.43-5.16,21.53,21.53,0,0,1-1-3.92c-.26-1.51-.53-3.07-.79-4.68s-.59-3.21-1-4.8a16.22,16.22,0,0,0-1.7-4.28,10.59,10.59,0,0,0-2.89-3.22,8.8,8.8,0,0,0-4.55-1.54c0,1.05,0,2.34,0,3.84s.08,3.14.16,4.88.19,3.53.32,5.36.3,3.58.51,5.27a47,47,0,0,0,.79,4.64,14.41,14.41,0,0,0,1.11,3.37,22.59,22.59,0,0,0-3.22-.36c-1.4-.07-2.91-.14-4.52-.19s-3.2-.1-4.76-.12-2.87,0-3.92,0a38.41,38.41,0,0,0,1.11-6.39c.31-2.88.56-6.11.75-9.67s.28-7.33.28-11.27-.07-7.67-.2-11.18-.36-6.65-.67-9.4a24.64,24.64,0,0,0-1.27-6h23.54a32.4,32.4,0,0,1,6.37.67,20.64,20.64,0,0,1,6,2.19,12.61,12.61,0,0,1,4.39,4,10.9,10.9,0,0,1,1.7,6.19c0,3.38-.86,6-2.57,7.93a15.61,15.61,0,0,1-6.41,4.24,30.32,30.32,0,0,1-8.23,1.71c-2.93.21-5.6.32-8,.32a9.59,9.59,0,0,1,2.69,1.11,18.9,18.9,0,0,1,2.61,1.86c.85.71,1.68,1.47,2.49,2.26S432.92,470.92,433.71,471.66Zm-10.92-33.87a28.38,28.38,0,0,0-1.26,5.55c-.32,2.22-.57,4.53-.75,6.9s-.32,4.73-.4,7-.12,4.25-.12,5.84a28.65,28.65,0,0,0,6.24-1,21.08,21.08,0,0,0,5.65-2.42,13.86,13.86,0,0,0,4.07-3.8,9.13,9.13,0,0,0,1.57-5.36,9.84,9.84,0,0,0-1.1-4.36,13.5,13.5,0,0,0-3.08-4,17.06,17.06,0,0,0-4.74-3A17.51,17.51,0,0,0,422.79,437.79Z" transform="translate(-224.67 -436.13)"/>
+                                      
+                                      <!--ESta es la i-->
+                                      <path class="chart-u" d="M467.3,453.74a31.12,31.12,0,0,0-.91,4.91q-.36,3-.56,6.55c-.13,2.35-.21,4.8-.23,7.33s0,5,.19,7.26.39,4.42.68,6.35a17.88,17.88,0,0,0,1.23,4.64H452a17.54,17.54,0,0,0,1-3.89q.43-2.61.76-5.91c.21-2.19.37-4.51.47-6.94s.12-4.74,0-6.94a53.9,53.9,0,0,0-.51-5.91,13.35,13.35,0,0,0-1.11-4,41.36,41.36,0,0,0,7.65-.91A30.86,30.86,0,0,0,467.3,453.74ZM453.66,443.5a6.35,6.35,0,0,1,6.26-6.26,5.92,5.92,0,0,1,4.37,1.86,6.1,6.1,0,0,1,1.82,4.4,6.18,6.18,0,0,1-1.82,4.48,5.89,5.89,0,0,1-4.37,1.87,6,6,0,0,1-4.44-1.83A6.14,6.14,0,0,1,453.66,443.5Z" transform="translate(-224.67 -436.13)"/>
+                                      
+                                      <!--ESta es la f-->
+                                     <path class="chart-u" d="M494.9,438.19a6,6,0,0,1,3.61,2.06,6.22,6.22,0,0,1,1.55,4.28,8,8,0,0,1-.91,3.89,3.28,3.28,0,0,1-2.74,1.82,3,3,0,0,1-3.41-2.93,3.75,3.75,0,0,1,.44-1.78,17.74,17.74,0,0,1,.95-1.63,9.81,9.81,0,0,0,.83-1.55,2.42,2.42,0,0,0,.08-1.62,1.75,1.75,0,0,0-1.71-1.27,7.48,7.48,0,0,0-2.89.47,16,16,0,0,0-3,1.43,9,9,0,0,0-2,1.51c-.26,1.22-.5,2.74-.71,4.56s-.4,4.16-.56,7H492v.79h-7.54c-.16,3.23-.23,6.63-.23,10.2s.06,7,.19,10.27.36,6.25.68,8.92a24.59,24.59,0,0,0,1.35,6.15H470.87a32.08,32.08,0,0,0,1.31-6.47q.51-4.24.75-9.28t.24-10.31c0-3.52-.08-6.67-.24-9.48H471v-.79h1.82c-.1-1.43-.26-2.8-.47-4.13a16.59,16.59,0,0,0-1.19-4,17.52,17.52,0,0,0,7.53-1.31,46.33,46.33,0,0,0,5.67-3c1.72-1.09,3.39-2.05,5-2.9A9.58,9.58,0,0,1,494.9,438.19Z" transform="translate(-224.67 -436.13)"/>
+                                      
+                                       <!--ESta es la a-->
+                                      <path class="chart-a" d="M532,454.29a17.74,17.74,0,0,0-.76,4.09c-.18,1.87-.33,4-.43,6.34s-.14,4.84-.08,7.46.16,5.13.32,7.53a57.89,57.89,0,0,0,.75,6.55A18,18,0,0,0,533,490.7c-.9,0-1.77,0-2.62-.08s-1.69-.13-2.54-.24a40.72,40.72,0,0,0-6-.16c-1.66.11-3.24.27-4.72.48l-4.44.63a35.82,35.82,0,0,1-5,.32q-5.94,0-9.51-2.82t-3.57-8.92a12.48,12.48,0,0,1,.91-5.12,9.8,9.8,0,0,1,2.46-3.37,10.91,10.91,0,0,1,3.57-2.06,36,36,0,0,1,4.24-1.19c.69-.16,1.61-.34,2.78-.55s2.39-.48,3.68-.8a33.36,33.36,0,0,0,3.89-1.19,12.17,12.17,0,0,0,3.37-1.82c0-1.06,0-1.83,0-2.3a15.65,15.65,0,0,0-.2-1.75,6.47,6.47,0,0,0-2-2.06,22.36,22.36,0,0,0-3.17-1.86,19.65,19.65,0,0,0-3.45-1.31,7.41,7.41,0,0,0-2.86-.32,2.27,2.27,0,0,0-1.42.87,2.85,2.85,0,0,0-.56,1.83,16.47,16.47,0,0,0,.24,2.65,11.27,11.27,0,0,1,.12,2.82,3.92,3.92,0,0,1-.91,2.26,3.67,3.67,0,0,1-2.86.91,3.94,3.94,0,0,1-3.25-1.46,5.64,5.64,0,0,1-1.19-3.69,7.08,7.08,0,0,1,1-4,6.66,6.66,0,0,1,2.66-2.34,10.41,10.41,0,0,1,3.61-1,18.08,18.08,0,0,1,4,0,21.41,21.41,0,0,1,3.69.79c1.19.37,2.38.77,3.57,1.19s2.35.81,3.49,1.15a17.27,17.27,0,0,0,3.45.68,8.92,8.92,0,0,0,2.5,0,10.37,10.37,0,0,0,2.06-.6,16.26,16.26,0,0,0,1.94-.91C530.52,455,531.21,454.66,532,454.29ZM517.43,489q.63-2.77,1.07-5.83t.68-6.18c.15-2.09.25-4.14.27-6.15s0-3.91,0-5.71a10.69,10.69,0,0,1-2,1.47q-1.28.75-2.58,1.38l-2.46,1.19c-.76.37-1.33.66-1.7.88a13,13,0,0,0-4,3.52q-1.74,2.26-1.74,6.63a10.42,10.42,0,0,0,1,4.8,8.53,8.53,0,0,0,2.74,3.21,8.32,8.32,0,0,0,4,1.43A10.69,10.69,0,0,0,517.43,489Z" transform="translate(-224.67 -436.13)"/>
+                                      
+                                      <!--ESta es la a-->
+                                      <path class="chart-s" d="M565.5,464.13c-.74-.8-1.67-1.68-2.78-2.66a36.9,36.9,0,0,0-3.57-2.78,26.63,26.63,0,0,0-3.88-2.22,9,9,0,0,0-3.65-.91,3.26,3.26,0,0,0-2.22.59,1.93,1.93,0,0,0-.64,1.47,4.66,4.66,0,0,0,.44,1.87,7.72,7.72,0,0,0,1.07,1.78,52,52,0,0,0,4.52,4.92,39.18,39.18,0,0,0,5.16,4.28c1,.79,1.95,1.59,2.85,2.38a19.85,19.85,0,0,1,2.38,2.5,11.38,11.38,0,0,1,1.63,2.78,8.61,8.61,0,0,1,.59,3.21,9.6,9.6,0,0,1-1.07,4.72,9.07,9.07,0,0,1-2.89,3.17,13.24,13.24,0,0,1-4.29,1.83,22.21,22.21,0,0,1-5.15.59,9.14,9.14,0,0,1-2.58-.36,23,23,0,0,1-2.42-.83c-.79-.32-1.59-.66-2.38-1s-1.59-.71-2.38-1a10.39,10.39,0,0,0-4-.8,13.34,13.34,0,0,0-4,1,3.67,3.67,0,0,0,1-1.75,11.71,11.71,0,0,0,.4-2.38,20.85,20.85,0,0,0,0-2.5c-.06-.82-.11-1.54-.16-2.18a28.68,28.68,0,0,0,2.7,3.41,30.15,30.15,0,0,0,3.33,3.18,18.56,18.56,0,0,0,3.49,2.3,7.3,7.3,0,0,0,3.25.87,4.74,4.74,0,0,0,2.42-.68,2.27,2.27,0,0,0,1.15-2.1,6.42,6.42,0,0,0-1.27-3.88,20.77,20.77,0,0,0-3.17-3.41q-1.91-1.68-4.09-3.34a41,41,0,0,1-4.08-3.57,18.9,18.9,0,0,1-3.18-4.2,10.71,10.71,0,0,1-1.27-5.23,9.79,9.79,0,0,1,2.86-7.42,10.73,10.73,0,0,1,7.77-2.74,12.58,12.58,0,0,1,4.92.87,33,33,0,0,1,3.81,1.91c1.16.69,2.27,1.32,3.33,1.9a7,7,0,0,0,3.49.87,8.5,8.5,0,0,0,1.47-.15,9.69,9.69,0,0,0,1.47-.4,18.39,18.39,0,0,0-.4,3.09A19.91,19.91,0,0,0,565.5,464.13Zm0,0c-.74-.8-1.67-1.7-2.78-2.7a35.72,35.72,0,0,0-3.57-2.82,26.63,26.63,0,0,0-3.88-2.22,8.81,8.81,0,0,0-3.65-.91,3.21,3.21,0,0,0-2.22.6,1.89,1.89,0,0,0-.64,1.46,4.7,4.7,0,0,0,.44,1.87,7.72,7.72,0,0,0,1.07,1.78,44.86,44.86,0,0,0,4.52,5,41.2,41.2,0,0,0,5.16,4.24c1,.8,1.95,1.59,2.85,2.38a19.19,19.19,0,0,1,2.38,2.5,11.07,11.07,0,0,1,1.63,2.82,8.89,8.89,0,0,1,.59,3.25,9.6,9.6,0,0,1-1.07,4.72,9.07,9.07,0,0,1-2.89,3.17,13.24,13.24,0,0,1-4.29,1.83,22.21,22.21,0,0,1-5.15.59,9.14,9.14,0,0,1-2.58-.36,23,23,0,0,1-2.42-.83c-.79-.32-1.59-.66-2.38-1s-1.59-.71-2.38-1a10.39,10.39,0,0,0-4-.8,13.34,13.34,0,0,0-4,1,3.67,3.67,0,0,0,1-1.75,11.71,11.71,0,0,0,.4-2.38,21.52,21.52,0,0,0,0-2.54c-.06-.84-.11-1.55-.16-2.14a28.68,28.68,0,0,0,2.7,3.41,30.15,30.15,0,0,0,3.33,3.18,18.56,18.56,0,0,0,3.49,2.3,7.3,7.3,0,0,0,3.25.87,4.74,4.74,0,0,0,2.42-.68,2.27,2.27,0,0,0,1.15-2.1,6.6,6.6,0,0,0-1.27-3.92,18.94,18.94,0,0,0-3.17-3.41q-1.91-1.63-4.09-3.3a37.87,37.87,0,0,1-4.08-3.61,19.87,19.87,0,0,1-3.18-4.2,10.5,10.5,0,0,1-1.27-5.19,9.78,9.78,0,0,1,2.86-7.46,10.84,10.84,0,0,1,7.77-2.7,12.58,12.58,0,0,1,4.92.87,33,33,0,0,1,3.81,1.91c1.16.69,2.27,1.32,3.33,1.9a7,7,0,0,0,3.49.87,6.58,6.58,0,0,0,1.47-.19,14.62,14.62,0,0,0,1.47-.44,20.16,20.16,0,0,0-.4,3.13A20.69,20.69,0,0,0,565.5,464.13Z" transform="translate(-224.67 -436.13)"/></svg>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- End .header-left -->
+
+                    <div class="header-right">
+
+
+                        <div class="dropdown cart-dropdown">
+                            <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                                <i class="icon-shopping-cart"></i>
+                                <% if (productos) { %>
+                                    <span class="cart-count"><%= session.cart.totalQty  %></span>
+                                    <span class="cart-txt">$<%= session.cart.totalPrice %></span>
+                                    <% } %>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <% if (productos) { %>
+                                    <% productos.forEach(function(producto) { %>
+                                        <div class="dropdown-cart-products">
+
+                                            <!-- End .product -->
+                                            <div class="product">
+                                                <div class="product-cart-details">
+                                                    <h4 class="product-title">
+                                                        <a href="product.html">
+                                                            <%= producto.item.titulo %>
+                                                        </a>
+                                                    </h4>
+
+                                                    <span class="cart-product-info">
+                                                            <span class="cart-product-qty"><%= producto.qty %> </span> x $
+                                                    <%= producto.price %>
+                                                        </span>
+                                                </div>
+                                                <!-- End .product-cart-details -->
+
+                                                <figure class="product-image-container">
+                                                    <a href="product.html" class="product-image">
+                                                            <img src="/images/publicaciones/<%= producto.item.imagen %> " alt="product">
+                                                        </a>
+                                                </figure>
+                                                <a href="/cart/remove/<%= producto.item.id %> " class="btn-remove" title="Eliminar Producto"><i class="icon-close"></i></a>
+                                            </div>
+                                            <!-- End .product -->
+
+                                            <!-- End .product -->
+                                        </div>
+                                        <% }) %>
+                                            <% } else { %>
+                                                <div class="dropdown-cart-text text-center">
+                                                    <span class="empty">Carrito Vacio</span>
+                                                </div>
+                                                <% } %>
+                                                    <br>
+
+                                                    <!-- End .cart-product -->
+
+                                                    <!-- <div class="dropdown-cart-total">
+                                    <span>Total</span>
+
+                                    <span class="cart-total-price">$160.00</span>
+                                </div>-->
+                                                    <% if (productos != null && productos.length > 0) {%>
+                                                        <div class="dropdown-cart-action">
+                                                            <a href="/carrito" class="btn btn-outline-primary float-center">Ver Carrito</a>
+                                                            <a href="/cart/drop" class="btn btn-outline-primary float-center">Vaciar</a>
+
+                                                        </div>
+                                                        <%}%>
+
+
+
+
+                            </div>
+                            <!-- End .dropdown-menu -->
+                        </div>
+                        <!-- End .cart-dropdown -->
+                    </div>
+                </div>
+                <!-- End .container -->
+            </div>
+
+
+
+
+            <div class="header-bottom sticky-header">
+                <div class="container">
+                    <div class="header-right">
+                        <nav class="main-nav">
+                            <ul class="menu sf-arrows">
+                                <li id="inicio" class="megamenu-containe">
+                                    <a href="/inicio" class="ul">Inicio</a>
+
+
+                                    <!-- End .megamenu -->
+                                </li>
+                                <li id="participacion" class="menu sf-arrows">
+                                    <a href="/participacion" class="ul">Como Participar</a>
+
+                                </li>
+                                <li id="legal" class="menu sf-arrows">
+                                    <a href="/legal" class="ul">Información Legal</a>
+
+                                </li>
+                                <li id="contacto" class="menu sf-arrows">
+                                    <a href="/contacto" class="ul">Contactanos</a>
+
+                                </li>
+
+                                <li id="about" class="menu sf-arrows">
+                                    <a href="/about" class="ul">Sobre Nosotros</a>
+
+                                </li>
+                            </ul>
+                            <!-- End .menu -->
+                        </nav>
+                        <!-- End .main-nav -->
+
+                        <button class="mobile-menu-toggler">
+                            <span class="sr-only">Menu</span>
+                            <i class="icon-bars"></i>
+                        </button>
+                    </div>
+                    <!-- End .header-left -->
+
+
+                </div>
+                <!-- End .container -->
+            </div>
+        </header>
+        <!-- End .header -->
+
+        <main class="main">
+
+            <%- body %>
+
+        </main>
+        <!-- End .main -->
+
+        <footer class="footer text-center">
+            <div class="footer-middle">
+                <div class="container">
+                    <h4 class="widget-title ">Sobre Nosotros</h4>
+                    <div class="row">
+
+                        <div class="col-sm-12 col-lg-3">
+                            <div class="widget widget-about">
+
+                                <!-- End .widget-title -->
+                                <div>
+                                    <h5 class="widget-title">Misión</h5>
+                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus sed consequatur sunt illo saepe mollitia incidunt, eos explicabo quas, officia eius praesentium iure iusto veritatis dignissimos dolorem earum quae repudiandae.
+
+                                </div>
+
+                                <!-- End .soial-icons -->
+                            </div>
+                            <!-- End .widget about-widget -->
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="widget widget-about">
+
+                                <!-- End .widget-title -->
+
+                                <div>
+                                    <h5 class="widget-title">Visión</h5>
+                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, dolor? Officiis sint vero ad neque assumenda quisquam quaerat placeat amet nobis nesciunt in vitae, ipsum deleniti doloremque numquam iusto aliquid.
+                                </div>
+                                <!-- End .soial-icons -->
+                            </div>
+                            <!-- End .widget about-widget -->
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="widget">
+                                <h4 class="widget-title">información Legal</h4>
+                                <!-- End .widget-title -->
+
+                                <ul class="widget-list">
+                                    <li><a href="/legal">Terminos y Condiciones</a></li>
+                                    <li><a href="/legal">Legal</a></li>
+                                </ul>
+                                <!-- End .widget-list -->
+                            </div>
+                            <!-- End .widget -->
+                        </div>
+                        <!-- End .col-sm-6 col-lg-3 -->
+
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="widget">
+                                <h4 class="widget-title">Como Participar</h4>
+                                <!-- End .widget-title -->
+
+                                <ul class="widget-list">
+                                    <li><a href="/participacion">Preguntas frecuenetes</a></li>
+                                    <li><a href="/participacion">Formas de Participar</a></li>
+
+                                </ul>
+                                <!-- End .widget-list -->
+                            </div>
+                            <!-- End .widget -->
+                        </div <!-- End .row -->
+                    </div>
+                    <!-- End .container -->
+                </div>
+                <!-- End .footer-middle -->
+
+                <div class="footer-bottom">
+                    <div class="container">
+                        <figure class="footer-payments">
+                            <img src="assets/images/payments.png" alt="Payment methods" width="272" height="20">
+
+                        </figure>
+                        <div class="social-icons mx-auto">
+                            <a href="https://facebook.com" class="social-icon" target="_blank" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="icon-facebook-f"></i></a>
+                            <a href="https://twitter.com" class="social-icon" target="_blank" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="icon-twitter"></i></a>
+                            <a href="https://instagram.com" class="social-icon" target="_blank" data-toggle="tooltip" data-placement="top" title="Instagram"><i class="icon-instagram"></i></a>
+                            <a href="https://youtube.com" class="social-icon" target="_blank" data-toggle="tooltip" data-placement="top" title="Youtube"><i class="icon-youtube"></i></a>
+                        </div>
+                        <!-- End .footer-payments -->
+                        <img src="assets/images/demos/demo-6/fotter-blanco.svg" alt="Brujirifas Logo" width="120" height="60">
+                        <p class="footer-copyright">Copyright © 2021 Bruji Rifas Todos los derechos reservados.</p>
+                        <!-- End .footer-copyright -->
+                    </div>
+                    <!-- End .container -->
+                </div>
+                <!-- End .footer-bottom -->
+        </footer>
+        <!-- End .footer -->
+        </div>
+        <!-- End .page-wrapper -->
+        <button id="scroll-top" data-toggle="tooltip" data-placement="top" title="Regresar al inicio"><i class="icon-arrow-up"></i></button>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu-overlay"></div>
+        <!-- End .mobil-menu-overlay -->
+
+        <div class="mobile-menu-container">
+            <div class="mobile-menu-wrapper">
+                <span class="mobile-menu-close"><i class="icon-close"></i></span>
+
+
+
+                <nav class="mobile-nav">
+                    <ul class="mobile-menu">
+                        <li id="inicio_mobile" class="">
+                            <a href="/inicio">Inicio</a>
+                        </li>
+
+                    </ul>
+                    <ul class="mobile-menu">
+                        <li id="participacion_mobile" class="">
+                            <a href="/participacion">Como Participar</a>
+                        </li>
+
+                    </ul>
+                    <ul class="mobile-menu">
+                        <li id="legal_mobile" class="">
+                            <a href="/legal">Información Legal</a>
+                        </li>
+                    </ul>
+                    <ul class="mobile-menu">
+                        <li id="contacto_mobile" class="">
+                            <a href="/contacto">Contactanos</a>
+                        </li>
+
+                    </ul>
+                    <ul class="mobile-menu">
+                        <li id="sobre_mobile" class="">
+                            <a href="/about">Sobre Nosotros</a>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End .mobile-nav -->
+
+                <div class="social-icons">
+                    <a href="https://facebook.com" class="social-icon" target="_blank" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="icon-facebook-f"></i></a>
+                    <a href="https://twitter.com" class="social-icon" target="_blank" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="icon-twitter"></i></a>
+                    <a href="https://instagram.com" class="social-icon" target="_blank" data-toggle="tooltip" data-placement="top" title="Instagram"><i class="icon-instagram"></i></a>
+                    <a href="https://youtube.com" class="social-icon" target="_blank" data-toggle="tooltip" data-placement="top" title="Youtube"><i class="icon-youtube"></i></a>
+                </div>
+                <!-- End .social-icons -->
+            </div>
+            <!-- End .mobile-menu-wrapper -->
+        </div>
+        <!-- End .mobile-menu-container -->
+
+        <!-- Sign in / Register Modal -->
+        <div class="modal fade" id="signin-modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="icon-close"></i></span>
+                    </button>
+
+                        <div class="form-box">
+                            <div class="form-tab">
+                                <ul class="nav nav-pills nav-fill" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="signin-tab" data-toggle="tab" href="#signin" role="tab" aria-controls="signin" aria-selected="true">Iniciar Sesión</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false">Registrar</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="tab-content-5">
+                                    <div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
+                                        <form id="login" method="POST">
+                                            <div class="form-group">
+                                                <label for="singin-email">Usuario *</label>
+                                                <input type="text" class="form-control" id="singin-email" name="username" required>
+                                            </div>
+                                            <!-- End .form-group -->
+
+                                            <div class="form-group">
+                                                <label for="singin-password">Contraseña *</label>
+                                                <input type="password" class="form-control" id="singin-password" name="password" required>
+                                            </div>
+                                            <!-- End .form-group -->
+                                            <input type="hidden" id="url" name="url">
+                                            <div class="form-footer">
+                                                <button type="submit" class="btn btn-outline-primary-2">
+                                                <span>INICIAR SESION</span>
+                                                <i class="icon-long-arrow-right"></i>
+                                            </button>
+
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="signin-remember">
+                                                    <label class="custom-control-label" for="signin-remember">Recordarme</label>
+                                                </div>
+                                                <!-- End .custom-checkbox -->
+
+                                                <a class="forgot-link">Olvidaste tu contraseña?</a>
+                                            </div>
+                                            <!-- End .form-footer -->
+                                        </form>
+                                        <!----  <div class="form-choice">
+                                            <p class="text-center">or sign in with</p>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <a href="#" class="btn btn-login btn-g">
+                                                        <i class="icon-google"></i> Login With Google
+                                                    </a>
+                                                </div>
+                                               
+                                                <div class="col-sm-6">
+                                                    <a href="#" class="btn btn-login btn-f">
+                                                        <i class="icon-facebook-f"></i> Login With Facebook
+                                                    </a>
+                                                </div>
+                                               
+                                            </div>  
+                                        </div>-->
+                                        <!-- End .form-choice -->
+                                    </div>
+                                    <!-- .End .tab-pane -->
+                                    <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                                        <form method="POST" action="users/transaccion">
+                                            <div class="form-group">
+                                                <label for="names">Nombre</label>
+                                                <input type="text" id="" class="form-control" name="nombres" required>
+                                            </div>
+                                            <!-- End .form-group -->
+
+                                            <div class="form-group">
+                                                <label for="apellidos">Apellidos</label>
+                                                <input type="text" class="form-control" id="apellidos" name="apellidos" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="DUI">DUI</label>
+                                                <input type="text" maxlength="9" class="form-control" id="DUI" name="DUI" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="celular">Celular</label>
+                                                <input type="text" maxlength="9" class="form-control" id="celular" name="celular" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="correo">Correo</label>
+                                                <input type="email" class="form-control" id="correo" name="email" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="fecha_nac">Fecha de Nacimiento</label>
+                                                <input type="date" class="form-control" id="fecha_nac" name="fecha_nac" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="username">Nombre de Usuario</label>
+                                                <input type="text" class="form-control" id="username" name="nombre" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="password">Contraseña</label>
+                                                <input type="password" class="form-control" id="password" name="password" required>
+                                            </div>
+                                            <!-- End .form-group -->
+
+                                            <div class="form-footer">
+                                                <button type="submit" class="btn btn-outline-primary-2 mx-auto">
+                                                <span>Registrarme</span>
+                                                <i class="icon-long-arrow-right"></i>
+                                            </button>
+
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="register-policy" required>
+                                                    <label class="custom-control-label" for="register-policy">Acepto todas las <a href="/legal">Politicas de Privacidad</a></label>
+                                                </div>
+                                                <!-- End .custom-checkbox -->
+                                            </div>
+                                            <input type="hidden" id="url2" name="url2">
+                                            <!-- End .form-footer -->
+                                        </form>
+                                        <!-- <div class="form-choice">
+                                            <p class="text-center">or sign in with</p>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <a href="#" class="btn btn-login btn-g">
+                                                        <i class="icon-google"></i> Login With Google
+                                                    </a>
+                                                
+
+                                                <div class="col-sm-6">
+                                                    <a href="#" class="btn btn-login  btn-f">
+                                                        <i class="icon-facebook-f"></i> Login With Facebook
+                                                    </a>
+                                                </div>
+                                                
+                                            </div>
+                                           
+                                        </div>-->
+                                        <!-- End .form-choice -->
+                                    </div>
+                                    <!-- .End .tab-pane -->
+                                </div>
+                                <!-- End .tab-content -->
+                            </div>
+                            <!-- End .form-tab -->
+                        </div>
+                        <!-- End .form-box -->
+                    </div>
+                    <!-- End .modal-body -->
+                </div>
+                <!-- End .modal-content -->
+            </div>
+            <!-- End .modal-dialog -->
+        </div>
+        <!-- End .modal -->
+
+
+
+
+
+
+
+
+
+
+        <!-- FINAL MODAL PARA USUARIO ELIMINADO  -->
+
+
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/jquery.hoverIntent.min.js"></script>
+        <script src="assets/js/jquery.waypoints.min.js"></script>
+        <script src="assets/js/superfish.min.js"></script>
+        <script src="assets/js/owl.carousel.min.js"></script>
+        <script src="assets/js/demos/demo-6.min.js"></script>
+        <script src="assets/js/cart.js"></script>
+
+        <script src="assets/js/bootstrap-input-spinner.js"></script>
+        <script src="assets/js/jquery.plugin.min.js"></script>
+        <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
+        <!-- Main JS File -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/main.min.js"></script>
+        <script src="assets/js/demos/demo-6.js"></script>
+
+
+
+
+
+</body>
+
+
+
+
+</html>
+<style>
+    #container {
+        position: relative;
+        width: 600px;
+        height: 400px;
+    }
+</style>
+<script>
+    document.getElementById('login').action = "/login/"
+
+    function refresh() {
+        var x = document.getElementById('fade');
+        x.style.display = "block";
+        setTimeout(() => {
+            location.reload();
+        }, 1000);
+    }
+
+    function countdown() {
+        var waitTime = 900000; //900000; // 15 minutes
+        var executionTime;
+        var initialTime = localStorage.getItem("initialTime");
+        if (initialTime !== null) {
+            executionTime = parseInt(initialTime, 10) + waitTime - (new Date()).getTime();
+            if (executionTime < 0) executionTime = 0;
+        } else {
+            localStorage.setItem("initialTime", (new Date()).getTime());
+            executionTime = waitTime;
+        };
+
+        setTimeout(() => {
+            //fetch('/destroy');
+            refresh();
+            localStorage.removeItem('initialTime');
+            localStorage.setItem('removeData', 'true');
+            localStorage.removeItem('executed');
+        }, executionTime);
+    };
+
+    // Si existe el item, la funcion es llamada y actualiza, la hora de ejecucion;
+    // Debe ser colocado en Layout_Public, para que se ejecute en todo el sitio
+    if (localStorage.getItem('venta') == null && localStorage.getItem("initialTime") !== null) {
+        countdown()
+    }
+    if (localStorage.getItem('venta') == 'true') {
+        localStorage.removeItem('venta');
+        localStorage.removeItem('initialTime');
+        localStorage.removeItem('executed');
+        localStorage.removeItem('cart')
+    }
+
+    if (localStorage.removeData == 'true') {
+        fetch('/cart/destroy/session_cart')
+            .then(res => res.json())
+            .then(data => console.log(data));
+        localStorage.removeItem('removeData');
+        localStorage.removeItem('cart');
+        fetch('/cart/drop');
+        refresh();
+    }
+
+    // Corrobora si el localStorage es borrado
+    let letsCorroborate = () => {
+        '<% if (productos) { %>'
+        var productos = '<%- JSON.stringify(productos) %>'
+
+        if (productos != 'null') {
+            let prdt = JSON.parse(productos)
+            console.log({
+                productos: prdt,
+                length: Object.keys(prdt).length
+            });
+            if (typeof localStorage.cart == 'undefined' && Object.keys(prdt).length > 0) {
+                fetch('/cart/destroy/session_cart')
+                localStorage.removeItem('executed');
+                localStorage.removeItem('removeData');
+                localStorage.removeItem('cart');
+                fetch('/cart/drop');
+                refresh();
+            }
+        }
+        '<% } %>'
+
+    }
+
+    setInterval(() => {
+        letsCorroborate();
+    }, 60000)
+
+    const prd = '<%=productos%>'
+    const prdLocal = localStorage.cart;
+    console.log({
+        product: prd
+    });
+
+    if (prd == 'null') {
+        console.log("dentro");
+        let intro = document.getElementById("intro");
+
+        intro.classList.add('d-none');
+
+    }
+    if (localStorage.initialTime) {
+        var interval = 900000;
+
+        // = parseInt(initialTime, 10) + interval - (new Date()).getTime();
+
+
+        setInterval(function() {
+            var remaining = parseInt(localStorage.initialTime, 10) + interval - (new Date()).getTime();
+            let intro = document.getElementById("intro");
+            let root = document.getElementById("countdown");
+            if (remaining >= 0) {
+                //console.log(remaining);
+                intro.classList.remove('d-none');
+                var minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+
+                root.classList.add("text-header");
+                $('#countdown').text(minutes + ':' + seconds);
+            } else {
+                console.log('esto se vencio');
+                intro.classList.add('d-none');
+            }
+        }, 1000);
+    }
+</script>

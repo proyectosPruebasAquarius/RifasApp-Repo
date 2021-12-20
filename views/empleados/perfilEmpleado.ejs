@@ -1,0 +1,377 @@
+<% layout('../layout') -%>
+<div class="template-demo">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-4">
+                <div
+                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+                    <div class="mdc-card p-0 ">
+                        <div class="align-items-center back__head text-white to-do-list-header">
+                            <h4 class="card-title text-center"><i
+                                    class="material-icons">person_add</i>&nbsp;&nbsp;Empleado</h4>
+
+                            <!--<a class="mdc-button mdc-button--unelevated"><i class="material-icons">person_add</i></a>-->
+                        </div>
+                        <!--foto-->
+                        <div class="mdc-card bg-gray text-center">
+                            <form action="">
+
+
+                                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop">
+                                    <div class="template-demo">
+                                        <div class="d-flex align-items-center">
+                                            <span class="container">
+                                                <h4 class="form-title">Foto del Empleado</h4>
+                                                <div class="row justify-content-center">
+                                                    <div class="col">
+                                                        <img class="avatarCard img mx-auto d-block" id="img_preview"
+                                                            width="100%"
+                                                            src="http://localhost:3000/images/empleados/<%= empleados.foto %> "></img>
+                                                    </div>
+                                                </div>
+                                                <br>
+
+
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!--fin foto-->
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div
+                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-9 mdc-layout-grid__cell--span-4-tablet">
+
+                    <div class="mdc-card p-0  ">
+                        <div class="card">
+                            <div class="card-header" style="background-color: #2B579A;">
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 mx-0">
+                                    <form id="msform"
+                                        action="/empleados/transaccion/update/<%= empleados.cod_empleado %>"
+                                        method="POST">
+                                        <!-- progressbar -->
+                                        <ul id="progressbar" style="margin-left: 200px !important;">
+                                            <li class="active" id="account"><strong>Ficha Personal</strong></li>
+                                            <li id="personal"><strong>Ficha Laboral</strong></li>
+                                            
+                                        </ul> <!-- fieldsets -->
+                                        <fieldset>
+                                            <div class="form-card">
+                                                <h2 class="fs-title">Datos Personales</h2>
+                                                <div class="card-container">
+
+                                                    <div class="form-group row">
+                                                        <div class="col-sm">
+                                                            <label for="dui"
+                                                                class="col-sm-2 col-form-label">D.U.I</label>
+
+                                                            <input type="text" readonly class="form-control-plaintext"
+                                                                id="dui" value="<%= empleados.DUI %>">
+                                                        </div>
+                                                        <div class="col-sm">
+                                                            <label for="nombres" class=" col-form-label">Nombres</label>
+
+                                                            <input type="text" readonly class="form-control-plaintext"
+                                                                id="nombres" value="<%= empleados.nombres %>">
+                                                        </div>
+                                                        <div class="col-sm">
+                                                            <label for="apellidos"
+                                                                class=" col-form-label">Apellidos</label>
+
+                                                            <input type="text" readonly class="form-control-plaintext"
+                                                                id="apellidos" value="<%= empleados.apellidos %>">
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm">
+                                                            <label for="cod_empleado" class=" col-form-label">Código
+                                                                Empleado</label>
+
+                                                            <input type="text" readonly class="form-control-plaintext"
+                                                                id="cod_empleado" value="<%= empleados.cod_empleado %>">
+                                                        </div>
+                                                        <div class="col-sm">
+
+
+                                                            <label for="fechaN" class=" col-form-label">Fecha de
+                                                                Nacimiento</label>
+
+                                                            <input type="text" readonly class="form-control-plaintext"
+                                                                id="fechaN"
+                                                                value="<%= moment(empleados.fecha_nac).format('DD/MM/YYYY') %>">
+                                                        </div>
+                                                        <div class="col-sm">
+
+                                                            <label for="telefonos"
+                                                                class=" col-form-label">Teléfono</label>
+
+                                                            <input type="text" readonly class="form-control-plaintext"
+                                                                id="telefonos" value="<%= empleados.telefono %>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm">
+
+                                                            <label for="celular" class=" col-form-label">Celular</label>
+
+                                                            <input type="text" readonly class="form-control-plaintext"
+                                                                id="celular" value="<%= empleados.celular %>">
+                                                        </div>
+                                                        <div class="col-sm">
+
+                                                            <label for="correo" class=" col-form-label">Email</label>
+
+                                                            <input type="text" readonly class="form-control-plaintext"
+                                                                id="correo" value="<%= empleados.correo %>">
+                                                        </div>
+                                                        <div class="col-sm">
+
+                                                            <label for="direccion"
+                                                                class=" col-form-label">Dirección</label>
+
+                                                            <input type="text" readonly class="form-control-plaintext"
+                                                                id="direccion" value="<%= empleados.direccion %>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm">
+
+                                                            <label for="municipios"
+                                                                class=" col-form-label">Municipio</label>
+
+                                                            <input type="text" readonly class="form-control-plaintext"
+                                                                id="municipios" value="<%= empleados.municipio %>">
+
+                                                        </div>
+
+                                                        <div class="col-sm">
+                                                            <label for="genero" class=" col-form-label">Género</label>
+
+                                                            <input type="text" readonly class="form-control-plaintext"
+                                                                id="genero" value="<%= empleados.genero %>">
+                                                        </div>
+
+                                                        <div class="col-sm">
+                                                            <label for="civil" class=" col-form-label">Estado
+                                                                Civil</label>
+
+                                                            <input type="text" readonly class="form-control-plaintext"
+                                                                id="civil" value="<%= empleados.estado_civil %>">
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                </div>
+
+
+                                            </div> <a type="button" name="next"
+                                                class="next action-button mdc-button" >Siguiente</a>
+                                            <span>&nbsp;</span> <a type="button" href="/empleados"
+                                                class="mdc-button mdc-button--warning mdc-ripple-upgraded action-button-back">
+                                                <i class="material-icons">arrow_back</i>&nbsp;Empleados
+                                            </a>
+                                        </fieldset>
+                                        <fieldset>
+                                            <div class="form-card">
+                                                <h2 class="fs-title">Ficha Laboral</h2>
+                                                <div class="row">
+                                                    <div class="col-sm">
+                                                        <label for="registo" class=" col-form-label">Fecha de
+                                                            Registro</label>
+
+                                                        <input type="text" readonly class="form-control-plaintext"
+                                                            id="registro"
+                                                            value="<%= moment(empleados.fecha_registro).format('DD/MM/YYYY') %>">
+                                                    </div>
+                                                    <div class="col-sm">
+
+                                                        <label for="nit" class=" col-form-label">NIT</label>
+
+                                                        <input type="text" readonly class="form-control-plaintext"
+                                                            id="nit" value="<%= empleados.NIT %>">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm">
+
+                                                        <label for="social" class=" col-form-label">Seguro
+                                                            Social</label>
+
+                                                        <input type="text" readonly class="form-control-plaintext"
+                                                            id="social" value="<%= empleados.seguro_social %>">
+                                                    </div>
+                                                    <div class="col-sm">
+
+                                                        <label for="afp" class=" col-form-label">AFP</label>
+
+                                                        <input type="text" readonly class="form-control-plaintext"
+                                                            id="afp" value="<%= empleados.AFP %>">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm">
+
+                                                        <label for="banco" class=" col-form-label">Cuenta de
+                                                            Banco</label>
+
+                                                        <input type="text" readonly class="form-control-plaintext"
+                                                            id="banco" value="<%= empleados.cuenta_bancaria %>">
+                                                    </div>
+                                                    <div class="col-sm">
+
+                                                        <label for="contrato" class=" col-form-label">Tipo de
+                                                            Contrato</label>
+
+                                                        <input type="text" readonly class="form-control-plaintext"
+                                                            id="contrato" value="<%= empleados.contrato %>">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm">
+
+                                                        <label for="cargo" class=" col-form-label">Cargo</label>
+
+                                                        <input type="text" readonly class="form-control-plaintext"
+                                                            id="cargo" value="<%= empleados.cargo %>">
+                                                    </div>
+                                                    <div class="col-sm">
+                                                        <label for="sucursal" class=" col-form-label">Sucursal</label>
+
+                                                        <input type="text" readonly class="form-control-plaintext"
+                                                            id="sucursal" value="<%= empleados.cod_sucursal %>">
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col">
+
+                                                        <label for="jefe" class=" col-form-label">Jefe Inmediato</label>
+
+                                                        <input type="text" readonly class="form-control-plaintext"
+                                                            id="jefe" value="<%= empleados.jefe_inmediato %>">
+                                                    </div>
+                                                    <div class="col">
+
+                                                        <label for="estado" class=" col-form-label">Estado
+                                                            Laboral</label>
+                                                        <% if (empleados.estado != null) { %> 
+                                                        <input type="text" readonly class="form-control-plaintext"
+                                                            id="estado" value="<%= empleados.estado %>">
+                                                        <% } else { %> 
+                                                            <input type="text" readonly class="form-control-plaintext"
+                                                            id="estado" value="">
+                                                        <% } %> 
+                                                    </div>
+                                                </div>
+                                            </div> <a type="button" name="previous"
+                                                class="previous action-button-previous mdc-button">Atras</a> <a
+                                                type="button" href="/empleados"
+                                                class="mdc-button mdc-button--warning mdc-ripple-upgraded action-button-back">
+                                                <i class="material-icons">arrow_back</i>&nbsp;Empleados
+                                            </a>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Aquí empieza el tab-->
+
+    </div>
+</div>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!--Formulario-->
+<script>
+    $(document).ready(function () {
+
+        var current_fs, next_fs, previous_fs; //fieldsets
+        var opacity;
+
+        $(".next").click(function () {
+
+            current_fs = $(this).parent();
+            next_fs = $(this).parent().next();
+
+            //Add Class Active
+            $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+            //show the next fieldset
+            next_fs.show();
+            //hide the current fieldset with style
+            current_fs.animate({
+                opacity: 0
+            }, {
+                step: function (now) {
+                    // for making fielset appear animation
+                    opacity = 1 - now;
+
+                    current_fs.css({
+                        'display': 'none',
+                        'position': 'relative'
+                    });
+                    next_fs.css({
+                        'opacity': opacity
+                    });
+                },
+                duration: 600
+            });
+        });
+
+        $(".previous").click(function () {
+
+            current_fs = $(this).parent();
+            previous_fs = $(this).parent().prev();
+
+            //Remove class active
+            $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+            //show the previous fieldset
+            previous_fs.show();
+
+            //hide the current fieldset with style
+            current_fs.animate({
+                opacity: 0
+            }, {
+                step: function (now) {
+                    // for making fielset appear animation
+                    opacity = 1 - now;
+
+                    current_fs.css({
+                        'display': 'none',
+                        'position': 'relative'
+                    });
+                    previous_fs.css({
+                        'opacity': opacity
+                    });
+                },
+                duration: 600
+            });
+        });
+
+        $('.radio-group .radio').click(function () {
+            $(this).parent().find('.radio').removeClass('selected');
+            $(this).addClass('selected');
+        });
+
+        $(".submit").click(function () {
+            return false;
+        })
+
+    });
+</script>

@@ -1,0 +1,873 @@
+<% layout('../../layout_public') -%>
+    <div id="fade" class="fadeMe d-flex justify-content-center" style="display:none !important;">
+        <div class="content">
+            <img src="/assets/images/demos/demo-6/bruja.svg" alt="Bruja">
+            <p>Procesando...</p>
+        </div>
+    </div>
+    <div id="header_imag" class="page-header text-center">
+        <div class="container">
+            <h1 id="titleH1" class="page-title" style="color: #4A4B65;">Carrito De Compras</h1>
+        </div>
+        <!-- End .container -->
+    </div>
+    <!-- End .page-header -->
+    <div class="page-content">
+        <div class="cart">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <table class="table table-cart table-mobile">
+                            <thead>
+                                <tr>
+                                    <th>Rifa</th>
+                                    <th>Precio</th>
+                                    <th>Cantidad</th>
+                                    <th>No de Boletos</th>
+                                    <th>Total</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <form id="formCart">
+                                    <% if (productos) { %>
+                                        <% for (let index = 0; index < productos.length; index++) {%>
+                                            <tr>
+                                                <td class="product-col">
+                                                    <div class="product">
+                                                        <figure class="product-media">
+                                                            <a href="#">
+                                                                <img src="images/publicaciones/<%= productos[index].item.imagen %>" alt="Product image">
+                                                            </a>
+                                                        </figure>
+
+                                                        <h3 class="product-title">
+                                                            <a>
+                                                                <%= productos[index].item.rifa %>
+                                                            </a>
+                                                        </h3>
+                                                        <!-- End .product-title -->
+                                                    </div>
+                                                    <!-- End .product -->
+                                                </td>
+
+                                                <td class="price-col">
+                                                    $
+                                                    <%= productos[index].item.precio %>
+                                                </td>
+                                                <td class="quantity-col">
+                                                    <div class="cart-product-quantity">
+                                                        <div class="input-group  input-spinner">
+                                                            <div class="input-group-prepend">
+                                                                <button style="min-width: 26px" class="btn btn-decrement btn-spinner" type="button" onclick="returner(<%= index %>);decrement('<%= index %>','<%= productos[index].item.id %>');">
+                                                                    <i class="icon-minus"></i>
+                                                                </button>
+                                                            </div>
+
+                                                            <input type="text" disabled id="<%= index %>" style="text-align: center" class="form-control" required value="<%= productos[index].qty %>" min="1" max="10" step="1" data-decimals="0" onchange="addValue(this.id,this.value)">
+
+                                                            <div class="input-group-append">
+                                                                <button style="min-width: 26px" class="btn btn-increment btn-spinner" type="button" onclick="increment('<%= index %>','<%= productos[index].item.id %>')">
+                                                                    <i class="icon-plus"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                    <!-- End .cart-product-quantity -->
+                                                </td>
+
+                                                <td id="td_container<%= index %>">
+                                                    <div>
+                                                        <div id="cardN<%= index %>" class="email" onclick="returner(<%= index %>)">
+                                                            <div class="from">
+                                                                <div class="from-contents">
+                                                                    <div class="avatar me"></div>
+                                                                    <div class="name text-center">Números</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="to">
+                                                                <div class="to-contents">
+                                                                    <div class="top">
+                                                                        <div class="avatar-large"><img src="/assets/images/ticket.svg" alt=""></div>
+                                                                        <div class="name-large">Números Disponibles</div>
+                                                                        <div class="x-touch" onclick="closeCard(<%= index %>)">
+                                                                            <div class="x">
+                                                                                <div class="line1"></div>
+                                                                                <div class="line2"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="bottom">
+                                                                        <div class="rowBox">
+                                                                            <a class="btn btn-primary btn-outline btn-round" type="button" style="margin: 12%;" onclick="randomGenerateNumber(<%= productos[index].item.id_rifa %>,<%= index %>)">Generar
+                                                                                Número Random <i class="bi bi-shuffle"></i></a>
+
+                                                                        </div>
+                                                                        <div>
+                                                                            <div class="collapse" id="collapseExample">
+                                                                                <!--Collapse Card body-->
+
+                                                                                <div class="card mx-auto rounded-circle bg-indigo border-0 glass-btn red-btn">
+                                                                                    <div class="card-body text-seal" id="cardRandom<%= index %>">
+                                                                                        <p id="cardRandom<%= index %>" class="card-text text-seal"></p>
+                                                                                    </div>
+                                                                                </div>
+
+
+                                                                            </div>
+                                                                        </div>
+                                                                        <div data-simplebar>
+                                                                            <div class="rowBox" id="rowD<%= index %>">
+
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+
+
+                    </div>
+
+                    <td class="total-col" id="total <%= index %>">$
+                        <%= productos[index].price %>
+                    </td>
+                    <td class="remove-col"><a class="btn-remove" name="<%= index %>" href="/cart/remove/<%= productos[index].item.id %> "><i
+                                                class="icon-close"></i></a>
+                    </td>
+                    </tr>
+                    <% }; %>
+                        <% } else { %>
+                            <tr>
+                                <td>
+                                    <h1>No Hay Productos En El Carrito</h1>
+                                </td>
+                            </tr>
+                            <% } %>
+                                </form>
+
+                                </tbody>
+                                </table>
+                                <!-- End .table table-wishlist -->
+
+
+                                <!-- End .cart-bottom -->
+                </div>
+                <!-- End .col-lg-9 -->
+                <aside class="col-lg-3">
+                    <div class="summary summary-cart">
+                        <h3 class="summary-title">Detalle de Carrito</h3>
+                        <!-- End .summary-title -->
+
+                        <table class="table table-summary">
+                            <tbody>
+                                <tr class="summary-subtotal">
+                                    <td>Subtotal:</td>
+                                    <td id="subtotal">$</td>
+                                </tr>
+                                <!-- End .summary-subtotal -->
+                                <tr class="summary-shipping">
+                                    <td>Rifas</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <% if (productos) { %>
+                                    <% for (let index = 0; index < productos.length; index++) {%>
+                                        <tr class="summary-shipping-row">
+                                            <td class="text-left">
+                                                <div class="custom-control">
+
+                                                    <label class="control-label"><%= productos[index].item.rifa %> </label>
+                                                </div>
+                                                <!-- End .custom-control -->
+                                            </td>
+                                            <td class="text-right"><span id="prodT <%= index %>"><%= productos[index].qty %> x
+                                                </span>$
+                                                <%= productos[index].item.precio %>
+                                            </td>
+                                            <tr class="summary-shipping-row"></tr>
+                                            <td>
+                                                <div data-simplebar>
+                                                    <div class="section " id="takesNumbers<%= index %>"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tr>
+                                        <% }; %>
+                                            <% } %>
+                                                <!-- End .summary-shipping-row -->
+
+
+                                                <!-- End .summary-shipping-estimate -->
+
+                                                <tr class="summary-total">
+                                                    <td>Total:</td>
+                                                    <td id="total">$</td>
+                                                </tr>
+                                                <!-- End .summary-total -->
+                            </tbody>
+                        </table>
+                        <!-- End .table table-summary -->
+                        <div class="dropdown-divider"></div>
+
+                        <% if (user) { %>
+                            <a href="/checkout" class="btn btn-outline-primary-2 btn-order btn-block">Proseguir con el
+                                Pago</a>
+                            <% }else{ %>
+                                <p data-toggle="tooltip" data-placement="top" title="Debes Iniciar sesion para continuar con la compra">
+                                    <a href="#signin-modal" data-toggle="modal" class="btn btn-outline-primary-2 btn-order btn-block" id="btn_login_card" onclick="btnCardCliked()">Iniciar Sesion 
+                                    </a>
+                                </p>
+
+                                <% } %>
+
+
+                    </div>
+                    <!-- End .summary -->
+
+                    <a href="/inicio" class="btn btn-outline-dark-2 btn-block mb-3"><span>Continuar Comprando</span><i
+                            class="icon-refresh"></i></a>
+                </aside>
+                <!-- End .col-lg-3 -->
+            </div>
+            <!-- End .row -->
+        </div>
+        <!-- End .container -->
+    </div>
+    <!-- End .cart -->
+    </div>
+    <!-- End .breadcrumb-nav -->
+
+
+    <!-- End .page-content -->
+    <style>
+        .simplebar-scrollbar::before {
+            background-color: red;
+        }
+        
+        .img_cart {
+            background-image: url('assets/images/video/carrito.svg');
+            height: 170px;
+            width: 1920px;
+        }
+        
+        .img_cart_mobile {
+            background-image: url('assets/images/video/carrito_mobile2.svg');
+            height: 170px;
+            width: 400px;
+        }
+    </style>
+    <script src="assets/js/eventFetch.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        window.onload = document.getElementById('formCart').reset();
+
+
+        '<% var params;%>'
+        /*function addValue(inputId,value) {
+            //console.log(('<%- JSON.stringify(productos) %>'));
+            let productos = new Array();
+           '<% if (productos) { %>'
+                ////productos = <%- JSON.stringify(productos) %>;
+                //console.log(productos[inputId].qty = value);
+                fetch('/qty/'+inputId+'/'+value)
+                .then(response => response.json())
+                .then(data => console.log(data));
+                console.log(('<%- JSON.stringify(productos) %>'));
+            '<%}%>'
+        }*/
+
+        // Eliminar
+
+        //addValue(0,1)
+        localStorage.setItem('cart', '<%- JSON.stringify(productos) %>')
+        let test = JSON.parse(localStorage.getItem('cart'))
+            //console.log(test[0])
+        '<% if (productos) { %>'
+        let subtotal = <%= session.cart.totalPrice %>;
+        /* if (localStorage.subTotal != subtotal && localStorage.subTotal != null) {
+            document.getElementById('subtotal').innerHTML = '$'+localStorage.subTotal;
+        } else {
+            document.getElementById('subtotal').innerHTML = '$'+subtotal;
+        } */
+        localStorage.setItem('subTotal', subtotal)
+        document.getElementById('subtotal').innerHTML = '$' + localStorage.subTotal;
+        document.getElementById('total').innerHTML = '$' + localStorage.subTotal;
+        '<%}%>'
+
+        function addValue(length, quantity, key) {
+            '<% if (productos) { %>'
+            let prts = JSON.parse(localStorage.getItem('cart'));
+            console.log(prts[length].qty = quantity)
+
+            // Add new price
+            let price = prts[length].item.precio;
+            let qty = quantity;
+
+            // Add total Value for Product
+            prts[length]['totalValue'] = '$' + price * qty
+            localStorage.setItem('cart', JSON.stringify(prts))
+            console.log(localStorage.cart)
+
+
+            let td = document.getElementById('total ' + length)
+            td.innerHTML = '$' + price * qty
+
+            // Assing subtotal
+            let tdSubtotal = document.getElementById('subtotal')
+
+            switch (key) {
+                case 'sum':
+                    if (quantity < 10) {
+                        subtotal += price;
+                    }
+                    break;
+                case 'res':
+                    if (quantity > 1) {
+                        subtotal -= price;
+                    }
+                    break;
+                default:
+                    break;
+            }
+            //console.log(subtotal)
+            localStorage.setItem('subTotal', subtotal)
+            tdSubtotal.innerHTML = '$' + localStorage.subTotal;
+            document.getElementById('total').innerHTML = '$' + localStorage.subTotal;
+            /*prts.forEach(p => {
+                console.log(p)
+            });*/
+            // Product increment in details
+            let prtIn = document.getElementById('prodT ' + length);
+            prtIn.innerHTML = qty + ' x '
+            '<%}%>'
+        }
+
+        /*function remove(length) {
+            let item = JSON.parse(localStorage.cart)
+           // console.log({probando: item[length]})
+             console.log(delete item[length])
+             console.log(item)
+            //localStorage.setItem('cart', item)
+        }*/
+        function refresh() {
+            var x = document.getElementById('fade');
+            x.style.display = "block";
+            setTimeout(() => {
+                location.reload();
+            }, 1000);
+        }
+
+        /* function corroborateValues() {
+            let cart = JSON.parse(localStorage.cart);
+            let numbers = cart[iOf]['No'];
+            let numbersLength = numbers.length;
+            let values = cart[iOf].qty;
+            let root = document.getElementById(`rowD${iOf}`)
+
+            if (numbersLength == values) {
+                // Display none
+                root.style.display = 'none';
+                closeCard(iOf)
+            } else {
+                // Display Block
+                root.style.display = 'flex';
+            }
+        } */
+
+        function increment(id, itemId) {
+            //console.log(value)
+            /* let value = parseInt(document.getElementById('pr '+id).value, 10);
+             value = isNaN(value) ? 0 : value;
+             value++;*/
+            var value = parseInt(document.getElementById(id).value, 10);
+            value = isNaN(value) ? 1 : value;
+            value++;
+            console.log(document.getElementById(id).value = value);
+            document.getElementById(id).value = value.toString()
+
+            fetch(`/cart/add-to-cart/${itemId}`)
+
+            addValue(id, document.getElementById(id).value, 'sum')
+            refresh()
+
+        }
+
+        function decrement(id, itemId) {
+            //console.log(value)
+            /* let value = parseInt(document.getElementById('pr '+id).value, 10);
+             value = isNaN(value) ? 0 : value;
+             value++;*/
+            let local = JSON.parse(localStorage.cart);
+            if (local[iOf]['No'].length != local[iOf]['qty']) {
+                var value = parseInt(document.getElementById(id).value, 10);
+                value = isNaN(value) ? 1 : value;
+                value = value <= 1 ? document.getElementById(id).disabled = true : value;
+                value--;
+                console.log(document.getElementById(id).value = value);
+                document.getElementById(id).value = document.getElementById(id).value <= 1 ? 1 : value.toString()
+
+                fetch(`/cart/reducer/${itemId}`)
+
+                addValue(id, document.getElementById(id).value, 'res')
+                refresh()
+            } else {
+                alert('Remueve un número, para reducir la cantidad de boletos.')
+            }
+        }
+
+
+        function numberSelector(id, index) {
+            daemonize(id)
+        }
+
+        function assignValueArray(array, index) {
+            let numbers = '';
+            if (Array.isArray(array)) {
+                array.forEach(element => {
+                    // console.log(createRangeOfNumbers(element.num_inicial,element.num_final)) add list group
+                    numbers += '<div class="list-group" id="listGroup">'
+                    numbers +=
+                        '<div class="glass-btn red-btn list-group-item list-group-item-action" onclick="pushNo(\'' +
+                        element + '\',\'' + array + '\');returner(' + index + '); startCount()">'
+                    numbers += '<p>' + element + '</p>'
+                    numbers += '</div>'
+                    numbers += '</div>'
+                });
+                document.getElementById('rowD' + index + '').innerHTML = numbers
+            }
+        }
+        //numberSelector(9)
+
+        // Elimina NUMERO SELECCIONADO POR UN CLIENTE DE LA LISTA DE LOS DEMAS CLIENTES
+        function removeNumber(number, array) {
+
+            if (number != null) {
+                console.log('entrw');
+                var local = JSON.parse(localStorage.cart);
+                var id = local[iOf].item.id_rifa;
+
+
+                fetch(`/cart/addAnArray/${id}/${number}`);
+            }
+
+
+
+        }
+
+
+
+        function removeCartAddNumbers(array) {
+            let itemsUnParsed = localStorage.cart
+            let itemsParsed = JSON.parse(itemsUnParsed)
+            itemsParsed[iOf]['No'].forEach(n => {
+                newArray.push(n)
+            });
+        }
+        // Crea arreglo con el rango de numero inicial y final proveido
+        function createRangeOfNumbers(initial, end) {
+            let array = []
+                /*while (initial < end) {
+                    array=[initial++]
+                } */
+            for (initial; initial <= end; initial++) {
+                array.push(initial)
+
+            }
+            return array
+        }
+
+        // Asigna los numeros Random
+        function randomGenerateNumber(id, index) {
+            /*for (initial; initial <= end; initial++) {
+                return initial
+            }*/
+            // Falta Preguntar si los generara de manera individual o igual al valor
+            console.log(id, index)
+
+            let cart = JSON.parse(localStorage.cart)
+            let totalValue = cart[index]['qty']
+
+            let numbers = cart[index]['No'];
+
+            if (totalValue != numbers.length) {
+                // let all = creator(id, index);
+                creator(id, index).then((value) => {
+                    document.getElementById('cardRandom' + index).innerText = value.random
+                    console.log('aaa', value.arreglo);
+                    // Enviar a funcion push
+                    //let arr = JSON.parse(value.arreglo)
+                    pushNo(value.random, value.arreglo);
+                    startCount();
+                })
+                $('.collapse').collapse('show')
+                setTimeout(() => {
+                    $('.collapse').collapse('hide')
+                }, 10000);
+            } else {
+                alert('No puedes agregar agregar más números que la cantidad de boletos');
+            }
+
+        }
+
+        // Genera un numero Random entre los disponibles
+        function creator(id, index) {
+            return fetch('/cart/creator/' + id + '')
+                .then(response => response.json())
+                .then(data => {
+                    //console.log({data: data[0].num_final})
+                    /* let array = createRangeOfNumbers(data[0].num_inicial, data[0].num_final)
+                    //console.log(array,"h")
+                    if (typeof data[0].numero !== 'undefined') {
+                        data.forEach(d => {
+                            array = removeSellNumbers(array, d.numero)
+                        });
+                    } */
+                    let local = JSON.parse(localStorage.cart);
+                    console.log('los', data);
+                    //let unparsed = data;
+                    let longitude = local[index].item.id_rifa;
+                    let parsed = JSON.parse(data[longitude]);
+                    const random = Math.floor(Math.random() * parsed.length);
+                    console.log(parsed[random])
+                        // document.getElementById('cardRandom'+index).innerText = array[random]
+                    let all = {
+                        arreglo: parsed,
+                        random: parsed[random]
+                    };
+                    return all;
+                });
+        }
+        // Remueve los números vendidos del arreglo
+        function removeSellNumbers(arr, value) {
+            var i = 0;
+            while (i < arr.length) {
+                if (arr[i] == value) {
+                    arr.splice(i, 1);
+                } else {
+                    ++i;
+                }
+            }
+            return arr;
+        }
+
+        let iOf;
+        // Add No de Boleto 
+        function pushNo(number, array) {
+            let products = JSON.parse(localStorage.cart)
+            if (products[iOf]['No'].length == products[iOf]['qty']) {
+                /* products[iOf]['No'] = [number]
+                removeNumber(number, array) */
+                alert('No puedes agregar agregar más números que la cantidad de boletos')
+            } else {
+                if (products[iOf]['No'].find(e => e == number)) {
+                    let newArray = removeSellNumbers(products[iOf]['No'], number);
+                    products[iOf]['No'] = newArray;
+
+                    console.log('el totla', products[iOf]);
+                    /* socket.emit('reasign', { key: products[iOf].item.id_rifa, number: number}); */
+                    Promise.all([
+                        fetch(`/cart/removeFromArray/${products[iOf].item.id_rifa}/${number}`)
+                        .then(res => res.json())
+                        .then(data => console.log(data)),
+
+                        fetch(`/cart/addNumber/${products[iOf].item.id}/${number}`)
+                        .then(res => res.json())
+                        .then(data => console.log(data))
+                    ])
+                } else {
+                    products[iOf]['No'].push(number)
+                    removeNumber(number, array)
+                    fetch(`/cart/addNumber/${products[iOf].item.id}/${number}`)
+
+                }
+
+            }
+
+            localStorage.setItem('cart', JSON.stringify(products))
+            console.log(localStorage.cart)
+
+            //socket.emit('addNumbers', {id: products[iOf].item.id, number: number})
+            //fetch(`/addNumber/${products[iOf].item.id}/${number}`)
+
+            loopLocal()
+                // corroborateValues()
+                //var arrStr = encodeURIComponent(JSON.stringify(products));
+                //fetch(`/adder/${arrStr}`)
+        }
+
+        function removePush(number) {
+            let products = JSON.parse(localStorage.cart)
+            if (products[iOf]['No'].find(e => e == number)) {
+                let newArray = removeSellNumbers(products[iOf]['No'], number);
+                products[iOf]['No'] = newArray;
+
+                console.log({
+                    prueba: products[iOf]['No'],
+                    numero: number
+                });
+                localStorage.setItem('cart', JSON.stringify(products))
+                console.log('el totla', products[iOf]);
+                /* socket.emit('reasign', { key: products[iOf].item.id_rifa, number: number}); */
+                Promise.all([
+                    fetch(`/cart/removeFromArray/${products[iOf].item.id_rifa}/${number}`)
+                    .then(res => res.json())
+                    .then(data => console.log(data)),
+
+                    fetch(`/cart/addNumber/${products[iOf].item.id}/${number}`)
+                    .then(res => res.json())
+                    .then(data => console.log(data))
+                ])
+                loopLocal()
+            }
+        }
+
+        function loopLocal() {
+            let parsedNumbers = JSON.parse(localStorage.cart);
+
+            for (let index = 0; index < parsedNumbers.length; index++) {
+                const element = parsedNumbers[index];
+                let text = '';
+                element['No'].forEach(e => {
+
+                    text += '<div class="rounded-circle bg-pastel-green border-0 glass-btn red-btn section__item" onclick="removePush(' + e + '); returner(' + index + ')">'
+                    text += '<div class="card-body text-green">'
+                    text += `<p class="card-text text-green">${e}</p>`
+                    text += '</div>'
+                    text += '</div>'
+
+
+                });
+                document.getElementById(`takesNumbers${index}`).innerHTML = text;
+            }
+        }
+
+        function returner(index) {
+            //console.log(index)
+            //return index
+            iOf = index
+        }
+
+        function closeCard(index) {
+            document.getElementById('cardN' + index).classList.remove('expand');
+            event.stopPropagation();
+            /* let card = document.getElementById('cardN'+index)
+            console.log({posts: 'cardN'+index})
+            card.classList.remove('expand');//event.stopPropagation(); */
+        }
+
+
+        function startCount() {
+
+            if (localStorage.executed == null) {
+                let dataUnparsed = JSON.parse(localStorage.cart);
+                let dataParsed = dataUnparsed[iOf]['No'];
+                console.log('encontrados');
+                if (dataParsed.length == 1) {
+                    // Elimina los datos a los 15 minutos iniciado el cronometro;
+                    //socket.emit('destroy', 'true');
+                    /* fetch('/destroy/session_cart')
+                    .then(res => res.json())
+                    .then(data => console.log(data));
+                    console.log('dentro'); */
+                    console.log('arriba del count');
+                    countdown();
+                    console.log('abajo del count');
+                    // Alerta a los 12 minutos iniciado el cronometro;
+                    setTimeout(() => {
+                        confirm(
+                            'Lamentamos los incovenientes, pero en 12 minutos el carrito de compra será restablecido');
+                    }, 1000);
+
+                    // Inicia el cronometro en el header con 15 minutos;
+                    // Inicia el cronometro en el header con 15 minutos;
+                    var countDownDate = new Date().getTime() + 15 * 60 * 1000;
+
+                    // Update the count down every 1 second
+                    let intro = document.getElementById("intro");
+                    let root = document.getElementById("countdown");
+                    intro.classList.remove('d-none');
+                    var y = setInterval(function() {
+
+                        // Get today's date and time
+                        var now = new Date().getTime();
+
+                        // Find the distance between now and the count down date
+                        var distance = countDownDate - now;
+
+                        // Time calculations for hours, minutes and seconds
+                        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                        // Display the result in the element with id="demo"
+
+                        root.classList.add("text-header");
+                        root.innerHTML =
+                            /* hours + ":"
+                                    +  */
+                            minutes + ":" + seconds;
+
+                        // If the count down is finished, write some text
+                        if (distance < 0) {
+                            intro.classList.add('d-none');
+                            clearInterval(y);
+                            //document.getElementById("countdown").innerHTML = "EXPIRED";
+                        }
+                    }, 1000);
+
+                }
+
+                localStorage.setItem('executed', true);
+            }
+        }
+
+        // Inicia el tiempo de espera para destruir el carrito;
+        function countdown() {
+            var waitTime = 900000; //900000; // 15 minutes
+            var executionTime;
+            var initialTime = localStorage.getItem("initialTime");
+            console.log('entro en countdown');
+            if (initialTime !== null) {
+                executionTime = parseInt(initialTime, 10) + waitTime - (new Date()).getTime();
+                if (executionTime < 0) executionTime = 0;
+            } else {
+                localStorage.setItem("initialTime", (new Date()).getTime());
+                executionTime = waitTime;
+            };
+
+            setTimeout(() => {
+                //fetch('/destroy');
+                refresh();
+                localStorage.removeItem('initialTime');
+                localStorage.setItem('removeData', 'true');
+            }, executionTime);
+        };
+
+        // Si existe el item, la funcion es llamada y actualiza, la hora de ejecucion;
+        // Debe ser colocado en Layout_Public, para que se ejecute en todo el sitio
+        if (localStorage.getItem("initialTime") !== null) {
+            countdown()
+        }
+        if (localStorage.removeData) {
+            if (localStorage.removeData == 'true') {
+                fetch('/cart/destroy/session_cart')
+
+                localStorage.removeItem('removeData');
+                fetch('/cart/drop');
+                refresh();
+            }
+        }
+
+
+        (() => {
+            let localData = JSON.parse(localStorage.cart);
+            if (localData != null) {
+                for (let i = 0; i < localData.length; i++) {
+                    const element = localData[i];
+
+                    if (element['No'].length > 0) {
+                        loopLocal()
+                    }
+                }
+            }
+
+
+        })();
+        /* socket.on('reload', function(data) {
+            //console.log('Got announcement:', data.message);
+            if (typeof localStorage.cart !== 'undefined') {
+                let dataFirtsParse = JSON.parse(localStorage.cart);
+                for (let i = 0; i < dataFirtsParse.length; i++) {
+                    const element = dataFirtsParse[i];
+
+                    let dataSecondParse = JSON.parse(element.No);
+                    var past = new Date(data.unFormatted).getTime();
+                    var twoMin = 120000; 
+                    var isPast = (new Date().getTime() - past < fiveMin)?false:true;
+                    if (dataSecondParse.length > 0) {
+                        fetch('/destroy')
+                        refresh()
+                    }
+                }
+            }
+            
+            //alert(data.message);
+        }); */
+        var tabLink = document.querySelectorAll(".email");
+
+        tabLink.forEach(function(item) {
+            item.addEventListener(
+                "click",
+                function(e) {
+                    // ADDS AND REMOVES ACTIVE CLASS ON TABLINKS
+                    var divs = document.getElementsByClassName("expand").length;
+                    // let card = document.getElementById(`td_container${iOf}`)
+                    console.log(divs);
+                    if (divs == 0) {
+
+                        let local = JSON.parse(localStorage.cart);
+                        let data = local[iOf].item.id_rifa;
+                        numberSelector(data, iOf);
+                        item.classList.add("expand");
+                        // card.style = 'padding-left: 0px;'
+                    } else {
+                        // card.style = 'padding-left: 90px;'
+                    }
+                    // SOMEHOW EQUATE TAB LINKS TO TAB PANES
+                    console.log(e.target);
+                },
+                false
+            );
+        });
+
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+        let banner = document.getElementById('header_imag');
+        let local = JSON.parse(localStorage.cart);
+
+        for (let index = 0; index < local.length; index++) {
+            //const element = array[index];
+            let card = document.getElementById(`td_container${index}`)
+            if (screen.width <= 400) {
+
+                card.style = 'padding-left: 90px;'
+
+            } else if (screen.width > 400 && screen.width < 700) {
+                card.style = 'padding-left: 110px;'
+            } else if (screen.width > 400 && screen.width < 1000) {
+                card.style = 'padding-left: 285px;'
+            }
+        }
+        //et card = document.querySelectora('#td_container')
+        if (screen.width <= 400) {
+            banner.style.backgroundImage = 'url(assets/images/video/prueba.svg)';
+            banner.style.height = '170px';
+
+            //  card.style = 'padding-left: 90px;';
+            document.getElementById('titleH1').innerText = ''
+        } else {
+            banner.style.backgroundImage = 'url(assets/images/video/carrito.svg)';
+            // banner.style.width = '1920px';
+        }
+
+        function btnCardCliked() {
+
+            let url = window.location.pathname;
+
+
+            document.getElementById('url').value = url;
+            document.getElementById('url2').value = url;
+        }
+        const hola = localStorage.cart
+        console.log("carrito", hola);
+    </script>

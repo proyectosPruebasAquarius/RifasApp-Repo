@@ -1,37 +1,49 @@
 {
-  "name": "rifasapp",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www",
-    "dev": "nodemon app.js"
-  },
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.18.3",
-    "connect-flash": "^0.1.1",
-    "cookie-parser": "~1.4.4",
-    "dateformat": "^4.5.1",
-    "debug": "~2.6.9",
-    "ejs": "^3.1.6",
-    "ejs-blocks": "^0.1.4",
-    "express": "~4.16.1",
-    "express-ejs-layouts": "^2.5.0",
-    "express-mysql-session": "^2.1.5",
-    "express-session": "^1.17.1",
-    "express-validator": "^6.10.0",
-    "http-errors": "~1.6.3",
-    "moment": "^2.29.1",
-    "morgan": "^1.9.1",
-    "multer": "^1.4.2",
-    "mysql": "^2.18.1",
-    "passport": "^0.4.1",
-    "passport-local": "^1.0.0",
-    "pug": "2.0.0-beta11",
-    "timeago.js": "^4.0.2"
-  },
-  "devDependencies": {
-    "kill-port": "^1.6.1",
-    "nodemon": "^2.0.7"
-  }
+    "name": "rifasapp",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "start": "node ./bin/www",
+        "dev": "nodemon app.js",
+        "debug": "nodemon --inspect app.js"
+    },
+    "dependencies": {
+        "@algolia/autocomplete-js": "^1.1.0",
+        "async-redis": "^2.0.0",
+        "axios": "^0.21.4",
+        "bcryptjs": "^2.4.3",
+        "body-parser": "^1.18.3",
+        "connect-flash": "^0.1.1",
+        "cookie-parser": "~1.4.4",
+        "cors": "^2.8.5",
+        "dateformat": "^4.5.1",
+        "debug": "~2.6.9",
+        "ejs": "^3.1.6",
+        "ejs-blocks": "^0.1.4",
+        "express": "^4.16.4",
+        "express-ejs-layouts": "^2.5.0",
+        "express-mysql-session": "^2.1.6",
+        "express-paginate": "^1.0.2",
+        "express-session": "^1.17.1",
+        "express-validator": "^6.10.0",
+        "http-errors": "~1.6.3",
+        "jsonwebtoken": "^8.5.1",
+        "moment": "^2.29.1",
+        "morgan": "^1.9.1",
+        "multer": "^1.4.2",
+        "multi-step-form-js": "^0.1.1",
+        "mysql": "^2.18.1",
+        "nodemailer": "^6.6.2",
+        "passport": "^0.4.1",
+        "passport-local": "^1.0.0",
+        "pug": "^3.0.2",
+        "redis": "^3.1.2",
+        "socket.io": "^4.1.3",
+        "timeago.js": "^4.0.2",
+        "uuid": "^8.3.2"
+    },
+    "devDependencies": {
+        "kill-port": "^1.6.1",
+        "nodemon": "^2.0.7"
+    }
 }

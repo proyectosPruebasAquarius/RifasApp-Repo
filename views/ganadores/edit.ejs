@@ -1,0 +1,78 @@
+<div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
+      <div class="mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-6-desktop stretch-card">
+        <div class="mdc-card p-0 to-do-list">
+          <div class="d-flex bg-primary text-white to-do-list-header">
+            <h4 class="card-title">Editar Ganador</h4>
+          </div>
+          <div class="mdc-card">
+            <form action="/ganadores/edit/<%= ganador.id %>" method="POST">
+              <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2 mdc-layout-grid__cell--span-2-tablet">
+                <div class="mdc-card info-card info-card--info">
+                  <div class="card-inner">
+                    <div class="d-flex align-items-center">
+                      <span class="figure">Aquí la foto del producto
+                        <img src="/assets/images/faces/smartTv.jpg" alt="user" class="user" />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mdc-layout-grid__inner">
+                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                  <div class="mdc-text-field w-100">
+                    <input class="mdc-text-field__input" id="text-field-hero-input" name="id"  value="<%= producto.id %>"/>
+                    <div class="mdc-line-ripple"></div>
+                    <label for="text-field-hero-input" class="mdc-floating-label">Código</label>
+                  </div>
+                </div>
+                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                    <div class="mdc-text-field w-100">
+                      <input class="mdc-text-field__input" id="text-field-hero-input" name="id_cliente" value="<%= ganador.id_cliente %>"/>
+                      <div class="mdc-line-ripple"></div>
+                      <label for="text-field-hero-input" class="mdc-floating-label">Id_Cliente</label>
+                    </div>
+                  </div>
+                  <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                    <div class="mdc-text-field w-100">
+                      <input class="mdc-text-field__input" id="text-field-hero-input" name="codigo_rifa" value="<%= ganador.codigo_rifa %>"/>
+                      <div class="mdc-line-ripple"></div>
+                      <label for="text-field-hero-input" class="mdc-floating-label">Código Rifa</label>
+                    </div>
+                  </div>
+                  <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                      <div class="nativeDatePicker w-100">
+                        <div class="mdc-text-field">
+                          <input class="mdc-text-field__input" id="text-field-hero-input" type="date" name="fecha_entrega" value="<%= ganador.fecha_entrega %>"/>
+                          <div class="mdc-line-ripple"></div>
+                          <label for="text-field-hero-input" class="mdc-floating-label">Fecha de Entrega</label>
+                          <span class="validity"></span>
+                        </div>
+                      </div>
+                    </div>
+                  <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                    <div class="mdc-text-field w-100">
+                      <input class="mdc-text-field__input" id="text-field-hero-input" name="estado" value="<%= ganador.estado %>"/>
+                      <div class="mdc-line-ripple"></div>
+                      <label for="text-field-hero-input" class="mdc-floating-label">Estado del Premio</label>
+                    </div>
+                  </div>
+                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop">
+                  <div class="template-demo">
+                    <button type="submit" class="mdc-button mdc-button--unelevated">
+                        <i class="material-icons">refresh</i>&nbsp;Guardar Cambios
+                      </button>
+                    <button type="reset" class="mdc-button mdc-button--unelevated filled-button--warning">
+                      <i class="material-icons">cancel</i>&nbsp;Cancelar
+                    </button>
+                    <a class="mdc-button mdc-button--unelevated filled-button--success" href='/ganadores'><i class="material-icons">arrow_back</i>&nbsp;Volver
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

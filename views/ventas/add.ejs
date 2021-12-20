@@ -1,0 +1,120 @@
+<% layout('../layout') %>
+<div class="mdc-layout-grid">
+  <div class="mdc-layout-grid__inner">
+    <div class="mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-12-desktop stretch-card">
+      <div class="mdc-card p-0 to-do-list">
+        <div class="d-flex bg-primary text-white to-do-list-header">
+          <h4 class="card-title">Alta Venta</h4>
+        </div>
+        <div class="mdc-card">
+          <form action="/ventas/add"  method="POST">
+            
+            <div class="mdc-layout-grid__inner">
+              <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                <div class="mdc-text-field w-100">
+                  <input class="mdc-text-field__input" id="text-field-hero-input" name="id_cliente" />
+                  <div class="mdc-line-ripple"></div>
+                  <label for="text-field-hero-input" class="mdc-floating-label">Cliente</label>
+                </div>
+              </div>
+              <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                <div class="mdc-text-field w-100">
+                  <input class="mdc-text-field__input" id="text-field-hero-input" name="forma_pago" />
+                  <div class="mdc-line-ripple"></div>
+                  <label for="text-field-hero-input" class="mdc-floating-label">Forma de Pago</label>
+                </div>
+              </div>
+              <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                <div class="nativeDatePicker w-100">
+                    <div class="mdc-text-field">
+                        <input class="mdc-text-field__input" id="text-field-hero-input" type="date"
+                            name="fecha_pago" />
+                        <div class="mdc-line-ripple"></div>
+                        <label for="text-field-hero-input" class="mdc-floating-label">Fecha de
+                            Pago:</label>
+                        <span class="validity"></span>
+                    </div>
+                </div>
+              </div>
+              <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                <div class="mdc-text-field w-100">
+                  <input class="mdc-text-field__input" id="text-field-hero-input" name="num_transaccion" />
+                  <div class="mdc-line-ripple"></div>
+                  <label for="text-field-hero-input" class="mdc-floating-label">Número de Transacción</label>
+                </div>
+              </div>
+              <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                <div class="mdc-text-field w-100">
+                  <input class="mdc-text-field__input" type="number" id="text-field-hero-input" name="total" />
+                  <div class="mdc-line-ripple"></div>
+                  <label for="text-field-hero-input" class="mdc-floating-label">Total</label>
+                </div>
+              </div>
+              <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                <div class="mdc-text-field w-100">
+                  <input class="mdc-text-field__input" type="number" id="text-field-hero-input" name="id_empleado" />
+                  <div class="mdc-line-ripple"></div>
+                  <label for="text-field-hero-input" class="mdc-floating-label">Empleado</label>
+                </div>
+              </div>
+             
+              
+              
+              <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop">
+                <div class="template-demo">
+                  <button type="submit" class="mdc-button mdc-button--unelevated">
+                    <i class="material-icons">save</i>&nbsp;&nbsp;Guardar
+                  </button>
+                  <button type="reset" class="mdc-button mdc-button--unelevated filled-button--warning">
+                    <i class="material-icons">cancel</i>&nbsp;Cancelar
+                  </button>
+                  <a class="mdc-button mdc-button--unelevated filled-button--success" href='/ventas'><i class="material-icons">arrow_back</i>&nbsp;Volver
+                  </a>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--SCRIPT-->
+<% block('footerjs', `<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+$(document).ready(function() {    
+  //funcion para llamar los categorias
+  $('.categorias').select2({      
+    theme: 'classic',      
+    width: '100%',      
+    ajax: {        
+      url: '/categorias/list',        
+      dataType: 'json',                  
+      data: function (params) {          
+        return {            
+          q: params.term,             
+          page: params.page          
+        };        
+      },        
+      processResults: function (data, params) {          
+      return {            
+          results: data,          
+      };        
+      },        
+      cache: true             
+      }    
+    });
+    });
+
+    function imagePreview(file) {
+      var img = document.querySelectorAll('img');                         
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        var img = document.getElementById('img_preview');
+        img.src = e.target.result;                   
+      }
+      reader.readAsDataURL(file[0]);     
+    }
+        
+        </script>`) 
+-%>

@@ -1,0 +1,112 @@
+<% layout('../layout') %>
+    <div style="display: block;
+margin-left: auto;
+margin-right: auto;" class="mdc-layout-grid__cell stretch-card col-md-10 col-xxl-11 mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+        <div class="mdc-card p-0  to-do-list">
+            <div class="align-items-center back__head text-white to-do-list-header">
+                <div class="col-xs-6">
+                    <h2 style="text-align: center;"><i class="material-icons">shuffle</i> Lista de <b>Sorteos</b></h2>
+                </div>
+                <div class="row">
+                    <div class="input-group mb-3">
+                        <a href="/sorteos/add" class="btn btn__add btn-light btn__center__add  btn__add-white btn__add-animate"><span class="material-icons" style="vertical-align: -6px; color: black;">
+                        library_add
+                        </span> Agregar Sorteo</a>
+                    </div>
+                </div>
+            </div>
+            <div class="mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-12-desktop stretch-card">
+                <div class="mdc-card p-0 to-do-list">
+                    <div class="d-flex back__head text-white to-do-list-header">
+                        <h4 class="card-title">Sorteo</h4>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table hoverable" id="table_id">
+                            <thead>
+                                <tr class="back__head">
+                                    <% i = 1; %>
+
+                                        <th class="text-center text-white">Código de Rifa</th>
+                                        <th class="text-center text-white">Boleto Ganador</th>
+                                        <th class="text-center text-white">Fecha de Sorteo</th>
+                                        <th class="text-center text-white">Estado</th>
+                                        <th class="text-center text-white">Fecha de Entrega</th>
+
+                                        <th class="text-white text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% sorteos.forEach(function(sorteo) { %>
+                                    <tr>
+                                        <!--<td><%= i %></td>-->
+
+                                        <td class="text-left">
+                                            <%= sorteo.codigo_rifa %>
+                                        </td>
+                                        <td class="text-left">
+                                            <%= sorteo.boleto_ganador %>
+                                        </td>
+                                        <td>
+                                            <%= moment(sorteo.fecha_sorteo).format('DD/MM/YYYY') %>
+                                        </td>
+                                        <td class="text-left">
+                                            <%= sorteo.estado %>
+                                        </td>
+                                        <td class="text-left">
+                                            <%= moment(sorteo.fecha_entrega).format('DD/MM/YYYY') %>
+                                        </td>
+
+                                        <td class="text-center">
+                                            <a href="/sorteos/edit/<%= sorteo.id %>" class="mdc-button mdc-button--raised filled-button--info">
+                                                <i class="material-icons">edit</i>
+                                            </a>
+                                            <a href="sorteos/delete/<%= sorteo.id %>" class="mdc-button mdc-button--raised filled-button--secondary">
+                                                <i class="material-icons">delete</i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <% i++}); %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!--SCRIPT-->
+    <% block('footerjs', `<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    
+    <script>
+     $(document).ready( function () {
+     $('#table_id').DataTable({
+         language: {
+         "decimal": "",
+         "emptyTable": "No hay información",
+         "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+         "infoEmpty": "Mostrando 0 to 0 de 0 Entradas",
+         "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+         "infoPostFix": "",
+         "thousands": ",",
+         "lengthMenu": "Mostrar _MENU_ Entradas",
+         "loadingRecords": "Cargando...",
+         "processing": "Procesando...",
+         "search": "Buscar:",
+         "zeroRecords": "Sin resultados encontrados",
+         "paginate": {
+             "first": "Primero",
+             "last": "Ultimo",
+             "next": "Siguiente",
+             "previous": "Anterior"
+         }
+     },
+ 
+     });
+     $(function () {
+   $('[data-toggle="tooltip"]').tooltip()
+ })
+ 
+         } );
+ 
+            </script>`)
+    -%>

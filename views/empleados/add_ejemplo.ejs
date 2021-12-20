@@ -1,0 +1,90 @@
+<h2><i class="material-icons">person_add</i> Registro de Clientes</h2>
+<form action="">
+  <div class="mdc-layout-grid__inner">
+    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+      <div class="mdc-text-field mdc-text-field--outlined">
+        <input class="mdc-text-field__input" name="nombres"/>
+        <div class="mdc-notched-outline">
+          <div class="mdc-notched-outline__leading"></div>
+          <div class="mdc-notched-outline__notch">
+            <label for="text-field-hero-input" class="mdc-floating-label">Name</label>
+          </div>
+          <div class="mdc-notched-outline__trailing"></div>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn">
+      <i class="material-icons">save</i> Guardar
+    </button>
+    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2">
+      <div class="mdc-text-field w-100">
+        <select class="form-select" aria-label="Estado Civil">
+        <option value="1">Soltero</option>
+        <option value="2">Casado</option>
+        <option value="3">Acompañado</option>
+        <option value="4">Divorciado</option>
+        <option value="5">Viudo</option>
+      </select>
+      </div>
+      </div>
+  </div>
+</form>
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+  <div class="mdc-card">
+    <h6 class="card-title">Jquery Toast</h6>
+    <div class="mt-1 template-demo">
+      <button class="mdc-button mdc-button--raised" onclick="showToastPosition('bottom-left')">
+        Bottom-left
+      </button>
+      <button class="mdc-button mdc-button--raised" onclick="showToastPosition('bottom-right')">
+        Bottom-right
+      </button>
+      <button class="mdc-button mdc-button--raised" onclick="showToastPosition('bottom-center')">
+        Bottom-center
+      </button>
+      <button class="mdc-button mdc-button--raised" onclick="showToastPosition('top-left')">
+        Top-left
+      </button>
+      <button class="mdc-button mdc-button--raised" onclick="showToastPosition('top-right')">
+        Top-right
+      </button>
+      <button class="mdc-button mdc-button--raised" onclick="showToastPosition('top-center')">
+        Top-center
+      </button>
+      <button class="mdc-button mdc-button--raised" onclick="showToastPosition('mid-center')">
+        Mid-center
+      </button>
+      <button class="mdc-button mdc-button--raised" onclick="showToastInCustomPosition()">
+        Custom
+      </button>
+    </div>
+    <div class="mdc-snackbar" id="mdc-default-snackbar" aria-live="assertive" aria-atomic="true" aria-hidden="true">
+      <div class="mdc-snackbar__text">Default snackbar</div>
+      <div class="mdc-snackbar__action-wrapper">
+        <button type="button" class="mdc-snackbar__action-button">Action</button>
+      </div>
+    </div>
+    <div dir="rtl">
+      <div class="mdc-snackbar" id="mdc-rtl-snackbar" aria-live="assertive" aria-atomic="true" aria-hidden="true">
+        <div class="mdc-snackbar__text">RTL snackbar</div>
+        <div class="mdc-snackbar__action-wrapper">
+          <button type="button" class="mdc-snackbar__action-button">Action</button>
+        </div>
+      </div>
+    </div>
+    <div class="mdc-snackbar mdc-snackbar--align-start" id="mdc-align-start-snackbar" aria-live="assertive" aria-atomic="true" aria-hidden="true">
+      <div class="mdc-snackbar__text">Deafult snackbar aligned to start</div>
+      <div class="mdc-snackbar__action-wrapper">
+        <button type="button" class="mdc-snackbar__action-button">Action</button>
+      </div>
+    </div>
+    <div dir="rtl">
+      <div class="mdc-snackbar mdc-snackbar--align-start" id="mdc-rtl-align-start-snackbar" aria-live="assertive" aria-atomic="true" aria-hidden="true">
+        <div class="mdc-snackbar__text">RTL snackbar aligned to start</div>
+        <div class="mdc-snackbar__action-wrapper">
+          <button type="button" class="mdc-snackbar__action-button">Action</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<h2>Detalle_Factura</h2>
+<% i = 1; %>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Id Detalle</th>
+        <th>Id Boleto</th>
+        <th>Id Factura</th>
+        <th>Número</th>
+        <th>Código Boleto</th>
+        <th>Editar</th>
+        <th>Borrar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% detalles.forEach(function(detalle) { %>
+      <tr>
+        <!--<td><%= i %></td>-->
+        <td><%= detalle.id %></td>
+        <td><%= detalle.id_boleto %></td>
+        <td><%= detalle.id_factura %></td>
+        <td><%= producto.numero %></td>
+        <td><%= detalle.cod_boleto %></td>
+        <td><a class="mdc-button mdc-button--raised filled-button--info">
+          <i class="material-icons">edit</i>
+        </a></td>
+        <td><a href='detalles/delete/<%= detalle.id %>' class="mdc-button mdc-button--raised filled-button--secondary">
+          <i class="material-icons">delete</i>
+        </a></td>
+      </tr>
+      <% i++}); %>
+    </tbody>
+  </table>
+</div>

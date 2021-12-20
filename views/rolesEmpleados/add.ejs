@@ -1,0 +1,180 @@
+<% layout('../layout') %>
+    <div style="display: block;
+margin-left: auto;
+margin-right: auto;" class="mdc-layout-grid__cell stretch-card col-md-10 col-xxl-8 mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+        <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">
+                <div class="mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-12-desktop stretch-card">
+                    <div class="mdc-card p-0 to-do-list">
+                        <div class="d-flex back__head text-white to-do-list-header">
+                            <h4 class="card-title">Alta Rol de Empleado</h4>
+                        </div>
+                        <div class="mdc-card">
+                            <form action="/rol_Empleados/add" method="POST" novalidate class="needs-validation">
+                                <div class="row">
+
+                                    <div class="col col-md-6 mb-6">
+                                        <label for="municipio">Empleado</label>
+                                        <div class="rounded" id="bordeE">
+                                            <select class="empleados" name="id_empleado" id="empleado" required onchange="errorHandler('rolesE','bordeE','empleado',null)"></select>
+
+
+
+
+                                            <label class="invalid-feedback" for="empleado">
+                                                    Este campo debe ser completado</label >
+                                        </div>
+
+                                        
+                                    </div> 
+                                    <div class="col col-md-6 mb-6">
+                                        <label for="rol">Rol</label>
+                                            <div class="rounded" id="bordeR">
+                                                <select class="roles" name="id_rol" id="rol" required onchange="errorHandler('rolesE','bordeR','rol',null)"></select>
+
+
+
+
+                                                <label class="invalid-feedback" for="rol">
+                                                    Este campo debe ser completado</label >
+                                        </div>
+
+                                        
+                                    </div>
+                                    
+                                </div>
+                                <br>
+                                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop">
+                                    <div class="template-demo">
+                                        <button type="submit" class="mdc-button mdc-button--unelevated">
+                                            <i class="material-icons">save</i>&nbsp;&nbsp;Guardar
+                                        </button>
+                                        <button type="reset" class="mdc-button mdc-button--warning">
+                                            <i class="material-icons">cancel</i>&nbsp;Cancelar
+                                        </button>
+
+                                        <a class="mdc-button mdc-button--unelevated filled-button--success" href='/rol_Empleados'><i class="material-icons">arrow_back</i>&nbsp;Volver
+                                        </a>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    </div>
+
+
+    <!--SCRIPT-->
+    <% block('footerjs', `<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+     <script>
+       $(document).ready( () => {    
+         //funcion para llamar los muinicipios
+         $('.empleados').select2({      
+           language: {
+     
+           noResults: function() {
+     
+           return "No hay resultado";        
+           },
+           searching: function() {
+     
+           return "Buscando..";
+           }
+           },
+           placeholder: "Selecione el Empleado",
+           width: '100%',      
+           ajax: {        
+               url: '/rol_Empleados/empleados/list',        
+               dataType: 'json',                  
+               data: (params) => {          
+                 return {            
+                   q: params.term,             
+                   page: params.page          
+                 };        
+               },        
+               processResults: (data, params) => {          
+               return {            
+                   results: data,          
+               };        
+               },        
+               cache: true             
+             }    
+           });
+           //funcion para llamar los muinicipios
+         $('.roles').select2({      
+           language: {
+     
+           noResults: function() {
+     
+           return "No hay resultado";        
+           },
+           searching: function() {
+     
+           return "Buscando..";
+           }
+           },
+           placeholder: "Selecione el Rol",
+           width: '100%',      
+           ajax: {        
+               url: '/roles/list',        
+               dataType: 'json',                  
+               data: (params) => {          
+                 return {            
+                   q: params.term,             
+                   page: params.page          
+                 };        
+               },        
+               processResults: (data, params) => {          
+               return {            
+                   results: data,          
+               };        
+               },        
+               cache: true             
+             }    
+           });
+          
+       });
+     
+       
+       
+             </script>`) 
+     -%>
+
+     <script>
+         (function() {
+    'use strict';
+    window.addEventListener('load', function() {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        var empleado = document.getElementById('empleado');
+        var rol = document.getElementById('rol');
+        var bordeR = document.getElementById('bordeR');
+        var bordeE = document.getElementById('bordeE');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    if (empleado.value === '' && rol.value === '') {
+                        bordeE.classList.add('border__select__error');
+                        bordeR.classList.add('border__select__error');
+                    }
+                    if (empleado.value === '') {
+                        bordeE.classList.add('border__select__error');
+                    }
+                    if (rol.value === '') {
+                        bordeR.classList.add('border__select__error');
+                    }
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    }, false);
+})();
+     </script>

@@ -1,0 +1,278 @@
+<% layout('../layout') %>
+    <div style="display: block;
+margin-left: auto;
+margin-right: auto;" class="mdc-layout-grid__cell stretch-card col-md-10 col-xxl-10 mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-4-tablet">
+        <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">
+                <div class="mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-12-desktop stretch-card">
+
+                    <div class="mdc-card p-0 to-do-list">
+                        <div class="d-flex back__head text-white to-do-list-header">
+                            <h4 class="card-title">Alta Producto</h4>
+                        </div>
+                        <div class="mdc-card">
+
+                            <form class="needs-validation" novalidate action="/productos/add" enctype="multipart/form-data" method="POST">
+
+
+                                <div class="card text-center">
+                                    <div class="back__head text-white">
+                                        <div class="card-header">
+
+                                            Producto
+                                        </div>
+
+                                    </div>
+
+                                    <div class="card-body">
+                                        <p class="card-text">
+                                            <img id="img_preview" width="25%" class="img">
+                                        </p>
+                                    </div>
+                                    <div id="bordeI">
+                                        <div class="card-footer">
+                                            <div class="custom-file">
+                                                <input type="file" accept="image/*,.jpg,.jpeg,.png" class="custom-file-input" id="imagen" name="imagen" required onchange="imagePreview(this.files);errorHandler('productos','bordeI','imagen','formatoI')">
+
+                                                <div class="invalid-feedback" id="formatoI">Selecione la imagen</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                                <br>
+                                <div class="row ">
+                                    <div class="col col-md-4 mb-4">
+                                        <div>
+                                            <label for="nombre">Nombre del producto</label>
+
+
+                                            <input type="text" class="form-control" id="nombre" name="nombre" required onkeyup="errorHandler('productos','counterN','nombre',null)">
+                                            <label for="nombre" id="counterN">0/45</label>
+                                            <div class="valid-feedback">
+
+                                            </div>
+                                            <div class="invalid-feedback">
+                                                Este campo debe ser completado
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col col-md-4 mb-4">
+                                        <div>
+                                            <label for="descripcion">Descripción</label>
+                                            <input type="text" class="form-control" id="descripcion" name="descripcion" required onkeyup="errorHandler('productos','counterD','descripcion',null)">
+                                            <label for="nombre" id="counterD">0/300</label>
+                                            <div class="valid-feedback">
+
+                                            </div>
+                                            <div class="invalid-feedback">
+                                                Este campo debe ser completado
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col col-md-4 mb-4">
+                                        <div>
+                                            <label for="url">Sitio web del Fabricante</label>
+                                            <input type="text" class="form-control" id="url" name="url_fabricante" required onkeyup="errorHandler('productos','counterU','url',null)">
+                                            <label for="nombre" id="counterU">0/200</label>
+                                            <div class="valid-feedback ">
+
+                                            </div>
+                                            <div class="invalid-feedback">
+                                                Este campo debe ser completado
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-md-6 mb-6">
+                                        <div>
+                                            <label for="categoria">Categoria</label>
+                                            <div class="rounded" id="bordeC">
+                                                <select class="categorias" name="id_categoria" id="categoria" required onchange="errorHandler('productos', 'bordeC', 'categoria',null)"></select>
+
+                                                <label class="valid-feedback" for="categoria"> </label>
+
+
+                                                <label class="invalid-feedback" for="categoria">
+                                                        Este campo debe ser completado</label >
+                                            </div>
+
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="col col-md-6 mb-6">
+                                        <div>
+                                            <label for="marca">Marca</label>
+                                                <div class="rounded" id="bordeM">
+                                                    <select class="marcas" name="id_marca" id="marca" required onchange="errorHandler('productos', 'bordeM', 'marca',null)"></select>
+
+                                                    <label class="valid-feedback" for="marca"> </label>
+
+
+                                                    <label class="invalid-feedback" for="marca">
+                                                        Este campo debe ser completado</label >
+                                            </div>
+
+                                           
+                                        </div>
+                                </div>
+
+                                    </div>
+                                    <br>
+                                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop">
+                                        <div class="template-demo ">
+                                            <button type="submit " class="mdc-button mdc-button--unelevated">
+                                            <i class="material-icons ">save</i>&nbsp;&nbsp;Guardar
+                                        </button>
+                                            <button type="reset " class="mdc-button mdc-button--warning">
+                                            <i class="material-icons ">cancel</i>&nbsp;Cancelar
+                                        </button>
+                                            <a class="mdc-button mdc-button--unelevated filled-button--success" href='/productos'><i class="material-icons">arrow_back</i>&nbsp;Volver</a>
+                                        </div>
+                                    </div>
+
+                            </form>
+                            
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!--SCRIPT-->
+            <% block('footerjs', `<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js "></script>
+<script>
+    
+  $(document).ready( () => {
+    
+    
+    $('.categorias').select2({      
+      language: {
+
+      noResults: function() {
+
+      return "No hay resultado ";        
+      },
+      searching: function() {
+
+      return "Buscando.. ";
+      }},
+      placeholder: "Selecione la categoria ",
+      width: '100%',      
+      ajax: {        
+          url: '/categorias/list',        
+          dataType: 'json',                  
+          data: (params) => {          
+            return {            
+              q: params.term,             
+              page: params.page          
+            };        
+          },        
+          processResults: (data, params) => {          
+          return {            
+              results: data,          
+          };        
+          },        
+          cache: true             
+        },  
+      });
+      $('.marcas').select2({      
+      language: {
+
+      noResults: function() {
+
+      return "No hay resultado ";        
+      },
+      searching: function() {
+
+      return "Buscando.. ";
+      }
+      },
+      placeholder: "Selecione la marca ",
+      width: '100%',      
+      ajax: {        
+          url: '/marcas/list',        
+          dataType: 'json',                  
+          data: (params) => {          
+            return {            
+              q: params.term,             
+              page: params.page          
+            };        
+          },        
+          processResults: (data, params) => {          
+          return {            
+              results: data,          
+          };        
+          },        
+          cache: true             
+        }    
+      });
+  });
+
+   
+  
+        </script>`) 
+-%>
+
+                <script>
+                    (function() {
+                        'use strict';
+                        window.addEventListener('load', function() {
+                            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                            var forms = document.getElementsByClassName('needs-validation');
+                            var bordeC = document.getElementById('bordeC');
+                            var bordeM = document.getElementById('bordeM');
+                            var bordeI = document.getElementById('bordeI');
+                            var marca = document.getElementById('marca');
+                            var categoria = document.getElementById('categoria');
+                            var imagen = document.getElementById('imagen');
+                            // Loop over them and prevent submission
+                            var validation = Array.prototype.filter.call(forms, function(form) {
+                                form.addEventListener('submit', function(event) {
+                                    if (form.checkValidity() === false) {
+                                        event.preventDefault();
+                                        event.stopPropagation();
+                                        if (categoria.value === '' && marca.value === '' && imagen.value === '') {
+                                            bordeC.classList.add('border__select__error');
+                                            bordeM.classList.add('border__select__error');
+                                            bordeI.classList.add('border__select__error');
+                                        }
+                                        if (categoria.value === '') {
+                                            bordeC.classList.add('border__select__error');
+                                        }
+                                        if (marca.value === '') {
+                                            bordeM.classList.add('border__select__error');
+                                        } if (imagen.value === '') {
+                                            bordeI.classList.add('border__select__error');
+                                        }
+                                        
+
+                                    }
+                                    form.classList.add('was-validated');
+                                }, false);
+                            });
+                        }, false);
+                    })();
+
+
+                    function imagePreview(file) {
+                        var img = document.querySelectorAll('img');
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            var img = document.getElementById('img_preview');
+                            img.src = e.target.result;
+                        }
+                        reader.readAsDataURL(file[0]);
+
+                    }
+                </script>

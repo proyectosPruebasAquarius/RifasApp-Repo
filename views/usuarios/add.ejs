@@ -1,0 +1,217 @@
+<% layout('../layout') %>
+    <div style="display: block;
+            margin-left: auto;
+            margin-right: auto;" class="mdc-layout-grid__cell stretch-card col-md-10 col-xxl-8 mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+        <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">
+                <div class="mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-12-desktop stretch-card">
+                    <div class="mdc-card p-0 to-do-list">
+                        <div class="d-flex back__head text-white to-do-list-header">
+                            <h4 class="card-title">Alta de Usuario de Sistema </h4>
+                        </div>
+                        <div class="mdc-card">
+
+
+                            <form class="needs-validation" novalidate action="/usuarios/administrador" method="POST" ">
+                                <div class="row">
+                                    <div class="col-md-6 mb-6">
+                                        <label for="nombre">Nombre de Usuario</label>
+                                        <input type="text" class="form-control" id="nombre" required name="nombre" maxlength="45" onkeyup="errorHandler('sistema','counterN','nombre',null)">
+                                        <div class="valid-feedback">
+
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            Este campo debe ser completado
+                                        </div>
+                                        <br>
+                                        <label for="nombre" id="counterN">0/45</label>
+                                    </div>
+                                    <div class="col-md-6 mb-6">
+                                        <label for="password">Contraseña</label>
+                                        <input type="text" class="form-control" id="password" required name="password" maxlength="500" onkeyup="errorHandler('sistema','counterP','password',null)" >
+                                        <div class="valid-feedback">
+
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            Este campo debe ser completado
+                                        </div>
+                                        <br>
+                                        <label for="password" id="counterP">0/500</label>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col col-md-6 mb-6">
+                                        <div>
+                                            <label for="empleado">Empleado</label>
+                                            <div class="rounded" id="bordeE">
+                                                <select class="empleados" name="id_empleado" id="empleado" required onchange="errorHandler('sistema', 'bordeE', 'empleado',null)"></select>
+
+                                                <label class="valid-feedback" for="empleado"> </label>
+
+
+                                                <label class="invalid-feedback" for="empleado">
+                                                        Este campo debe ser completado</label >
+                                            </div>
+
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="col col-md-6 mb-6">
+                                        <div>
+                                            <label for="tipo">Tipo de Usuario</label>
+                                                <div class="rounded" id="bordeT">
+                                                    <select class="tipos" name="id_tipo_usuario" id="tipo" required onchange="errorHandler('sistema', 'bordeT', 'tipo',null)"></select>
+
+                                                    <label class="valid-feedback" for="tipo"> </label>
+
+
+                                                    <label class="invalid-feedback" for="tipo">
+                                                        Este campo debe ser completado</label >
+                                            </div>
+
+                                           
+                                        </div>
+                                </div>
+                                </div>
+                                    <br>
+
+                                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop">
+                                    <div class="template-demo">
+                                        <button type="submit" class="mdc-button mdc-button--unelevated">
+                                                    <i class="material-icons">save</i>&nbsp;&nbsp;Guardar
+                                                </button>
+                                        <button type="reset" class="mdc-button mdc-button--warning">
+                                                    <i class="material-icons">cancel</i>&nbsp;Cancelar
+                                                </button>
+
+                                        <a class="mdc-button mdc-button--unelevated filled-button--success" href='/usuarios'>
+                                            <i class="material-icons">arrow_back</i>&nbsp;Volver</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+     <!--SCRIPT-->
+     <% block('footerjs', `<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js "></script>
+     <script>
+         
+       $(document).ready( () => {
+         
+         
+         $('.empleados').select2({      
+           language: {
+     
+           noResults: function() {
+     
+           return "No hay resultado ";        
+           },
+           searching: function() {
+     
+           return "Buscando.. ";
+           }},
+           placeholder: "Selecione el Empleado ",
+           width: '100%',      
+           ajax: {        
+               url: '/usuarios/listEmpleados',        
+               dataType: 'json',                  
+               data: (params) => {          
+                 return {            
+                   q: params.term,             
+                   page: params.page          
+                 };        
+               },        
+               processResults: (data, params) => {          
+               return {            
+                   results: data,          
+               };        
+               },        
+               cache: true             
+             },  
+           });
+           $('.tipos').select2({      
+           language: {
+     
+           noResults: function() {
+     
+           return "No hay resultado ";        
+           },
+           searching: function() {
+     
+           return "Buscando.. ";
+           }
+           },
+           placeholder: "Selecione el tipo de Usuario ",
+           width: '100%',      
+           ajax: {        
+               url: '/usuarios/listTipos',        
+               dataType: 'json',                  
+               data: (params) => {          
+                 return {            
+                   q: params.term,             
+                   page: params.page          
+                 };        
+               },        
+               processResults: (data, params) => {          
+               return {            
+                   results: data,          
+               };        
+               },        
+               cache: true             
+             }    
+           });
+       });
+     
+        
+       
+             </script>`) 
+     -%>
+     
+
+
+
+    <script>
+       
+       (function() {
+                        'use strict';
+                        window.addEventListener('load', function() {
+                            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                            var forms = document.getElementsByClassName('needs-validation');
+                            const empleado = document.getElementById('empleado');
+                            const tipo = document.getElementById('tipo');
+                            const bordeE = document.getElementById("bordeE");
+                            const bordeT = document.getElementById('bordeT');
+                            // Loop over them and prevent submission
+                            var validation = Array.prototype.filter.call(forms, function(form) {
+                                form.addEventListener('submit', function(event) {
+                                    if (form.checkValidity() === false) {
+                                        event.preventDefault();
+                                        event.stopPropagation();
+                                        
+                                        if (empleado.value === '' && tipo.value === '')  {
+                                            bordeE.classList.add('border__select__error');
+                                            bordeT.classList.add('border__select__error');
+
+                                        }
+                                        if (empleado.value === '') {
+                                            bordeE.classList.add('border__select__error');
+                                        }
+                                        if (tipo.value === '') {
+                                            bordeT.classList.add('border__select__error');
+                                        }
+                                        
+
+                                    }
+                                    form.classList.add('was-validated');
+                                }, false);
+                            });
+                        }, false);
+                    })();
+
+       
+    </script>

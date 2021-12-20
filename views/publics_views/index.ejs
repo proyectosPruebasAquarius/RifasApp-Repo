@@ -1,0 +1,281 @@
+<% layout('../layout_public') -%>
+
+    <div class="intro-slider-container">
+        <div class="intro-slider owl-carousel owl-theme owl-nav-inside owl-light" data-toggle="owl" data-owl-options='{
+          "dots": false,
+          "nav": false,
+          "autoplay":true,
+          "autoplayTimeout":5000,
+         
+          "responsive": {
+              "992": {
+                  "nav": true
+              }
+          }
+      }'>
+            <% publicaciones.forEach(publicacion => { %>
+                <div class="intro-slide" style="background-image: url('/images/publicaciones/<%= publicacion.imagen %>');">
+                    <div class="container intro-content text-center">
+                        <h3 class="intro-subtitle text-white">
+                            <%= publicacion.titulo %>
+                        </h3>
+                        <!-- End .h3 intro-subtitle -->
+                        <h1 class="intro-title text-white"></h1>
+                        <!-- End .intro-title -->
+                        <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                        <a href="/inicio" class="btn btn-outline-white-4">
+                            <span>Más información</span>
+                        </a>
+                    </div>
+                    <!-- End .intro-content -->
+                </div>
+                <% }) %>
+                    <!-- End .intro-slide -->
+
+                    <div class="intro-slide" style="background-image: url(assets/images/demos/demo-6/slider/slide-4.png);">
+                        <div class="container intro-content text-center">
+                            <h3 class="intro-subtitle text-white">Don’t Miss</h3>
+                            <!-- End .h3 intro-subtitle -->
+                            <h1 class="intro-title text-white">Mysrety Deals</h1>
+                            <!-- End .intro-title -->
+                            <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                            <a href="category.html" class="btn btn-outline-white-4">
+                                <span>Discover More</span>
+                            </a>
+                        </div>
+                        <!-- End .intro-content -->
+                    </div>
+                    <!-- End .intro-slide -->
+        </div>
+        <!-- End .intro-slider owl-carousel owl-theme -->
+
+        <span class="slider-loader"></span>
+        <!-- End .slider-loader -->
+    </div>
+    <!-- Cards Sliders -->
+    <div class="container featured">
+        <form name="ShoppingList">
+            <fieldset>
+                <ul class="nav nav-pills nav-border-anim nav-big justify-content-center mb-3" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="products-featured-link" data-toggle="tab" href="#products-featured-tab" role="tab" aria-controls="products-featured-tab" aria-selected="true">Sorteos</a>
+                    </li>
+
+                </ul>
+                <div class="tab-content tab-content-carousel">
+                    <div class="tab-pane p-0 show active" id="products-featured-tab" role="tabpanel" aria-labelledby="products-featured-link">
+                        <div class="owl-carousel owl-full carousel-equal-height" data-toggle="owl" data-owl-options='{
+                            "nav": true, 
+                            "dots": true,
+                            "margin": 20,
+                            "loop": true,
+                            "autoplay":true,
+                            "autoplayTimeout":20000,
+                            
+                            "responsive": {
+                                "0": {
+                                    "items":1
+                                },
+                                "500": {
+                                    "items":2
+                                },
+                                "600": {
+                                    "items":3
+                                },
+                                "992": {
+                                    "items":4
+                                },
+                                "1200": {
+                                    "items":5
+                                }
+                            }
+                        }'>
+                            <% posts.forEach( (p) => {  %>
+                                <div class="product product-2 text-center">
+                                    <figure class="product-media">
+                                        <span class="product-label  label-sale"><%= p.estado == 1 ? "Activo" : "Finalizado"   %> </span>
+                                        <!--<span class="product-label  label-new">Nuevo Sorteo</span>-->
+                                        <a>
+                                        <img src="/images/publicaciones/<%= p.imagen %>" alt="Product image" class="product-image" >
+                                    </a>
+
+
+                                        <!-- End .product-action -->
+                                    </figure>
+                                    <!-- End .product-media -->
+
+                                    <div class="product-body">
+                                        <!-- End .product-cat -->
+                                        <div class="product-title">
+                                            <%= p.titulo %>
+                                        </div>
+                                        <div class="product-description">
+                                            <p>
+                                                <%= p.descripcion %>
+                                            </p>
+
+                                        </div>
+                                        <div class="product-description">
+                                            <a href="/participacion">Como Participar</a> <br>
+                                            <a href="/legal">Terminos Y condiciones</a>
+                                        </div>
+                                        <!-- End .product-title -->
+                                        <div class="product-description">
+                                            Fecha:
+                                            <%= moment(p.fecha).format('DD-MM-YYYY') %>
+                                        </div>
+                                        <div class="product-description">
+                                            Hora:
+                                            <%= moment(p.fecha).format('hh:mm') %>
+                                        </div>
+                                        <div class="product-price">
+                                            $
+                                            <%= p.boleto %>
+                                        </div>
+                                        <div class="row">
+                                            <div class="text-center">
+
+                                                <a id="cart" class="btn btn-outline-primary btn-rounded addCart" data-toggle="tooltip" data-placement="top" title="Esta Acción añadira este Sorteo al Carrito de Compras" href="/cart/add-to-cart/<%= p.id %> "><span>Participar</span></a>
+                                            </div>
+
+                                        </div>
+
+
+                                        <!-- End .rating-container -->
+                                    </div>
+                                    <!-- End .product-body -->
+                                </div>
+                                <!-- End .product -->
+                                <% }); %>
+
+
+                        </div>
+                        <!-- End .owl-carousel -->
+                    </div>
+                    <!-- .End .tab-pane -->
+
+                    <!-- .End .tab-pane -->
+
+                    <!-- .End .tab-pane -->
+                </div>
+            </fieldset>
+        </form>
+        <!-- End .tab-content -->
+    </div>
+    <div class="modal fade" id="deleted-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="icon-close"></i></span>
+                </button>
+
+                    <div class="form-box">
+                        <div class="form-tab">
+                            <ul class="nav nav-pills nav-fill" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="deleted-tab" data-toggle="tab" href="#deleted" role="tab" aria-controls="deleted" aria-selected="true">AVISO</a>
+                                </li>
+
+                            </ul>
+                            <div class="tab-content" id="tab-content-5">
+                                <div class="tab-pane fade show active" id="deleted" role="tabpanel" aria-labelledby="deleted-tab">
+                                    <h1 class="text-center">NO PUEDES INICIAR SESION POR QUE TU CUENTA FUE ELIMINADA</h1>
+                                </div>
+                                <!-- .End .tab-pane -->
+
+                                <!-- .End .tab-pane -->
+                            </div>
+                            <!-- End .tab-content -->
+                        </div>
+                        <!-- End .form-tab -->
+                    </div>
+                    <!-- End .form-box -->
+                </div>
+                <!-- End .modal-body -->
+            </div>
+            <!-- End .modal-content -->
+        </div>
+        <!-- End .modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="venta-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="icon-close"></i></span>
+                </button>
+
+                    <div class="form-box">
+                        <div class="form-tab">
+                            <ul class="nav nav-pills nav-fill" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="venta-tab" data-toggle="tab" href="#venta" role="tab" aria-controls="venta" aria-selected="true">AVISO</a>
+                                </li>
+
+                            </ul>
+                            <div class="tab-content" id="tab-content-5">
+                                <div class="tab-pane fade show active" id="venta" role="tabpanel" aria-labelledby="venta-tab">
+
+                                    <h2>Este es tu No de venta, Guarda este codigo por cualquier reclamación</h2>
+                                    <h6 id="meetodo" class="text-center"></h6>
+                                </div>
+                                <!-- .End .tab-pane -->
+
+                                <!-- .End .tab-pane -->
+                            </div>
+                            <!-- End .tab-content -->
+                        </div>
+                        <!-- End .form-tab -->
+                    </div>
+                    <!-- End .form-box -->
+                </div>
+                <!-- End .modal-body -->
+            </div>
+            <!-- End .modal-content -->
+        </div>
+        <!-- End .modal-dialog -->
+    </div>
+
+
+
+
+
+
+
+    <!-- End .container -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script>
+        <%if (usuario_mess) {%>
+
+        const mensaje = '<%=usuario_mess%>'
+        if (mensaje == 'user-deleted') {
+            $('#deleted-modal').modal('show')
+        }
+        <% }%>
+
+        function dec2hex(dec) {
+            return ('0' + dec.toString(16)).substr(-2)
+        }
+
+        // generateId :: Integer -> String
+        function generateId(len) {
+            var arr = new Uint8Array((len || 40) / 2)
+            window.crypto.getRandomValues(arr)
+            return Array.from(arr, dec2hex).join('')
+        }
+
+        console.log(generateId())
+        const venta = localStorage.venta;
+        if (venta == 'true') {
+            document.getElementById('meetodo').innerText = generateId()
+            $('#venta-modal').modal('show')
+        }
+
+        console.log({
+            fehca: new Date().toString()
+
+        });
+    </script>

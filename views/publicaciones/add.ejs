@@ -1,0 +1,193 @@
+<% layout('../layout') %>
+    <div style="display: block;
+        margin-left: auto;
+        margin-right: auto;" class="mdc-layout-grid__cell stretch-card col-md-12 col-xxl-10 mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+        <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">
+                <div class="mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-12-desktop stretch-card">
+                    <div class="mdc-card p-0 to-do-list">
+                        <div class="d-flex back__head text-white to-do-list-header">
+                            <h4 class="card-title">Alta Publicación</h4>
+                        </div>
+                        <div class="mdc-card">
+                            <form action="/publicaciones/add" enctype="multipart/form-data" method="POST" novalidate class="needs-validation">
+
+
+                                <div class="card text-center">
+                                    <div class="back__head text-white">
+                                        <div class="card-header">
+
+                                            Imagen de la Publicación
+                                        </div>
+
+                                    </div>
+
+                                    <div class="card-body">
+                                        <p class="card-text">
+                                            <img id="img_preview" width="25%" class="img">
+                                        </p>
+                                    </div>
+                                    <div id="bordeI">
+                                        <div class="card-footer">
+                                            <div class="custom-file">
+                                                <input type="file" accept="image/*,.jpg,.jpeg,.png" class="custom-file-input " id="imagen" name="imagen" required onchange="imagePreview(this.files);errorHandler('productos','bordeI','imagen','formatoI')">
+
+                                                <div class="invalid-feedback" id="formatoI">Selecione la imagen</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <br>
+                                <div class="row">
+                                    <div class="col col-md-6 mb-6">
+                                        <label for="titulo">Título</label>
+                                        <input type="text" class="form-control" id="titulo" required name="titulo" onkeyup="errorHandler('publicaciones',null,'titulo',null)">
+                                        <div class="invalid-feedback">
+                                            Este campo debe ser Completado
+                                        </div>
+                                    </div>
+                                    <div class="col col-md-6 mb-6">
+                                        <label for="descripcion">Descripción</label>
+                                        <input type="text" class="form-control" id="descripcion" required name="descripcion" onkeyup="errorHandler('publicaciones',null,'descripcion',null)">
+                                        <div class="invalid-feedback">
+                                            Este campo debe ser Completado
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col col-md-6 mb-6">
+                                        <label for="contenido">Contenido de la Publicación</label>
+                                        <input type="text" class="form-control" id="contenido" required name="contenido" onkeyup="errorHandler('publicaciones',null,'contenido',null)">
+                                        <div class="invalid-feedback">
+                                            Este campo debe ser Completado
+                                        </div>
+                                    </div>
+                                    <div class="col col-md-6 mb-6">
+                                        <label for="munucipio">Rifa</label>
+                                        <div class="rounded" id="bordeR">
+                                            <select class="rifas" name="id_rifa" id="rifas" required onchange="errorHandler('publicaciones','bordeR','rifas',null)"></select>
+
+                                            <label class="valid-feedback" for="rifas"> </label>
+
+
+                                            <label class="invalid-feedback" for="rifas">
+                                                    Este campo debe ser completado</label >
+                                        </div>
+
+                                        <div class="invalid-feedback">
+                                            Este campo debe ser completado
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop">
+                                    <div class="template-demo">
+                                        <button type="submit" class="mdc-button mdc-button--unelevated">
+                                            <i class="material-icons">save</i>&nbsp;&nbsp;Guardar
+                                        </button>
+                                        <button type="reset" class="mdc-button mdc-button--warning">
+                                            <i class="material-icons">cancel</i>&nbsp;Cancelar
+                                        </button>
+                                        <a class="mdc-button mdc-button--unelevated filled-button--success" href='/publicaciones'><i class="material-icons">arrow_back</i>&nbsp;Volver</a>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--SCRIPT-->
+    <% block('footerjs', `<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+   
+      <script>
+        $(document).ready( () => {    
+          //funcion para llamar las rifas
+          $('.rifas').select2({      
+            language: {
+      
+            noResults: function() {
+      
+            return "No hay resultado";        
+            },
+            searching: function() {
+      
+            return "Buscando..";
+            }
+            },
+            placeholder: "Selecione la Rifa",
+            width: '100%',      
+            ajax: {        
+                url: '/rifas/list',        
+                dataType: 'json',               
+                data: (params) => {          
+                  return {            
+                    q: params.term,             
+                    page: params.page          
+                  };        
+                },        
+                processResults: (data, params) => {          
+                return {            
+                    results: data,          
+                };        
+                },        
+                cache: true             
+              }    
+            });
+           
+        });
+              </script>`) 
+      -%>
+
+        <script>
+            function imagePreview(file) {
+                var img = document.querySelectorAll('img');
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var img = document.getElementById('img_preview');
+                    img.src = e.target.result;
+                }
+                reader.readAsDataURL(file[0]);
+
+            }
+
+            (function() {
+                'use strict';
+                window.addEventListener('load', function() {
+                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                    var forms = document.getElementsByClassName('needs-validation');
+                    var rifa = document.getElementById('rifas');
+                    var bordeR = document.getElementById('bordeR');
+                    var imagen = document.getElementById('imagen');
+                    var bordeI = document.getElementById('bordeI');
+                    // Loop over them and prevent submission
+                    var validation = Array.prototype.filter.call(forms, function(form) {
+                        form.addEventListener('submit', function(event) {
+                            if (form.checkValidity() === false) {
+                                event.preventDefault();
+                                event.stopPropagation();
+                                if (rifa.value === '' && imagen.value === '') {
+                                    bordeR.classList.add('border__select__error');
+                                    bordeI.classList.add('border__select__error');
+                                }
+                                if (rifa.value === '') {
+                                    bordeR.classList.add('border__select__error');
+                                }
+                                if (imagen.value === '') {
+                                    bordeI.classList.add('border__select__error');
+                                }
+                            }
+                            form.classList.add('was-validated');
+                        }, false);
+                    });
+                }, false);
+            })();
+        </script>
